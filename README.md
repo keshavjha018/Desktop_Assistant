@@ -38,7 +38,7 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#Team Members">Team Members</a></li>
+    <li><a href="#Team">Team Members</a></li>
   </ol>
 </details>
 
