@@ -7,7 +7,7 @@
   <h3 align="center">Desktop Assistant Project</h3>
 
   <p align="center">
-    
+    <br />
     Automates the boring tasks for you & Saves your time
     <br />
     <a href="https://github.com/keshavjha018/Desktop_Assistant_Project/issues"><strong>Suggest a feature »</strong></a>
