@@ -38,7 +38,7 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#Team">Contact</a></li>
+    <li><a href="#Team Members">Team Members</a></li>
   </ol>
 </details>
 
@@ -106,7 +106,7 @@ Distributed under the MIT License.
 
 
 <!-- Team -->
-## Team
+## Team Members
 
 Names
 - Keshav kumar Jha (20bcs070)
