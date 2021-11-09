@@ -1,8 +1,8 @@
 <br />
 <div align="center">
-  <a href="https://github.com/keshavjha018/Desktop_Assistant_Project">
+<!--   <a href="https://github.com/keshavjha018/Desktop_Assistant_Project">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+  </a> -->
 
   <h3 align="center">Desktop Assistant Project</h3>
 
