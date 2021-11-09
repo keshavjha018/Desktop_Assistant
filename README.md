@@ -14,8 +14,7 @@
     <a href="https://github.com/keshavjha018/Desktop_Assistant_Project"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/keshavjha018/Desktop_Assistant_Project">View Demo</a>
-    ·
+   
     <a href="https://github.com/keshavjha018/Desktop_Assistant_Project/issues">Report Bug</a>
     ·
     <a href="https://github.com/keshavjha018/Desktop_Assistant_Project/issues">Request Feature</a>
@@ -103,7 +102,7 @@ _For more examples about automation and selenium, please see my other repo [Auto
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -116,7 +115,11 @@ Names
 - Keshav kumar Jha (20bcs070)
 - Lucky Yadav (20bcs077)
 - Daulat  Kumar Jha (20bcs037)
-- & others
+- Brij
+- Hemant
+- Rohan
+- Sparsh
+- Tejas
 
 Project Link: [https://github.com/keshavjha018/Desktop_Assistant_Project](https://github.com/keshavjha018/Desktop_Assistant_Project)
 
