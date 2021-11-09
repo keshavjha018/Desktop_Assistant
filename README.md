@@ -14,7 +14,8 @@
     <a href="https://github.com/keshavjha018/Desktop_Assistant_Project"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-   
+    
+    .
     <a href="https://github.com/keshavjha018/Desktop_Assistant_Project/issues">Report Bug</a>
     ·
     <a href="https://github.com/keshavjha018/Desktop_Assistant_Project/issues">Request Feature</a>
