@@ -79,6 +79,15 @@ There are some requirements for running these programs in any system, Your syste
   
 ## Usage
 
+It will  do most of the tasks on voice command like :
+- Sending E-Mails
+- Telling Latest News
+- Crawling to any website  (Based on Voice command)
+- Showing weather
+- Opening Desktop Apps
+- & many other tasks too
+
+As of now we are still working on maximizing the tasks it can do and add more and more functionality to it.
 
 
 _For more examples about automation and selenium, please see my other repo [Automation](https://github.com/keshavjha018/Web_Automation)_
