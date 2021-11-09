@@ -106,7 +106,7 @@ Distributed under the MIT License.
 
 
 <!-- Team -->
-## Team Members
+## Team
 
 Names
 - Keshav kumar Jha (20bcs070)
