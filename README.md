@@ -7,7 +7,6 @@
   <h3 align="center">Desktop Assistant Project</h3>
 
   <p align="center">
-    <br />
     Automates the boring tasks for you & Saves your time
     <br />
     <a href="https://github.com/keshavjha018/Desktop_Assistant_Project/issues"><strong>Suggest a feature »</strong></a>
@@ -84,7 +83,7 @@ It will  do most of the tasks on voice command like :
 - Crawling to any website  (Based on Voice command)
 - Showing weather
 - Opening Desktop Apps
-- & many other tasks too
+- & many others too
 
 As of now we are still working on maximizing the tasks it can do and add more and more functionality to it.
 
@@ -99,7 +98,7 @@ _For more examples about automation and selenium, please see my other repo [Auto
 - [x] Add readme documentation
 - [] Add basic functionalities
 - [] Add Additional features
-- [] Support
+- Supports
     - [x] Windows
     - [] Mac
     - [] Linux
