@@ -11,14 +11,10 @@
     <br />
     Automates the boring tasks for you & Saves your time
     <br />
-    <a href="https://github.com/keshavjha018/Desktop_Assistant_Project"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/keshavjha018/Desktop_Assistant_Project/issues"><strong>Suggest a feature »</strong></a>
     <br />
     <br />
     
-    .
-    <a href="https://github.com/keshavjha018/Desktop_Assistant_Project/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/keshavjha018/Desktop_Assistant_Project/issues">Request Feature</a>
   </p>
 </div>
 
