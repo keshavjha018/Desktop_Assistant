@@ -112,7 +112,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- Team -->
 ## Team
 
-Names - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Names
+- Keshav kumar Jha (20bcs070)
+- Lucky Yadav (20bcs077)
+- Daulat  Kumar Jha (20bcs037)
+- & others
 
 Project Link: [https://github.com/keshavjha018/Desktop_Assistant_Project](https://github.com/keshavjha018/Desktop_Assistant_Project)
 
