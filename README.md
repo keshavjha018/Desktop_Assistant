@@ -7,8 +7,7 @@
   <h3 align="center">Desktop Assistant Project</h3>
 
   <p align="center">
-    A group project for OOP Course at IIIT Dharwad.
-    <br />
+    
     Automates the boring tasks for you & Saves your time
     <br />
     <a href="https://github.com/keshavjha018/Desktop_Assistant_Project/issues"><strong>Suggest a feature »</strong></a>
@@ -108,7 +107,7 @@ _For more examples about automation and selenium, please see my other repo [Auto
 
 ## License
 
-Distributed under the MIT License.
+MIT License.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -126,7 +125,5 @@ Names
 - Rohan
 - Sparsh
 - Tejas
-
-Project Link: [https://github.com/keshavjha018/Desktop_Assistant_Project](https://github.com/keshavjha018/Desktop_Assistant_Project)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
