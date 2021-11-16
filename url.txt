@@ -1,0 +1,6 @@
+url,"link"
+gmail_url,"http://www.gmail.com"
+classroom_url,"http://www.classroom.google.com/u/0/h"
+google_url,"http://www.google.com"
+youtube_url,"http://www.youtube.com"
+meet_url,"https://meet.google.com/snn-dzxf-ngd"
