@@ -53,7 +53,7 @@ Majority of this project is made via Python, Selenium & other python based libra
 * [Python](https://www.python.org/)
 * [Selenium](https://www.selenium.dev/)
 * Chrome webdriver
-* PyQt5 - For frontend GUI
+* [PyQt5](https://www.riverbankcomputing.com/software/pyqt/) - For frontend GUI
 * Qt Designer Software
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -72,7 +72,7 @@ There are some requirements for running these programs in any system, Your syste
   ```
 * PyQt5
   ```sh
-  pip install pyqt5
+  pip install PyQt5
   ```  
   
   
