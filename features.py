@@ -16,20 +16,11 @@ from selenium import webdriver
 # access file contain the function to find an path/details/urls in the respective file
 import access
 
-def speak(audio):
-    # defining the speak function so that our assistant can speak any string given as input
-    engine = pyttsx3.init('sapi5')  # defining the engine to speak given string
-    voice = engine.getProperty('voices')
-    # seting voice of any inbuilt system voice like David/Zeera
-    engine.setProperty('voice', voice[1].id)
-    # print(voice[0])     # to know the no of voices in system
-    engine.setProperty('rate', 188)  # set the speed of voice
-    engine.say(audio)
-    print(audio)
-    # global chat
-    # chat.append("Walter: " + audio)
-    # Runs an event loop until all commands queued up until this method call complete
-    engine.runAndWait()
+#for web scrapping
+import requests
+from bs4 import BeautifulSoup
+
+from WALTER import speak
 
 def takecomand(self):
         #Defining function to take the voice as input and converting it to text
@@ -57,4 +48,18 @@ def takecomand(self):
             print(state)
             return "None"
         return query.lower()  # returning the query in lower alphabets
-     
+
+def GetTemperature(query):
+    if "temperature in" in query:
+        url = "https://www.google.com/search?q=" + query
+        r = requests.get(url)
+        data = BeautifulSoup(r.text,"html.parser")
+        temp = data.find("div", class_="BNeawe").text
+        speak("The current temperature there" + " is " + temp)
+
+    else:
+        url = "https://www.google.com/search?q=" + "temperature"
+        r = requests.get(url)
+        data = BeautifulSoup(r.text,"html.parser")
+        temp = data.find("div", class_="BNeawe").text
+        speak("The temperature now" + " is " + temp)

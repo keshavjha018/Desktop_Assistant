@@ -28,7 +28,7 @@ from PyQt5.uic import loadUiType
 from Walter_UI import Ui_Walter
 import subprocess
 import pyautogui
-#from features import *
+from features import *
 
 state = "Pleaase Wait..."
 chat = []
@@ -178,7 +178,10 @@ class MainThread(QThread):
                     pyautogui.screenshot(cwd + r'\Screenshot' + str(x)+'.png')
                     x += 1
                     sleep(2)  # to exit from program after 2 seconds
-                    
+
+            elif 'temperature' in self.query:
+                GetTemperature(self.query)
+
             elif 'send mail' in self.query:
                 try:
                     self.query=self.query.replace("send", "")
