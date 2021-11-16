@@ -29,32 +29,6 @@ from PyQt5.uic import loadUiType
 from Walter_UI import Ui_Walter
 import subprocess
 
-dict_app = {'vs code': 'Code.exe', 'chrome': 'chrome.exe', 'notepad': 'notepad.exe', 'calculator': 'calc.exe',
-            'file explorer': 'explorer.exe', 'paint': 'mspaint.exe', 'command promopt': 'cmd.exe', 'whatsapp': 'WhatsApp.exe'}
-
-
-def start_application(query):
-    #working on it
-    query = query.replace("open", "")
-    query = query.replace("launch", "")
-    apps = list(dict_app.keys())
-    for app in apps:
-        if app in query:
-            speak(random.choices["Launching...", "opening..."] + query)
-            os.system(f"start {dict_app[app]}")
-
-
-def stop_application(query):
-    #working on it
-    query = query.replace("close", "")
-    query = query.replace("exit", "")
-    query = query.replace("quit", "")
-    apps = list(dict_app.keys())
-    for app in apps:
-        if app in query:
-            speak(random.choices["closing...", "termenating..."] + query)
-            os.system("taskkill", "/F", "/IM", dict_app[app].exe)
-
 state = "Pleaase Wait..."
 chat = []
 chatlist = ""
@@ -242,10 +216,6 @@ class MainThread(QThread):
                 self.songs=os.listdir(self.music_dir)
                 os.startfile(os.path.join(
                 self.music_dir, random.choice(self.songs)))
-                br=self.takecomand()
-                if 'stop' in br:
-                    speak("Stoping Music")
-                    subprocess.call(["taskkill", "/F", "/IM", "Music.UI.exe"])
 
             elif 'date' in self.query:
                 self.today= datetime.date.today()
