@@ -27,7 +27,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUiType
 from Walter_UI import Ui_Walter
 import subprocess
-
+import pyautogui
 #from features import *
 
 state = "Pleaase Wait..."
@@ -170,7 +170,7 @@ class MainThread(QThread):
                 self.codepath=access.path("vs_code_path")
                 os.startfile(self.codepath)
                 
-            elif 'take screenshot'in self.query or 'take a screenshot' in self.query:
+            elif 'screenshot' in self.query or 'take a screenshot' in self.query:
                 cwd = os.getcwd()
                 x = 1  # to start it from initial
                 while x < 2:  # can change the value if we want more than 1 screenshot at a time
