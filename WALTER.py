@@ -169,7 +169,16 @@ class MainThread(QThread):
                 speakonly("Opening VS Code")
                 self.codepath=access.path("vs_code_path")
                 os.startfile(self.codepath)
-
+                
+            elif 'take screenshot'in self.query or 'take a screenshot' in self.query:
+                cwd = os.getcwd()
+                x = 1  # to start it from initial
+                while x < 2:  # can change the value if we want more than 1 screenshot at a time
+                    # path to save the screenshot
+                    pyautogui.screenshot(cwd + r'\Screenshot' + str(x)+'.png')
+                    x += 1
+                    sleep(2)  # to exit from program after 2 seconds
+                    
             elif 'send mail' in self.query:
                 try:
                     self.query=self.query.replace("send", "")
@@ -179,7 +188,11 @@ class MainThread(QThread):
                     self.to_email=access.mail_details(self.query)
                     self.obj=mail(self.to_email)
                     self.obj.login()
-                    self.obj.compose()
+                    speak("What subject should i add?")
+                    self.subject = self.takecomand()
+                    speak("Sir what should i say?")
+                    self.content = self.takecomand()
+                    self.obj.compose(self.subject,self.content)
                     self.obj.send()
                     speak("Sir, the mail is sent")
                 except Exception as e:
@@ -226,29 +239,23 @@ class mail():
         #identifing the next button using id of element and clicking on it with the help of click() function
         sleep(5)
 
-    def compose(self):
+    def compose(self,subject,content):
         """
         In this function the email will be composed by adding 
         subject, sender mail and content to the email
         """
+        self.subject = subject
+        self.content = content
         self.driver.find_element_by_css_selector(".aic .z0 div").click()
         #identifing the compose button using css_selector of element and clicking on it with the help of click() function
         sleep(3)
         self.driver.find_element_by_name("to").send_keys(self.sender_mail)
         #identifing the textbox of to(text box where sender mail) using name of element and typing mail with the help of send_keys() function
-        speak("What subject should i add?")
-        self.subject = self.takecomand()
-        sleep(1)
         self.driver.find_element_by_name("subjectbox").send_keys(self.subject)
         #identifing the textbox of subject using name of element and typing subject with the help of send_keys() function
         sleep(3)
-        speak("Sir what should i say?")
-        self.content = self.takecomand()
-        sleep(1)
-        self.driver.find_element_by_css_selector(
-            ".Ar.Au div").send_keys(self.content)
+        self.driver.find_element_by_css_selector(".Ar.Au div").send_keys(self.content)
         #identifing the content textbox using css_selector of element and typing content with the help of send_keys() function
-
         sleep(5)
 
     def send(self):
