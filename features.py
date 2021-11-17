@@ -126,3 +126,44 @@ def GetWeather(query):
         speakonly("The current temperature in "+ city.text + " is "+ temp.text + "°C," + " and the sky is " + sky.text +". ")
         driver.close()
         # return temp.text + ", " + sky.text  + "."
+
+def howto(query):
+    from pywikihow import search_wikihow
+    try:
+        max_results = 1             #one result from web
+        how_to = search_wikihow(query, max_results)
+        assert len(how_to) == 1
+        how_to[0].print()           # first result
+        speakonly(how_to[0].summary) #summary of 1st result
+
+    except Exception as e:
+        speakonly("Sorry sir, I am not able to find this")
+
+#google search
+def googlesearch(query):
+
+    #remove unimportant words from query
+    query=query.replace("search", "")
+    if 'for' in query:
+        query=query.replace("for", "")
+    if 'about' in query:
+        query=query.replace("about", "")
+    if 'on' in query:
+        query=query.replace("on", "")
+    if 'google' in query:
+        query=query.replace("google", "")
+    
+    import pywhatkit as kt
+    kt.search(query) #perform search
+
+def nearby(query):
+    #remove unimportant words from query
+    if "show me" in query:
+        query = query.replace("show me", "")
+    temp = query
+    if "me" in query:
+        temp = query.replace("me", " you")
+
+    speakonly("Showing " + temp)
+    googlesearch(query)     #search google for nearby
+    return "Showing " + temp    #return string to print in chatbox

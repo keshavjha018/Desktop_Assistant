@@ -148,6 +148,17 @@ class MainThread(QThread):
                 chatmsg2 = GetWeather(self.query)
                 # chat.append("Walter: " + chatmsg2) #prints weather in chatbox
 
+            elif "how to" in self.query:
+                howto(self.query)
+
+            elif "search" in self.query:
+                speak("Showing the search results")
+                googlesearch(self.query)
+
+            elif "near" in self.query or 'nearby' in self.query:
+                chatm = nearby(self.query)
+                chat.append("Walter: "+chatm)   #adding msg to chatbox
+
             elif 'send mail' in self.query:
                 try:
                     self.query=self.query.replace("send", "")
