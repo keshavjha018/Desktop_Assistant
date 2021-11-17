@@ -154,4 +154,16 @@ def googlesearch(query):
         query=query.replace("google", "")
     
     import pywhatkit as kt
-    kt.search(query)
+    kt.search(query) #perform search
+
+def nearby(query):
+    #remove unimportant words from query
+    if "show me" in query:
+        query = query.replace("show me", "")
+    temp = query
+    if "me" in query:
+        temp = query.replace("me", " you")
+
+    speakonly("Showing " + temp)
+    googlesearch(query)     #search google for nearby
+    return "Showing " + temp    #return string to print in chatbox
