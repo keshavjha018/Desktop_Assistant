@@ -1,6 +1,6 @@
 from features import *
 
-state = "Pleaase Wait..."
+state = "Please Wait..."
 chat = []
 chatlist = ""
 
@@ -54,7 +54,7 @@ class MainThread(QThread):
             print(state)
             audio = take.listen(source)
         try:
-            state = "Recognizing...."
+            state = "Working...."
             print(state)
             query = take.recognize_google(audio, language='en-in')
             #Performs speech recognition on "audio_data", using the Google Speech Recognition API.
@@ -69,6 +69,7 @@ class MainThread(QThread):
 
     def task(self):
         # running the while loop infinite times
+        global chat
         while True:
             self.query = self.takecomand()
 
@@ -141,9 +142,11 @@ class MainThread(QThread):
 
             elif 'temperature' in self.query:
                 chatmsg = GetTemperature(self.query) #tells temperature
-                global chat
                 chat.append("Walter: "+chatmsg) #prints temp in chatbox
 
+            elif "weather" in self.query:
+                chatmsg2 = GetWeather(self.query)
+                # chat.append("Walter: " + chatmsg2) #prints weather in chatbox
 
             elif 'send mail' in self.query:
                 try:

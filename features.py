@@ -87,3 +87,42 @@ def GetTemperature(query):
         speakonly("The current temperature at your location is " + temp)
 
     return temp
+
+def GetWeather(query):
+    #tells weathe in details - like ppt, wind etc
+    if 'detail' in query or 'details' in query:
+        PATH = "C:\Program Files (x86)\chromedriver.exe"
+        driver = webdriver.Chrome(PATH)
+        driver.minimize_window()
+        driver.get("https://www.google.com/search?q=" + query)
+
+        # identify element
+        temp = driver.find_element_by_xpath('//*[@id="wob_tm"]')
+        sky = driver.find_element_by_xpath('//*[@id="wob_dc"]')
+        city = driver.find_element_by_xpath('//*[@id="wob_loc"]')
+        ppt = driver.find_element_by_xpath('//*[@id="wob_wc"]/div[1]/div[2]/div[1]')
+        humidity =  driver.find_element_by_xpath('//*[@id="wob_wc"]/div[1]/div[2]/div[2]')
+        Wind =  driver.find_element_by_xpath('//*[@id="wob_wc"]/div[1]/div[2]/div[3]')
+
+        # get text and print
+        speakonly("The current temperature in "+ city.text + " is "+ temp.text + "°C," + " and the sky is " + sky.text +". ")
+        speakonly("Other details are "+ ppt.text +', ' + humidity.text + ', and ' + Wind.text)
+        driver.close()
+        # return temp.text + ", " + sky.text  + ", " + ppt.text  + ", " + humidity.text  + ", " + Wind.text  + "."
+
+    # tells overall weather only, not in details
+    else:
+        PATH = "C:\Program Files (x86)\chromedriver.exe"
+        driver = webdriver.Chrome(PATH)
+        driver.minimize_window()
+        driver.get("https://www.google.com/search?q=" + query)
+
+        # identify element
+        temp = driver.find_element_by_xpath('//*[@id="wob_tm"]')
+        sky = driver.find_element_by_xpath('//*[@id="wob_dc"]')
+        city = driver.find_element_by_xpath('//*[@id="wob_loc"]')
+
+        # get text and print
+        speakonly("The current temperature in "+ city.text + " is "+ temp.text + "°C," + " and the sky is " + sky.text +". ")
+        driver.close()
+        # return temp.text + ", " + sky.text  + "."
