@@ -144,9 +144,9 @@ def googlesearch(query):
 
     #remove unimportant words from query
     query=query.replace("search", "")
-    query=query.replace("for", "")
-    query=query.replace("about", "")
-    query=query.replace("on", "")
+    query=query.replace(" for ", "")
+    query=query.replace(" about ", "")
+    query=query.replace(" on ", "")
     query=query.replace("google", "")
     
     import pywhatkit as kt
