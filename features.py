@@ -20,7 +20,15 @@ import access
 import requests
 from bs4 import BeautifulSoup
 
-from WALTER import speak
+def speakonly(audio):
+    #only speaks, without printing
+    engine = pyttsx3.init('sapi5')  # defining the engine to speak given string
+    voice = engine.getProperty('voices')
+    engine.setProperty('voice', voice[0].id)
+    engine.setProperty('rate', 188)  # set the speed of voice
+    engine.say(audio)
+    print(audio)
+    engine.runAndWait()
 
 def takecomand(self):
         #Defining function to take the voice as input and converting it to text
@@ -49,17 +57,20 @@ def takecomand(self):
             return "None"
         return query.lower()  # returning the query in lower alphabets
 
+# tells the temp
 def GetTemperature(query):
     if "temperature in" in query:
         url = "https://www.google.com/search?q=" + query
         r = requests.get(url)
         data = BeautifulSoup(r.text,"html.parser")
         temp = data.find("div", class_="BNeawe").text
-        speak("The current temperature there" + " is " + temp)
+        speakonly("The current temperature there" + " is " + temp)
 
     else:
         url = "https://www.google.com/search?q=" + "temperature"
         r = requests.get(url)
         data = BeautifulSoup(r.text,"html.parser")
         temp = data.find("div", class_="BNeawe").text
-        speak("The temperature now" + " is " + temp)
+        speakonly("The current temperature at your location is " + temp)
+
+    return temp

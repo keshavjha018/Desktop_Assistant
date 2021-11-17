@@ -180,7 +180,10 @@ class MainThread(QThread):
                     sleep(2)  # to exit from program after 2 seconds
 
             elif 'temperature' in self.query:
-                GetTemperature(self.query)
+                chatmsg = GetTemperature(self.query) #tells temperature
+                global chat
+                chat.append("Walter: "+chatmsg) #prints temp in chatbox
+
 
             elif 'send mail' in self.query:
                 try:
