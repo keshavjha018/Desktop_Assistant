@@ -148,8 +148,8 @@ def googlesearch(query):
         query=query.replace("for", "")
     if 'about' in query:
         query=query.replace("about", "")
-    if 'on' in query:
-        query=query.replace("on", "")
+    if ' on ' in query:
+        query=query.replace(" on ", "")
     if 'google' in query:
         query=query.replace("google", "")
     

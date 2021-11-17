@@ -48,7 +48,7 @@ class MainThread(QThread):
             take.adjust_for_ambient_noise(source)  # ignoring the background noise
             # seconds of non-speaking audio before a phrase is considered complete
             take.pause_threshold = 0.7
-            take.energy_threshold = 300  # minimum audio energy to consider for recording
+            take.energy_threshold = 500  # minimum audio energy to consider for recording
             global state        
             state = "Listening...."
             print(state)
