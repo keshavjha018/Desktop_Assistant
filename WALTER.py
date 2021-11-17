@@ -34,6 +34,7 @@ def wishMe():
 
 class MainThread(QThread):
     def __init__(self) -> None:
+        self.x = 1
         super(MainThread, self).__init__()
 
     def run(self):
@@ -75,15 +76,24 @@ class MainThread(QThread):
 
             #if user asks intro
             if self.query in command_info:
-                s = random.choices(info)
-                listToStr = ' '.join(map(str, s))
-                speak(listToStr)
+                speak(' '.join(map(str, random.choices(info))))
+
             
             #if user greets
             elif self.query in command_greet:
-                s = random.choices(greet)
-                listToStr = ' '.join(map(str, s))
-                speak(listToStr)
+                speak(' '.join(map(str, random.choices(greet))))
+                
+            elif self.query in chat:
+                speak(' '.join(map(str, random.choices(chat_replay))))
+                
+            elif self.query in chat_2:
+                speak(' '.join(map(str, random.choices(chat_2_replay))))
+                
+            elif self.query in chat_3:
+                speak(' '.join(map(str, random.choices(chat_3_replay))))
+                
+            elif self.query in chat_4:
+                speak(' '.join(map(str, random.choices(chat_4_replay))))
             
             elif 'open youtube' in self.query or 'open YouTube'in self.query:
                 speakonly('Opening Youtube')
@@ -133,19 +143,16 @@ class MainThread(QThread):
                 
             elif 'screenshot' in self.query or 'take a screenshot' in self.query:
                 cwd = os.getcwd()
-                x = 1  # to start it from initial
-                while x < 2:  # can change the value if we want more than 1 screenshot at a time
-                    # path to save the screenshot
-                    pyautogui.screenshot(cwd + r'\Screenshot' + str(x)+'.png')
-                    x += 1
-                    sleep(2)  # to exit from program after 2 seconds
+                pyautogui.screenshot(cwd + r'\Screenshot' + str(self.x)+'.png')
+                self.x += 1
+                sleep(2)  # to exit from program after 2 seconds
 
             elif 'temperature' in self.query:
-                chatmsg = GetTemperature(self.query) #tells temperature
-                chat.append("Walter: "+chatmsg) #prints temp in chatbox
+                chat.append("Walter: "+GetTemperature(self.query))
+
 
             elif "weather" in self.query:
-                chatmsg2 = GetWeather(self.query)
+                GetWeather(self.query)
                 # chat.append("Walter: " + chatmsg2) #prints weather in chatbox
 
             elif "how to" in self.query:
@@ -178,9 +185,8 @@ class MainThread(QThread):
                     speak("Sorry sir. I am not able to send right now")
 
             elif self.query in command_quit:
-                s = random.choices(command_quit_replay)
-                listToStr = ' '.join(map(str, s))
-                speak(listToStr)
+                speak(' '.join(map(str, random.choices(command_quit_replay))))
+
                 sys.exit()
     
 startexecution = MainThread()
