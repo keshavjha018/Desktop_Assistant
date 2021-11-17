@@ -1,33 +1,3 @@
-import datetime
-#The pyttsx3 module is used here to set the output voice for your desktop assistant
-import pyttsx3
-#The speech recognition module is used to get any voice input from the user
-import speech_recognition as sr
-#Sleep function is used to stop any process for a while
-from time import sleep
-# Module webbrowser is used to browse any website/query or open a new tab
-import webbrowser
-# This os module is used to find/open any folder/application in your system
-import os
-# ramdom module used to give any random num
-import random
-# webdriver is used to open the chrome driver
-from selenium import webdriver
-# access file contain the function to find an path/details/urls in the respective file
-import access
-import sys
-from chatbot import *
-#for GUI
-import PyQt5
-from PyQt5 import QtWidgets, QtCore, QtGui
-from PyQt5.QtCore import QTime, QTimer, QDate, Qt
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
-from PyQt5.QtWidgets import *
-from PyQt5.uic import loadUiType
-from Walter_UI import Ui_Walter
-import subprocess
-import pyautogui
 from features import *
 
 state = "Pleaase Wait..."
@@ -47,16 +17,6 @@ def speak(audio):
     global chat
     chat.append("Walter: " + audio)
     # Runs an event loop until all commands queued up until this method call complete
-    engine.runAndWait()
-
-def speakonly(audio):
-    #only speaks, without printing
-    engine = pyttsx3.init('sapi5')  # defining the engine to speak given string
-    voice = engine.getProperty('voices')
-    engine.setProperty('voice', voice[0].id)
-    engine.setProperty('rate', 188)  # set the speed of voice
-    engine.say(audio)
-    print(audio)
     engine.runAndWait()
 
 def wishMe():

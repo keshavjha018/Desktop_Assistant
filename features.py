@@ -15,6 +15,19 @@ import random
 from selenium import webdriver
 # access file contain the function to find an path/details/urls in the respective file
 import access
+import sys
+from chatbot import *
+#for GUI
+import PyQt5
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtCore import QTime, QTimer, QDate, Qt
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+from PyQt5.uic import loadUiType
+from Walter_UI import Ui_Walter
+import subprocess
+import pyautogui
 
 #for web scrapping
 import requests
