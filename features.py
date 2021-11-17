@@ -15,20 +15,32 @@ import random
 from selenium import webdriver
 # access file contain the function to find an path/details/urls in the respective file
 import access
+import sys
+from chatbot import *
+#for GUI
+import PyQt5
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtCore import QTime, QTimer, QDate, Qt
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+from PyQt5.uic import loadUiType
+from Walter_UI import Ui_Walter
+import subprocess
+import pyautogui
 
-def speak(audio):
-    # defining the speak function so that our assistant can speak any string given as input
+#for web scrapping
+import requests
+from bs4 import BeautifulSoup
+
+def speakonly(audio):
+    #only speaks, without printing
     engine = pyttsx3.init('sapi5')  # defining the engine to speak given string
     voice = engine.getProperty('voices')
-    # seting voice of any inbuilt system voice like David/Zeera
-    engine.setProperty('voice', voice[1].id)
-    # print(voice[0])     # to know the no of voices in system
+    engine.setProperty('voice', voice[0].id)
     engine.setProperty('rate', 188)  # set the speed of voice
     engine.say(audio)
     print(audio)
-    # global chat
-    # chat.append("Walter: " + audio)
-    # Runs an event loop until all commands queued up until this method call complete
     engine.runAndWait()
 
 def takecomand(self):
@@ -57,4 +69,60 @@ def takecomand(self):
             print(state)
             return "None"
         return query.lower()  # returning the query in lower alphabets
-     
+
+# tells the temp
+def GetTemperature(query):
+    if "temperature in" in query:
+        url = "https://www.google.com/search?q=" + query
+        r = requests.get(url)
+        data = BeautifulSoup(r.text,"html.parser")
+        temp = data.find("div", class_="BNeawe").text
+        speakonly("The current temperature there" + " is " + temp)
+
+    else:
+        url = "https://www.google.com/search?q=" + "temperature"
+        r = requests.get(url)
+        data = BeautifulSoup(r.text,"html.parser")
+        temp = data.find("div", class_="BNeawe").text
+        speakonly("The current temperature at your location is " + temp)
+
+    return temp
+
+def GetWeather(query):
+    #tells weathe in details - like ppt, wind etc
+    if 'detail' in query or 'details' in query:
+        PATH = "C:\Program Files (x86)\chromedriver.exe"
+        driver = webdriver.Chrome(PATH)
+        driver.minimize_window()
+        driver.get("https://www.google.com/search?q=" + query)
+
+        # identify element
+        temp = driver.find_element_by_xpath('//*[@id="wob_tm"]')
+        sky = driver.find_element_by_xpath('//*[@id="wob_dc"]')
+        city = driver.find_element_by_xpath('//*[@id="wob_loc"]')
+        ppt = driver.find_element_by_xpath('//*[@id="wob_wc"]/div[1]/div[2]/div[1]')
+        humidity =  driver.find_element_by_xpath('//*[@id="wob_wc"]/div[1]/div[2]/div[2]')
+        Wind =  driver.find_element_by_xpath('//*[@id="wob_wc"]/div[1]/div[2]/div[3]')
+
+        # get text and print
+        speakonly("The current temperature in "+ city.text + " is "+ temp.text + "°C," + " and the sky is " + sky.text +". ")
+        speakonly("Other details are "+ ppt.text +', ' + humidity.text + ', and ' + Wind.text)
+        driver.close()
+        # return temp.text + ", " + sky.text  + ", " + ppt.text  + ", " + humidity.text  + ", " + Wind.text  + "."
+
+    # tells overall weather only, not in details
+    else:
+        PATH = "C:\Program Files (x86)\chromedriver.exe"
+        driver = webdriver.Chrome(PATH)
+        driver.minimize_window()
+        driver.get("https://www.google.com/search?q=" + query)
+
+        # identify element
+        temp = driver.find_element_by_xpath('//*[@id="wob_tm"]')
+        sky = driver.find_element_by_xpath('//*[@id="wob_dc"]')
+        city = driver.find_element_by_xpath('//*[@id="wob_loc"]')
+
+        # get text and print
+        speakonly("The current temperature in "+ city.text + " is "+ temp.text + "°C," + " and the sky is " + sky.text +". ")
+        driver.close()
+        # return temp.text + ", " + sky.text  + "."

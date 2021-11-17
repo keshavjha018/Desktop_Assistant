@@ -1,36 +1,6 @@
-import datetime
-#The pyttsx3 module is used here to set the output voice for your desktop assistant
-import pyttsx3
-#The speech recognition module is used to get any voice input from the user
-import speech_recognition as sr
-#Sleep function is used to stop any process for a while
-from time import sleep
-# Module webbrowser is used to browse any website/query or open a new tab
-import webbrowser
-# This os module is used to find/open any folder/application in your system
-import os
-# ramdom module used to give any random num
-import random
-# webdriver is used to open the chrome driver
-from selenium import webdriver
-# access file contain the function to find an path/details/urls in the respective file
-import access
-import sys
-from chatbot import *
-#for GUI
-import PyQt5
-from PyQt5 import QtWidgets, QtCore, QtGui
-from PyQt5.QtCore import QTime, QTimer, QDate, Qt
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
-from PyQt5.QtWidgets import *
-from PyQt5.uic import loadUiType
-from Walter_UI import Ui_Walter
-import subprocess
-import pyautogui
-#from features import *
+from features import *
 
-state = "Pleaase Wait..."
+state = "Please Wait..."
 chat = []
 chatlist = ""
 
@@ -47,16 +17,6 @@ def speak(audio):
     global chat
     chat.append("Walter: " + audio)
     # Runs an event loop until all commands queued up until this method call complete
-    engine.runAndWait()
-
-def speakonly(audio):
-    #only speaks, without printing
-    engine = pyttsx3.init('sapi5')  # defining the engine to speak given string
-    voice = engine.getProperty('voices')
-    engine.setProperty('voice', voice[0].id)
-    engine.setProperty('rate', 188)  # set the speed of voice
-    engine.say(audio)
-    print(audio)
     engine.runAndWait()
 
 def wishMe():
@@ -94,7 +54,7 @@ class MainThread(QThread):
             print(state)
             audio = take.listen(source)
         try:
-            state = "Recognizing...."
+            state = "Working...."
             print(state)
             query = take.recognize_google(audio, language='en-in')
             #Performs speech recognition on "audio_data", using the Google Speech Recognition API.
@@ -109,6 +69,7 @@ class MainThread(QThread):
 
     def task(self):
         # running the while loop infinite times
+        global chat
         while True:
             self.query = self.takecomand()
 
@@ -178,7 +139,15 @@ class MainThread(QThread):
                     pyautogui.screenshot(cwd + r'\Screenshot' + str(x)+'.png')
                     x += 1
                     sleep(2)  # to exit from program after 2 seconds
-                    
+
+            elif 'temperature' in self.query:
+                chatmsg = GetTemperature(self.query) #tells temperature
+                chat.append("Walter: "+chatmsg) #prints temp in chatbox
+
+            elif "weather" in self.query:
+                chatmsg2 = GetWeather(self.query)
+                # chat.append("Walter: " + chatmsg2) #prints weather in chatbox
+
             elif 'send mail' in self.query:
                 try:
                     self.query=self.query.replace("send", "")
