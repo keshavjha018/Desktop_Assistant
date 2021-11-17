@@ -156,8 +156,7 @@ class MainThread(QThread):
                 googlesearch(self.query)
 
             elif "near" in self.query or 'nearby' in self.query:
-                chatm = nearby(self.query)
-                chat.append("Walter: "+chatm)   #adding msg to chatbox
+                chat.append("Walter: "+ nearby(self.query))   #adding msg to chatbox
 
             elif 'send mail' in self.query:
                 try:
