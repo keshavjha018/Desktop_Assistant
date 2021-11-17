@@ -148,6 +148,9 @@ class MainThread(QThread):
                 chatmsg2 = GetWeather(self.query)
                 # chat.append("Walter: " + chatmsg2) #prints weather in chatbox
 
+            elif "how to" in self.query:
+                howto(self.query)
+
             elif 'send mail' in self.query:
                 try:
                     self.query=self.query.replace("send", "")

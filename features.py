@@ -126,3 +126,15 @@ def GetWeather(query):
         speakonly("The current temperature in "+ city.text + " is "+ temp.text + "°C," + " and the sky is " + sky.text +". ")
         driver.close()
         # return temp.text + ", " + sky.text  + "."
+
+def howto(query):
+    from pywikihow import search_wikihow
+    try:
+        max_results = 1             #one result from web
+        how_to = search_wikihow(query, max_results)
+        assert len(how_to) == 1
+        how_to[0].print()           # first result
+        speakonly(how_to[0].summary) #summary of 1st result
+
+    except Exception as e:
+        speakonly("Sorry sir, I am not able to find this")
