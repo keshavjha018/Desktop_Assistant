@@ -138,3 +138,20 @@ def howto(query):
 
     except Exception as e:
         speakonly("Sorry sir, I am not able to find this")
+
+#google search
+def googlesearch(query):
+
+    #remove unimportant words from query
+    query=query.replace("search", "")
+    if 'for' in query:
+        query=query.replace("for", "")
+    if 'about' in query:
+        query=query.replace("about", "")
+    if 'on' in query:
+        query=query.replace("on", "")
+    if 'google' in query:
+        query=query.replace("google", "")
+    
+    import pywhatkit as kt
+    kt.search(query)

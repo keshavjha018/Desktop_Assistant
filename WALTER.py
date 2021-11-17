@@ -151,6 +151,9 @@ class MainThread(QThread):
             elif "how to" in self.query:
                 howto(self.query)
 
+            elif "search" in self.query:
+                googlesearch(self.query)
+
             elif 'send mail' in self.query:
                 try:
                     self.query=self.query.replace("send", "")
