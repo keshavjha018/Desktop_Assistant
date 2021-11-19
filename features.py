@@ -166,28 +166,6 @@ def listToString(s):
     # return string  
     return str1 
 
-def greet(query):
-    #if user asks intro
-    if query in command_info:
-        speakonly(listToString(random.choices(info)))
- 
-    #if user greets
-    elif query in command_greet:
-        speakonly(listToString(random.choices(greet)))
-                
-    elif query in chat:
-        speakonly(listToString(random.choices(chat_replay)))
-                
-    elif query in chat_2:
-        speakonly(listToString(random.choices(chat_2_replay)))
-                
-    elif query in chat_3:
-        speakonly(listToString(random.choices(chat_3_replay)))
-                
-    elif query in chat_4:
-        speakonly(listToString(random.choices(chat_4_replay)))
-
-
 class mail():
     def __init__(self, sender_mail):
         # accessing the chromedriver path from path.txt

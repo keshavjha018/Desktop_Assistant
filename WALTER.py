@@ -74,7 +74,25 @@ class MainThread(QThread):
         while True:
             self.query = self.takecomand()
 
-            greet(self.query)   
+            #if user asks intro
+            if self.query in command_info:
+                speakonly(listToString(random.choices(info)))
+        
+            #if user greets
+            elif self.query in command_greet:
+                speakonly(listToString(random.choices(greet)))
+                        
+            elif self.query in chat:
+                speakonly(listToString(random.choices(chat_replay)))
+                        
+            elif self.query in chat_2:
+                speakonly(listToString(random.choices(chat_2_replay)))
+                        
+            elif self.query in chat_3:
+                speakonly(listToString(random.choices(chat_3_replay)))
+                        
+            elif self.query in chat_4:
+                speakonly(listToString(random.choices(chat_4_replay)))   
             
             if 'open youtube' in self.query or 'open YouTube'in self.query:
                 speakonly('Opening Youtube')
