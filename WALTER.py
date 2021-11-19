@@ -74,7 +74,19 @@ class MainThread(QThread):
         while True:
             self.query = self.takecomand()
 
-            greet(self.query)   
+            #if user asks intro/greet
+            if self.query in command_info:
+                speak(listToString(random.choices(info)))
+            elif self.query in command_greet:
+                speak(listToString(random.choices(greet)))
+            elif self.query in chat_1:
+                speak(listToString(random.choices(chat_1_replay)))                                
+            elif self.query in chat_2:
+                speak(listToString(random.choices(chat_2_replay)))                            
+            elif self.query in chat_3:
+                speak(listToString(random.choices(chat_3_replay)))                                
+            elif self.query in chat_4:
+                speak(listToString(random.choices(chat_4_replay)))
             
             if 'open youtube' in self.query or 'open YouTube'in self.query:
                 speakonly('Opening Youtube')
@@ -165,7 +177,7 @@ class MainThread(QThread):
                     speak("Sorry sir. I am not able to send right now")
 
             elif self.query in command_quit:
-                speak(' '.join(map(str, random.choices(command_quit_replay))))
+                speak(listToString(random.choices(command_quit_replay)))
                 speakonly("3")
                 speakonly("2")
                 speakonly("1")
@@ -181,7 +193,7 @@ class Main(QMainWindow):
         self.ui.run_button.clicked.connect(self.starttask)
         self.ui.Terminate.clicked.connect(self.close)
         
-    def showTime(self):
+    def showText(self):
         current_time = QTime.currentTime()
         current_date = QDate.currentDate()
         lable_time = current_time.toString('hh:mm:ss')
@@ -206,7 +218,7 @@ class Main(QMainWindow):
         self.ui.movie.start()
 
         timer = QTimer(self)
-        timer.timeout.connect(self.showTime)
+        timer.timeout.connect(self.showText)
         timer.start(1000) 
         startexecution.start()
         
