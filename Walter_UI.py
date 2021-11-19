@@ -9,7 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 
 class Ui_Walter(object):
     def setupUi(self, Walter):
@@ -135,7 +137,8 @@ class Ui_Walter(object):
 
     def retranslateUi(self, Walter):
         _translate = QtCore.QCoreApplication.translate
-        Walter.setWindowTitle(_translate("Walter", "MainWindow"))
+        Walter.setWindowTitle(_translate("Walter", "Desktop Assistant - WALTER"))
+        Walter.setWindowIcon(QIcon("image/logo.png"))
         self.run_button.setText(_translate("Walter", "Run"))
         self.Time.setHtml(_translate("Walter", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
