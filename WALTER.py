@@ -74,28 +74,9 @@ class MainThread(QThread):
         while True:
             self.query = self.takecomand()
 
-            #if user asks intro
-            if self.query in command_info:
-                speak(' '.join(map(str, random.choices(info))))
-
+            greet(self.query)   
             
-            #if user greets
-            elif self.query in command_greet:
-                speak(' '.join(map(str, random.choices(greet))))
-                
-            elif self.query in chat:
-                speak(' '.join(map(str, random.choices(chat_replay))))
-                
-            elif self.query in chat_2:
-                speak(' '.join(map(str, random.choices(chat_2_replay))))
-                
-            elif self.query in chat_3:
-                speak(' '.join(map(str, random.choices(chat_3_replay))))
-                
-            elif self.query in chat_4:
-                speak(' '.join(map(str, random.choices(chat_4_replay))))
-            
-            elif 'open youtube' in self.query or 'open YouTube'in self.query:
+            if 'open youtube' in self.query or 'open YouTube'in self.query:
                 speakonly('Opening Youtube')
                 # taking the link of youtube from the folder url.txt using access.py file
                 # opening yutube in defult webbrowser
@@ -150,7 +131,6 @@ class MainThread(QThread):
             elif 'temperature' in self.query:
                 chat.append("Walter: "+GetTemperature(self.query))
 
-
             elif "weather" in self.query:
                 GetWeather(self.query)
                 # chat.append("Walter: " + chatmsg2) #prints weather in chatbox
@@ -186,70 +166,12 @@ class MainThread(QThread):
 
             elif self.query in command_quit:
                 speak(' '.join(map(str, random.choices(command_quit_replay))))
-
+                speakonly("3")
+                speakonly("2")
+                speakonly("1")
                 sys.exit()
     
 startexecution = MainThread()
-
-class mail():
-    def __init__(self, sender_mail):
-        # accessing the chromedriver path from path.txt
-        self.chromedriver_path = access.path("chromedriver_path")
-        # accessing the gmai url from url.txt
-        self.gmail_url = access.url("gmail_url")
-        # Defining a driver to open chrome driver
-        self.driver = webdriver.Chrome(self.chromedriver_path)
-        self.driver.get(self.gmail_url)  # feeding the mail link to the driver
-        self.sender_mail = sender_mail
-
-    def login(self):
-        """
-        This is a login function used to login your personal gmail account
-        by accessing data directli from the files
-        """
-        self.user_mail, self.user_password = access.personal_details("Your_name")
-        #accessing the password and email details of owner
-        self.enter_mail = self.driver.find_element_by_id(
-            "identifierId").send_keys(self.user_mail)
-        #identifing the textbox using id of element and typing user mail with the help of send_keys() function
-        self.user_mail_next = self.driver.find_element_by_id(
-            "identifierNext").click()
-        #identifing the next button using id of element and clicking on it with the help of click() function
-        # sleep time is given so that the time is given to code whlie next page is loded
-        sleep(3)
-        self.enter_pass = self.driver.find_element_by_name(
-            "password").send_keys(self.user_password)
-        #identifing the textbox using name of element and typing user password with the help of send_keys() function
-        self.pass_next = self.driver.find_element_by_id("passwordNext").click()
-        #identifing the next button using id of element and clicking on it with the help of click() function
-        sleep(5)
-
-    def compose(self,subject,content):
-        """
-        In this function the email will be composed by adding 
-        subject, sender mail and content to the email
-        """
-        self.subject = subject
-        self.content = content
-        self.driver.find_element_by_css_selector(".aic .z0 div").click()
-        #identifing the compose button using css_selector of element and clicking on it with the help of click() function
-        sleep(3)
-        self.driver.find_element_by_name("to").send_keys(self.sender_mail)
-        #identifing the textbox of to(text box where sender mail) using name of element and typing mail with the help of send_keys() function
-        self.driver.find_element_by_name("subjectbox").send_keys(self.subject)
-        #identifing the textbox of subject using name of element and typing subject with the help of send_keys() function
-        sleep(3)
-        self.driver.find_element_by_css_selector(".Ar.Au div").send_keys(self.content)
-        #identifing the content textbox using css_selector of element and typing content with the help of send_keys() function
-        sleep(5)
-
-    def send(self):
-        # The send functions just sends the message
-    	self.driver.find_element_by_css_selector(
-    	    "tr.btC td:nth-of-type(1) div div:nth-of-type(2) div").click()
-        #identifing the send button using css_selector of element and clicking on it with the help of click() function
-    	sleep(5)
-    	self.driver.close()  # closing the driver
 
 class Main(QMainWindow):
     def __init__(self):

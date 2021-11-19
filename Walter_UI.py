@@ -9,7 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 
 class Ui_Walter(object):
     def setupUi(self, Walter):
@@ -37,13 +39,13 @@ class Ui_Walter(object):
         self.footer_img.setScaledContents(True)
         self.footer_img.setObjectName("footer_img")
         self.time_lab = QtWidgets.QLabel(self.centralwidget)
-        self.time_lab.setGeometry(QtCore.QRect(140, 40, 301, 171))
+        self.time_lab.setGeometry(QtCore.QRect(140, 40, 331, 171))
         self.time_lab.setText("")
         self.time_lab.setPixmap(QtGui.QPixmap("image/date-time_border-removebg-preview.png"))
         self.time_lab.setScaledContents(True)
         self.time_lab.setObjectName("time_lab")
         self.date_lable = QtWidgets.QLabel(self.centralwidget)
-        self.date_lable.setGeometry(QtCore.QRect(160, 170, 211, 101))
+        self.date_lable.setGeometry(QtCore.QRect(160, 170, 261, 111))
         self.date_lable.setText("")
         self.date_lable.setPixmap(QtGui.QPixmap("image/date-time_border-removebg-preview.png"))
         self.date_lable.setScaledContents(True)
@@ -65,9 +67,9 @@ class Ui_Walter(object):
         self.state_lab.setScaledContents(True)
         self.state_lab.setObjectName("state_lab")
         self.Time = QtWidgets.QTextBrowser(self.centralwidget)
-        self.Time.setGeometry(QtCore.QRect(190, 90, 251, 71))
+        self.Time.setGeometry(QtCore.QRect(180, 90, 261, 71))
         font = QtGui.QFont()
-        font.setPointSize(28)
+        font.setPointSize(24)
         self.Time.setFont(font)
         self.Time.setStyleSheet("background:transparent;\n"
 "color: rgb(255, 255, 255);\n"
@@ -83,9 +85,9 @@ class Ui_Walter(object):
 "border-radius:none;")
         self.state_of_assistant.setObjectName("state_of_assistant")
         self.Date = QtWidgets.QTextBrowser(self.centralwidget)
-        self.Date.setGeometry(QtCore.QRect(190, 200, 161, 51))
+        self.Date.setGeometry(QtCore.QRect(190, 200, 201, 51))
         font = QtGui.QFont()
-        font.setPointSize(17)
+        font.setPointSize(16)
         self.Date.setFont(font)
         self.Date.setStyleSheet("background:transparent;\n"
 "color: rgb(255, 255, 255);\n"
@@ -94,7 +96,7 @@ class Ui_Walter(object):
         self.Chat_box = QtWidgets.QTextBrowser(self.centralwidget)
         self.Chat_box.setGeometry(QtCore.QRect(1490, 211, 311, 521))
         font = QtGui.QFont()
-        font.setPointSize(11)
+        font.setPointSize(9)
         self.Chat_box.setFont(font)
         self.Chat_box.setStyleSheet("background:transparent;\n"
 "color: rgb(255, 255, 255);\n"
@@ -135,13 +137,14 @@ class Ui_Walter(object):
 
     def retranslateUi(self, Walter):
         _translate = QtCore.QCoreApplication.translate
-        Walter.setWindowTitle(_translate("Walter", "MainWindow"))
+        Walter.setWindowTitle(_translate("Walter", "Desktop Assistant - WALTER"))
+        Walter.setWindowIcon(QIcon("image/logo.png"))
         self.run_button.setText(_translate("Walter", "Run"))
         self.Time.setHtml(_translate("Walter", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:28pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:24pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:28pt;\"><br /></p></body></html>"))
         self.state_of_assistant.setHtml(_translate("Walter", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -150,13 +153,13 @@ class Ui_Walter(object):
         self.Date.setHtml(_translate("Walter", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:17pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:16pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:17pt;\"><br /></p></body></html>"))
         self.Chat_box.setHtml(_translate("Walter", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;\"><br /></p></body></html>"))
         self.Terminate.setText(_translate("Walter", "Terminate"))
         self.textBrowser.setHtml(_translate("Walter", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
