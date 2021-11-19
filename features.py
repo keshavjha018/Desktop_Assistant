@@ -226,23 +226,3 @@ class mail():
     	sleep(5)
     	self.driver.close()  # closing the driver
 
-def greeting(query):
-    #if user asks intro
-    if query in command_info:
-        return listToString(random.choices(info))
-        
-    #if user greets
-    elif query in command_greet:
-        return listToString(random.choices(greet))
-                        
-    elif query in chat_1:
-        return listToString(random.choices(chat_1_replay))
-                        
-    elif query in chat_2:
-        return listToString(random.choices(chat_2_replay))
-                        
-    elif query in chat_3:
-        return listToString(random.choices(chat_3_replay))
-                        
-    elif query in chat_4:
-        return listToString(random.choices(chat_4_replay))
