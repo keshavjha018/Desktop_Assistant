@@ -74,26 +74,25 @@ class MainThread(QThread):
         while True:
             self.query = self.takecomand()
 
-            #if user asks intro
-            if self.query in command_info:
-                speak(' '.join(map(str, random.choices(info))))
-
+            #if user asks intro 
+            if self.query in chatbot.command_info:
+                speak(' '.join(map(str, random.choices(chatbot.info))))
             
             #if user greets
-            elif self.query in command_greet:
-                speak(' '.join(map(str, random.choices(greet))))
+            elif self.query in chatbot.command_greet:
+                speak(' '.join(map(str, random.choices(chatbot.greet))))
                 
-            elif self.query in chat:
-                speak(' '.join(map(str, random.choices(chat_replay))))
+            elif self.query in chatbot.chat:
+                speak(' '.join(map(str, random.choices(chatbot.chat_replay))))
                 
-            elif self.query in chat_2:
-                speak(' '.join(map(str, random.choices(chat_2_replay))))
+            elif self.query in chatbot.chat_2:
+                speak(' '.join(map(str, random.choices(chatbot.chat_2_replay))))
                 
-            elif self.query in chat_3:
-                speak(' '.join(map(str, random.choices(chat_3_replay))))
+            elif self.query in chatbot.chat_3:
+                speak(' '.join(map(str, random.choices(chatbot.chat_3_replay))))
                 
-            elif self.query in chat_4:
-                speak(' '.join(map(str, random.choices(chat_4_replay))))
+            elif self.query in chatbot.chat_4:
+                speak(' '.join(map(str, random.choices(chatbot.chat_4_replay))))
             
             elif 'open youtube' in self.query or 'open YouTube'in self.query:
                 speakonly('Opening Youtube')
@@ -184,8 +183,8 @@ class MainThread(QThread):
                 except Exception as e:
                     speak("Sorry sir. I am not able to send right now")
 
-            elif self.query in command_quit:
-                speak(' '.join(map(str, random.choices(command_quit_replay))))
+            elif self.query in chatbot.command_quit:
+                speak(' '.join(map(str, random.choices(chatbot.command_quit_replay))))
 
                 sys.exit()
     
