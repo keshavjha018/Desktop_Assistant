@@ -16,7 +16,7 @@ from selenium import webdriver
 # access file contain the function to find an path/details/urls in the respective file
 import access
 import sys
-from chatbot import *
+import chatbot
 #for GUI
 import PyQt5
 from PyQt5 import QtWidgets, QtCore, QtGui
