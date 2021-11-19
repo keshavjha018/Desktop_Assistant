@@ -43,12 +43,13 @@
 - This is a group project called Desktop Assistant, developed for OOP Course, 3rd Semester, IIIT Dharwad.
 - Made via Python based libraries & frameworks like Selenium, PyQt5 etc, the project automates the repetative and boring tasks in our daily life.
 - It takes voice command and follows to automate them, just like your personal assistant for Desktop.
+- Currently available only for Windows.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 ### Built With
-Majority of this project is made via Python, Selenium & other python based libraries
+Majority of this project is made via Python, Selenium & other python based frameworks
 
 * [Python](https://www.python.org/)
 * [Selenium](https://www.selenium.dev/)
@@ -56,38 +57,62 @@ Majority of this project is made via Python, Selenium & other python based libra
 * [PyQt5](https://www.riverbankcomputing.com/software/pyqt/) - For frontend GUI
 * Qt Designer Software
 
+Libraries used:
+
+* pyttsx3
+* speak
+* speechrecognition
+* pyautogui
+* pillow
+* requests
+* html5lib
+* bs4
+* pywikihow
+* pywhatkit
+* geopy
+* geocoder
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
 ## Getting Started
 
-There are some requirements for running these programs in any system, Your system must have these tools installed before you run.
+There are some Prerequisites for running these programs in any system.
 
-### Prerequisites
+### Please follow the given steps for installation
 
-* Selenium
+* Step:1 - Download
   ```sh
-  pip install selenium
+  Clone/Download the repo in your local machine
   ```
-* PyQt5
+* Step:2 - Run cmd
   ```sh
-  pip install PyQt5
+  Open cmd/terminal in the downloaded directory
   ```  
-  
-  
+* Step:3 - Run the following command
+  ```sh
+  pip install -r requirements.txt
+  ```   
+* Step:4 - Done
+  ```sh
+  Run WALTER.py
+  ```  
+ 
 ## Usage
 
-It will  do most of the tasks on voice command like :
+It will perform most of the tasks on voice command like :
 - Greet/welcome messages & commands
 - Sending E-Mails
+- Weather report
 - Telling Latest News
 - Crawling to any website  (Based on Voice command)
-- Showing weather
+- Taking screenshot
+- Performing google search
 - Opening Desktop Apps
 - & many others.
 
-As of now we are still working on maximizing the tasks it can do and add more and more functionality to it.
+As of now we are still working on maximizing the tasks it can do and adding more and more functionality to it.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -99,8 +124,8 @@ As of now we are still working on maximizing the tasks it can do and add more an
 - [ ] Add Additional features
 - Supports
     - [x] Windows
-    - [x] Mac
-    - [x] Linux
+    - [ ] Mac
+    - [ ] Linux
 
 
 ## License
@@ -116,12 +141,12 @@ MIT License.
 
 Names
 - Keshav Kumar Jha (20bcs070)
-- Brij (20bcs033)
+- Brij Vaghani (20bcs033)
 - Lucky Yadav (20bcs077)
-- Daulat  Kumar Jha (20bcs037)
-- Hemant
-- Rohan
-- Sparsh
-- Tejas
+- Daulat Kumar Jha (20bcs037)
+- Hemant (20bcs058)
+- Rohan Singh (20bcs113)
+- Sparsh Jain (20bcs127)
+- Tejas Kedare (20bcs134)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
