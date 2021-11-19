@@ -10,8 +10,8 @@ command_quit = ['close the program', 'quit the program', 'terminate the program'
 command_quit_replay = ['Closing the program.', 'Quiting the program.',
                        'Terminating the program.', 'Exiting the program.']
 
-chat = ['good morning walter','morning walter','good morning']
-chat_replay = ['Good morning sir. I hope your day will be good','Good morning sir, how may i help you?','Good morinng sir, happy to see you again']
+chat_1 = ['good morning walter','morning walter','good morning']
+chat_1_replay = ['Good morning sir. I hope your day will be good','Good morning sir, how may i help you?','Good morinng sir, happy to see you again']
 
 chat_2 = ['thankyou walter','thank you','good job','good job walter','nice job']
 chat_2_replay =['Your welcome sir.','My pleasure.','Happy to help, sir']
