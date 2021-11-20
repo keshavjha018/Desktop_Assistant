@@ -78,27 +78,29 @@ def takecomand(self):
         return query.lower()  # returning the query in lower alphabets
 
 # tells the temp
+
+
 def GetTemperature(query):
     if "temperature in" in query:
         url = "https://www.google.com/search?q=" + query
         r = requests.get(url)
-        data = BeautifulSoup(r.text,"html.parser")
+        data = BeautifulSoup(r.text, "html.parser")
         temp = data.find("div", class_="BNeawe").text
-        speakonly("The current temperature there" + " is " + temp)
+        temp = "The current temperature there" + " is " + temp
 
     else:
         url = "https://www.google.com/search?q=" + "temperature"
         r = requests.get(url)
-        data = BeautifulSoup(r.text,"html.parser")
+        data = BeautifulSoup(r.text, "html.parser")
         temp = data.find("div", class_="BNeawe").text
-        speakonly("The current temperature at your location is " + temp)
+        temp = "The current temperature at your location is " + temp
 
     return temp
 
 def GetWeather(query):
-
-    PATH = "C:\Program Files (x86)\chromedriver.exe"
-    driver = webdriver.Chrome(PATH)
+    
+    chromedriver_path = access.path("chromedriver_path")
+    driver = webdriver.Chrome(chromedriver_path)
     driver.minimize_window()
     driver.get("https://www.google.com/search?q=" + query)
 
@@ -113,40 +115,33 @@ def GetWeather(query):
     #tells weathe in details - like ppt, wind etc
     if 'detail' in query or 'details' in query:
         # get text and print
-        speakonly("The current temperature in "+ city.text + " is "+ temp.text + "°C," + " and the sky is " + sky.text +". ")
-        speakonly("Other details are. "+ ppt.text +', ' + humidity.text + ', and ' + Wind.text)
-        driver.close()
-        # return temp.text + ", " + sky.text  + ", " + ppt.text  + ", " + humidity.text  + ", " + Wind.text  + "."
+        res = "The current temperature in "+ city.text + " is "+ temp.text + "°C," + " and the sky is " + sky.text +". " + "Some other details are. "+ ppt.text +', ' + humidity.text + ', and ' + Wind.text
+        return res
 
     # tells overall weather only, not in details
     else:
         # get text and print
-        speakonly("The current temperature in "+ city.text + " is "+ temp.text + "°C," + " and the sky is " + sky.text +". ")
-        driver.close()
-        # return temp.text + ", " + sky.text  + "."
+        res = "The current temperature in "+ city.text + " is "+ temp.text + "°C," + " and the sky is " + sky.text +". "
+        return res
+    
+    driver.close()
+
 
 def howto(query):
     from pywikihow import search_wikihow
     try:
-        max_results = 1             #one result from web
+        max_results = 1  # one result from web
         how_to = search_wikihow(query, max_results)
         assert len(how_to) == 1
         how_to[0].print()           # first result
-        speakonly(how_to[0].summary) #summary of 1st result
+        res = how_to[0].summary  # summary of 1st result
 
     except Exception as e:
-        speakonly("Sorry sir, I am not able to find this")
+        res = "Sorry sir, I am not able to find this"
 
+    return res
 #google search
-def googlesearch(query):
-
-    #remove unimportant words from query
-    query=query.replace("search", "")
-    query=query.replace(" for ", "")
-    query=query.replace(" about ", "")
-    query=query.replace(" on ", "")
-    query=query.replace("google", "")
-    
+def googlesearch(query):    
     import pywhatkit as kt
     kt.search(query) #perform search
 
