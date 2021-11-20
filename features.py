@@ -37,6 +37,9 @@ from geopy.distance import great_circle
 import geocoder
 import pyttsx3
 
+#for jokes
+import pyjokes
+
 def speakonly(audio):
     #only speaks, without printing
     engine = pyttsx3.init('sapi5')  # defining the engine to speak given string
