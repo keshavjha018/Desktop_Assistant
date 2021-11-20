@@ -226,3 +226,4 @@ class mail():
     	sleep(5)
     	self.driver.close()  # closing the driver
 
+#this is an update
