@@ -78,8 +78,6 @@ def takecomand(self):
         return query.lower()  # returning the query in lower alphabets
 
 # tells the temp
-
-
 def GetTemperature(query):
     if "temperature in" in query:
         url = "https://www.google.com/search?q=" + query

@@ -163,7 +163,7 @@ class MainThread(QThread):
                 os.startfile(access.path("notepad_path"))
 
             elif 'open vs code' in self.query:
-                speak(random.choices('Opening Notpad', 'Launching Notpad'))
+                speak(random.choices(['Opening VS Code', 'Launching VS Code']))
                 self.codepath=access.path("vs_code_path")
                 os.startfile(self.codepath)
                 
