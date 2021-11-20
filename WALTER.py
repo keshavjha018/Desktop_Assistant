@@ -77,14 +77,19 @@ class MainThread(QThread):
             #if user asks intro/greet
             if self.query in command_info:
                 speak(listToString(random.choices(info)))
+            
             elif self.query in command_greet:
                 speak(listToString(random.choices(greet)))
+            
             elif self.query in chat_1:
                 speak(listToString(random.choices(chat_1_replay)))                                
+            
             elif self.query in chat_2:
                 speak(listToString(random.choices(chat_2_replay)))                            
+            
             elif self.query in chat_3:
                 speak(listToString(random.choices(chat_3_replay)))                                
+            
             elif self.query in chat_4:
                 speak(listToString(random.choices(chat_4_replay)))
             
@@ -109,7 +114,7 @@ class MainThread(QThread):
             elif 'open classroom' in self.query:
                 webbrowser.open_new_tab(access.url("classroom_url"))
 
-            elif 'play music' in self.query:
+            elif 'play music' in self.query or 'hit some music' in self.query:
                 self.music_dir=access.path("music_dir_path")
                 self.songs=os.listdir(self.music_dir)
                 os.startfile(os.path.join(
@@ -163,18 +168,47 @@ class MainThread(QThread):
                     self.query=self.query.replace("mail", "")
                     self.query=self.query.replace("to", "")
                     self.query=self.query.replace(" ", "")
-                    self.to_email=access.mail_details(self.query)
-                    self.obj=mail(self.to_email)
-                    self.obj.login()
+                    obj = mail()
+                    obj.login()
                     speak("What subject should i add?")
                     self.subject = self.takecomand()
                     speak("Sir what should i say?")
                     self.content = self.takecomand()
-                    self.obj.compose(self.subject,self.content)
-                    self.obj.send()
+                    self.to_email=access.mail_details(self.query)
+                    obj.compose(self.subject,self.content,self.to_email)
+                    obj.send()
                     speak("Sir, the mail is sent")
                 except Exception as e:
                     speak("Sorry sir. I am not able to send right now")
+            
+            elif "my location" in self.query or "where am i" in self.query or "current location" in self.query:
+                try:
+                    ci, st, co = my_location()
+                    speak(
+                        f"Sir, your current location is {ci} city which is in {st} state and country {co}")
+
+                except Exception as e:
+                    speak(
+                        "Sorry sir, I coundn't fetch your current location. Please try again")
+
+            elif "where is" in self.query:
+                self.query = self.query.replace("where","")
+                self.query = self.query.replace("is","")
+                self.query = self.query.replace("location", "")
+                self.query = self.query.replace("from", "")
+                self.query = self.query.replace("my", "")
+                place = self.query
+                current_loc, target_loc, distance = loc(place)
+                city = target_loc["city"]
+                state = target_loc["state"]
+                country = target_loc["country"]
+                sleep(1)
+                try:
+                    res = f"{place} is in {state} state of country {country}. It is {distance} km away from your current location"
+                    speak(res)
+                except:
+                    res = "Sorry sir, I couldn't get the location. Please try again"
+                    speak(res)
 
             elif self.query in command_quit:
                 speak(listToString(random.choices(command_quit_replay)))
