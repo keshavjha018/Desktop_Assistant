@@ -13,3 +13,4 @@ pywhatkit
 geopy
 geocoder
 pyjokes
+PyAudio
