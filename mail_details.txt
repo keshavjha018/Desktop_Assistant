@@ -1,2 +1,2 @@
 Reciver_name,Reciver_mail
-"friend","vaghanibrij222@gmail.com"
+"friend","20bcs033@iiitdwd.ac.in"
