@@ -157,6 +157,13 @@ class MainThread(QThread):
             elif "near" in self.query or 'nearby' in self.query:
                 chat.append("Walter: "+ nearby(self.query))   #adding msg to chatbox
 
+            elif "joke" in self.query or 'jokes' in self.query:
+                speak(pyjokes.get_joke())
+                self.query = self.takecomand()
+                while 'one more' in self.query or 'another one' in self.query or 'once more' in self.query:
+                    speak(pyjokes.get_joke())
+                    self.query = self.takecomand()
+
             elif 'send mail' in self.query:
                 try:
                     self.query=self.query.replace("send", "")

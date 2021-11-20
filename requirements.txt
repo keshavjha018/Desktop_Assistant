@@ -12,3 +12,4 @@ PyWikiHow
 pywhatkit
 geopy
 geocoder
+pyjokes

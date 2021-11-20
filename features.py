@@ -33,6 +33,9 @@ import pyautogui
 import requests
 from bs4 import BeautifulSoup
 
+#for jokes
+import pyjokes
+
 def speakonly(audio):
     #only speaks, without printing
     engine = pyttsx3.init('sapi5')  # defining the engine to speak given string
