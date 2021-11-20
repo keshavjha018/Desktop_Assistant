@@ -124,7 +124,7 @@ class MainThread(QThread):
             if 'open youtube' in self.query or 'launch youtube' in self.query:
                 speak(listToString(random.choices(['Opening Youtube', 'Launching Youtube'])))
                 # taking the link of youtube from the folder url.txt using access.py file
-                # opening youtube in defult webbrowser
+                # opening youtube in defult webbrowser 
                 webbrowser.open_new_tab(access.url("youtube_url"))
 
             elif 'open google' in self.query:
