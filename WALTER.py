@@ -1,8 +1,19 @@
 from features import *
 
-state = "Please Wait..."
+state = ""
 chat = []
-chatlist = ""
+chat_prev = []
+
+def chatWalter(query):
+    global chat_prev
+    chat_prev = chat.copy()
+    chat.append("Walter: " + query)
+
+def chatUser(query):
+    global chat_prev
+    chat_prev = chat.copy()
+    chat.append("User: " + query)
+    sleep(1)
 
 def speak(audio):
     # defining the speak function so that our assistant can speak any string given as input
@@ -12,10 +23,11 @@ def speak(audio):
     engine.setProperty('voice', voice[0].id)
     # print(voice[0])     # to know the no of voices in system
     engine.setProperty('rate', 188)  # set the speed of voice
+    global state
+    state = "Speaking..."
     engine.say(audio)
     print(audio)
-    global chat
-    chat.append("Walter: " + audio)
+    chatWalter(audio)
     # Runs an event loop until all commands queued up until this method call complete
     engine.runAndWait()
 
@@ -60,12 +72,12 @@ class MainThread(QThread):
             query = take.recognize_google(audio, language='en-in')
             #Performs speech recognition on "audio_data", using the Google Speech Recognition API.
             print("User said :", query)
-            global chat
-            chat.append("User said: " + query)
+            
         except Exception as e:
             state = "Speak again..."
             print(state)
             return "None"
+        chatUser(query)
         return query.lower()  # returning the query in lower alphabets
 
     def task(self):
@@ -110,7 +122,7 @@ class MainThread(QThread):
                 self.query = self.query.replace("wallpaper", "")
             
             if 'open youtube' in self.query or 'open YouTube'in self.query:
-                speakonly('Opening Youtube')
+                speak(random.choices('Opening Youtube', 'Launching Youtube'))
                 # taking the link of youtube from the folder url.txt using access.py file
                 # opening yutube in defult webbrowser
                 webbrowser.open_new_tab(access.url("youtube_url"))
@@ -147,36 +159,40 @@ class MainThread(QThread):
                 speak("Sir, The time is " + self.strTime)
 
             elif 'open notepad' in self.query:
-                speakonly("Opening Notepad")
+                speak(random.choices('Opening Notpad', 'Launching Notpad'))
                 os.startfile(access.path("notepad_path"))
 
             elif 'open vs code' in self.query:
-                speakonly("Opening VS Code")
+                speak(random.choices('Opening Notpad', 'Launching Notpad'))
                 self.codepath=access.path("vs_code_path")
                 os.startfile(self.codepath)
                 
             elif 'screenshot' in self.query or 'take a screenshot' in self.query:
                 cwd = os.getcwd()
-                pyautogui.screenshot(cwd + r'\Screenshot' + str(self.x)+'.png')
+                pyautogui.screenshot(cwd + r'\Screenshots\image' + str(self.x)+'.png')
                 self.x += 1
-                sleep(2)  # to exit from program after 2 seconds
 
             elif 'temperature' in self.query:
-                chat.append("Walter: "+GetTemperature(self.query))
+                speak(GetTemperature(self.query))
 
             elif "weather" in self.query:
-                GetWeather(self.query)
+                speak(GetWeather(self.query))
                 # chat.append("Walter: " + chatmsg2) #prints weather in chatbox
 
             elif "how to" in self.query:
-                howto(self.query)
+                speak(howto(self.query))
 
             elif "search" in self.query:
-                speak("Showing the search results")
+                self.query = self.query.replace("search", "")
+                self.query = self.query.replace(" for ", "")
+                self.query = self.query.replace(" about ", "")
+                self.query = self.query.replace(" on ", "")
+                self.query = self.query.replace("google", "")
+                speak("Showing the search results for" + self.query)
                 googlesearch(self.query)
-
             elif "near" in self.query or 'nearby' in self.query:
-                chat.append("Walter: "+ nearby(self.query))   #adding msg to chatbox
+                speak(nearby(self.query))
+                # chat.append("Walter: "+ nearby(self.query))   #adding msg to chatbox
 
             elif "joke" in self.query or 'jokes' in self.query:
                 speak(pyjokes.get_joke())
@@ -258,12 +274,12 @@ class Main(QMainWindow):
         self.ui.Date.setText(lable_date)
         self.ui.Time.setText(lable_time)
         self.ui.state_of_assistant.setText(state)
-        global chatlist
         for item in chat:
-            if item not in chatlist:
-                chatlist = chatlist + item + " \n"
-
-        self.ui.Chat_box.setText(chatlist)
+            global chat_prev
+            if len(chat) != len(chat_prev):
+                self.res = listToString(chat[len(chat) - 1])
+                self.ui.Chat_box.append(self.res)
+                chat_prev.append(self.res)
         
     def starttask(self):
         self.ui.movie = QtGui.QMovie("image/Walter bg.gif")
@@ -273,7 +289,6 @@ class Main(QMainWindow):
         self.ui.movie = QtGui.QMovie("image/footer(line).gif")
         self.ui.footer_img.setMovie(self.ui.movie)
         self.ui.movie.start()
-
         timer = QTimer(self)
         timer.timeout.connect(self.showText)
         timer.start(1000) 
