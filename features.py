@@ -28,10 +28,14 @@ from PyQt5.uic import loadUiType
 from Walter_UI import Ui_Walter
 import subprocess
 import pyautogui
-
+from selenium.webdriver.common.keys import Keys
 #for web scrapping
 import requests
 from bs4 import BeautifulSoup
+from geopy.geocoders import Nominatim
+from geopy.distance import great_circle
+import geocoder
+import pyttsx3
 
 def speakonly(audio):
     #only speaks, without printing
@@ -118,7 +122,6 @@ def GetWeather(query):
         driver.close()
         # return temp.text + ", " + sky.text  + "."
 
-
 def howto(query):
     from pywikihow import search_wikihow
     try:
@@ -166,57 +169,89 @@ def listToString(s):
     # return string  
     return str1 
 
-class mail():
-    def __init__(self, sender_mail):
+def loc(place):
+    # webbrowser.open("http://www.google.com/maps/place/" + place + "")
+    geolocator = Nominatim(user_agent="Walter")
+    location = geolocator.geocode(place, addressdetails=True)
+    target_latlng = location.latitude, location.longitude
+    location = location.raw['address']
+    target_loc = {'city': location.get('city', ''),
+                  'state': location.get('state', ''),
+                  'country': location.get('country', '')}
+
+    current_loc = geocoder.ip('me')
+    current_latlng = current_loc.latlng
+
+    distance = str(great_circle(current_latlng, target_latlng))
+    distance = str(distance.split(' ', 1)[0])
+    distance = round(float(distance), 2)
+
+    return current_loc, target_loc, distance
+
+def my_location():
+    ip_add = requests.get('https://api.ipify.org').text
+    url = 'https://get.geojs.io/v1/ip/geo/' + ip_add + '.json'
+    geo_requests = requests.get(url)
+    geo_data = geo_requests.json()
+    city = geo_data['city']
+    state = geo_data['region']
+    country = geo_data['country']
+    webbrowser.open("http://www.google.com/maps/place/" + city + "")
+
+    return city, state, country
+
+class log():
+    def __init__(self):
         # accessing the chromedriver path from path.txt
         self.chromedriver_path = access.path("chromedriver_path")
-        # accessing the gmai url from url.txt
-        self.gmail_url = access.url("gmail_url")
+        # accessing the sign in url from url.txt
+        self.sign_in = access.url("sign_in_url")
         # Defining a driver to open chrome driver
         self.driver = webdriver.Chrome(self.chromedriver_path)
-        self.driver.get(self.gmail_url)  # feeding the mail link to the driver
-        self.sender_mail = sender_mail
+        self.driver.get(self.sign_in)  # feeding the sign in link to the driver
 
     def login(self):
         """
         This is a login function used to login your personal gmail account
         by accessing data directli from the files
         """
-        self.user_mail, self.user_password = access.personal_details("Your_name")
+        self.user_mail, self.user_password = access.personal_details("your_name")
         #accessing the password and email details of owner
-        self.enter_mail = self.driver.find_element_by_id(
-            "identifierId").send_keys(self.user_mail)
+        self.enter_mail = self.driver.find_element_by_id("identifierId")
+        self.enter_mail.send_keys(self.user_mail)
         #identifing the textbox using id of element and typing user mail with the help of send_keys() function
-        self.user_mail_next = self.driver.find_element_by_id(
-            "identifierNext").click()
-        #identifing the next button using id of element and clicking on it with the help of click() function
+        self.enter_mail.send_keys(Keys.RETURN)
+        #pressing Enter key using Keys function
         # sleep time is given so that the time is given to code whlie next page is loded
         sleep(3)
-        self.enter_pass = self.driver.find_element_by_name(
-            "password").send_keys(self.user_password)
+        self.enter_pass = self.driver.find_element_by_name("password")
+        self.enter_pass.send_keys(self.user_password)
         #identifing the textbox using name of element and typing user password with the help of send_keys() function
-        self.pass_next = self.driver.find_element_by_id("passwordNext").click()
-        #identifing the next button using id of element and clicking on it with the help of click() function
+        self.enter_pass.send_keys(Keys.RETURN)
         sleep(5)
 
-    def compose(self,subject,content):
+class mail(log):    
+    def compose(self, subject, content, reciver_mail):
         """
         In this function the email will be composed by adding 
         subject, sender mail and content to the email
         """
+        self.driver.get(access.url("gmail_url"))
         self.subject = subject
         self.content = content
+        self.reciver_mail = reciver_mail
         self.driver.find_element_by_css_selector(".aic .z0 div").click()
         #identifing the compose button using css_selector of element and clicking on it with the help of click() function
         sleep(3)
-        self.driver.find_element_by_name("to").send_keys(self.sender_mail)
+        self.driver.find_element_by_name("to").send_keys(self.reciver_mail)
         #identifing the textbox of to(text box where sender mail) using name of element and typing mail with the help of send_keys() function
         self.driver.find_element_by_name("subjectbox").send_keys(self.subject)
         #identifing the textbox of subject using name of element and typing subject with the help of send_keys() function
         sleep(3)
-        self.driver.find_element_by_css_selector(".Ar.Au div").send_keys(self.content)
+        self.driver.find_element_by_css_selector(
+            ".Ar.Au div").send_keys(self.content)
         #identifing the content textbox using css_selector of element and typing content with the help of send_keys() function
-        sleep(5)
+        sleep(3)
 
     def send(self):
         # The send functions just sends the message
@@ -225,4 +260,3 @@ class mail():
         #identifing the send button using css_selector of element and clicking on it with the help of click() function
     	sleep(5)
     	self.driver.close()  # closing the driver
-
