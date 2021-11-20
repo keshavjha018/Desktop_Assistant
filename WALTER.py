@@ -121,8 +121,8 @@ class MainThread(QThread):
                 self.query = self.query.replace("walton", "")
                 self.query = self.query.replace("wallpaper", "")
             
-            if 'open youtube' in self.query or 'open YouTube'in self.query:
-                speak(random.choices('Opening Youtube', 'Launching Youtube'))
+            if 'open youtube' in self.query:
+                speak(random.choices(['Opening Youtube', 'Launching Youtube']))
                 # taking the link of youtube from the folder url.txt using access.py file
                 # opening yutube in defult webbrowser
                 webbrowser.open_new_tab(access.url("youtube_url"))
@@ -159,7 +159,7 @@ class MainThread(QThread):
                 speak("Sir, The time is " + self.strTime)
 
             elif 'open notepad' in self.query:
-                speak(random.choices('Opening Notpad', 'Launching Notpad'))
+                speak(random.choices(['Opening Notpad', 'Launching Notpad']))
                 os.startfile(access.path("notepad_path"))
 
             elif 'open vs code' in self.query:
