@@ -26,11 +26,11 @@ def wishMe():
     # declaring the strTime variable to  get the current time according to mearidain
     strTime = datetime.datetime.now().strftime("%I:%M %p")
     if hour >= 0 and hour < 12:
-        speak("Hello sir, Good Morning. I am your assistant Walter" )
+        speak("Hello sir, Good Morning." )
     elif hour >= 12 and hour < 18:
-        speak("Hello sir, Good Afternoon. I am your assistant Walter ")
+        speak("Hello sir, Good Afternoon.")
     else:
-        speak("Hello sir, Good Evening. I am your assistant Walter")
+        speak("Hello sir, Good Evening.")
 
 class MainThread(QThread):
     def __init__(self) -> None:
@@ -92,6 +92,22 @@ class MainThread(QThread):
             
             elif self.query in chat_4:
                 speak(listToString(random.choices(chat_4_replay)))
+
+            #greet and perform task simultaneously
+            #eg- hello walter, what is the temperature?
+            #eg- good morning walter, how is the weather?
+            elif 'hello' in self.query or 'hi' in self.query or 'good morning' in self.query:
+                wishMe()
+                #replacing unnecessary key words from query
+                self.query = self.query.replace("hello", "")
+                self.query = self.query.replace("hi", "")
+                self.query = self.query.replace("good morning", "")
+                self.query = self.query.replace("walter", "")
+                #correcting mispronounciations
+                #sometimes it misunderstands 'Walter' as these: (due to indian accent)
+                self.query = self.query.replace("water", "")
+                self.query = self.query.replace("walton", "")
+                self.query = self.query.replace("wallpaper", "")
             
             if 'open youtube' in self.query or 'open YouTube'in self.query:
                 speakonly('Opening Youtube')
