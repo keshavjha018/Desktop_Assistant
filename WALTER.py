@@ -115,13 +115,38 @@ class MainThread(QThread):
                 speak("Sir, The current time is " + self.strTime)
 
             elif 'open notepad' in self.query or 'launch notepad' in self.query:
-                speak(listToString(random.choices(['Opening Notpad', 'Launching Notpad'])))
+                speak(listToString(random.choices(['Opening Notepad', 'Launching Notepad'])))
                 os.startfile(access.path("notepad_path"))
 
             elif 'open vs code' in self.query or 'launch vs code' in self.query:
                 speak(listToString(random.choices(['Opening VS Code', 'Launching VS Code'])))
                 self.codepath=access.path("vs_code_path")
                 os.startfile(self.codepath)
+
+            #you must have already logged in (in your default browser)
+            elif 'twitter' in self.query and 'open' in self.query:
+                speak("Opening Twitter..")
+                webbrowser.open_new_tab(access.url("twitter_url"))
+                
+            elif 'instagram' in self.query and 'open' in self.query:
+                speak("Opening Instagram..")
+                webbrowser.open_new_tab(access.url("insta_url"))
+                
+            elif 'github' in self.query and 'open' in self.query:
+                speak("Opening Github..")
+                webbrowser.open_new_tab(access.url("github_url"))
+                
+            elif 'linkedin' in self.query and 'open' in self.query:
+                speak("Opening LinkedIn..")
+                webbrowser.open_new_tab(access.url("linkedin_url"))
+                
+            elif 'gmail' in self.query and 'open' in self.query:
+                speak("Opening Gmail..")
+                webbrowser.open_new_tab(access.url("gmail_url"))
+
+            #if not logged in
+            elif 'twitter' in self.query and 'login' in self.query:
+                twitterlogin()
                 
             elif 'screenshot' in self.query or 'take a screenshot' in self.query:
                 cwd = os.getcwd()
