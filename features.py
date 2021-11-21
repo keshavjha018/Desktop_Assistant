@@ -38,7 +38,7 @@ import geocoder
 from selenium.webdriver.chrome.options import Options
 #for jokes
 import pyjokes
-state = ""
+state = "Speaking..."
 chat = []
 chat_prev = []
 
@@ -46,13 +46,22 @@ chat_prev = []
 def chatWalter(query):
     global chat_prev
     chat_prev = chat.copy()
-    chat.append("Walter: " + query)
+    chat.append("Walter: " + query + "\n")
 
 def chatUser(query):
     global chat_prev
     chat_prev = chat.copy()
-    chat.append("User: " + query)
+    chat.append("User: " + query + "\n")
     sleep(1)
+
+def listToString(s):
+    # initialize an empty string
+    str1 = ""
+    # traverse in the string
+    for ele in s:
+        str1 += ele
+    # return string
+    return str1
 
 def speak(audio):
     # defining the speak function so that our assistant can speak any string given as input
@@ -186,15 +195,6 @@ def nearby(query):
     return "Showing " + temp    #return string to print in chatbox
 
 # Python program to convert a list to string 
-def listToString(s): 
-    # initialize an empty string
-    str1 = "" 
-    # traverse in the string  
-    for ele in s: 
-        str1 += ele  
-    # return string  
-    return str1 
-
 def loc(place):
     # webbrowser.open("http://www.google.com/maps/place/" + place + "")
     geolocator = Nominatim(user_agent="Walter")
@@ -375,3 +375,43 @@ class meet(log):
         sleep(1)
         self.driver.find_element_by_css_selector(
             ".NPEfkd.RveJvd.snByac").click()
+
+def chatbot(query):
+    if query in command_info:
+        speak(listToString(random.choices(info)))
+
+    elif query in command_greet:
+        speak(listToString(random.choices(greet)))
+            
+    elif query in chat_1:
+        speak(listToString(random.choices(chat_1_replay)))                                
+            
+    elif query in chat_2:
+        speak(listToString(random.choices(chat_2_replay)))                            
+            
+    elif query in chat_3:
+        speak(listToString(random.choices(chat_3_replay)))                                
+            
+    elif query in chat_4:
+        speak(listToString(random.choices(chat_4_replay)))
+        
+    elif query in chat_5:
+        speak(listToString(random.choices(chat_5_replay)))
+
+    elif query in chat_6:
+        speak(listToString(random.choices(chat_6_replay)))
+
+    elif query in chat_7:
+        speak(listToString(random.choices(chat_7_replay)))
+
+    elif query in chat_8:
+        speak(listToString(random.choices(chat_8_replay)))
+        
+    elif query in chat_9:
+        speak(listToString(random.choices(chat_9_replay)))
+        
+    elif query in chat_10:
+        speak(listToString(random.choices(chat_10_replay)))
+
+    elif query in chat_11:
+        speak(listToString(random.choices(chat_11_replay)))
