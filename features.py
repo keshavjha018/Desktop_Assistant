@@ -35,7 +35,7 @@ from bs4 import BeautifulSoup
 from geopy.geocoders import Nominatim
 from geopy.distance import great_circle
 import geocoder
-
+from selenium.webdriver.chrome.options import Options
 #for jokes
 import pyjokes
 state = ""
@@ -248,13 +248,24 @@ def twitterlogin():
 
 class log():
     def __init__(self):
+        opt = Options()
+        opt.add_argument("--disable-extensions")
+        # Pass the argument 1 to allow and 2 to block
+        opt.add_experimental_option("prefs", {
+            "profile.default_content_setting_values.media_stream_mic": 1,
+            "profile.default_content_setting_values.media_stream_camera": 1,
+            "profile.default_content_setting_values.geolocation": 1,
+            "profile.default_content_setting_values.notifications": 2
+        })
         # accessing the chromedriver path from path.txt
         self.chromedriver_path = access.path("chromedriver_path")
         # accessing the sign in url from url.txt
         self.sign_in = access.url("sign_in_url")
         # Defining a driver to open chrome driver
-        self.driver = webdriver.Chrome(self.chromedriver_path)
+        self.driver = webdriver.Chrome(
+            chrome_options=opt, executable_path=self.chromedriver_path)
         self.driver.get(self.sign_in)  # feeding the sign in link to the driver
+        sleep(1)
 
     def login(self):
         """
@@ -274,9 +285,12 @@ class log():
         self.enter_pass.send_keys(self.user_password)
         #identifing the textbox using name of element and typing user password with the help of send_keys() function
         self.enter_pass.send_keys(Keys.RETURN)
-        sleep(5)
+        sleep(3)
 
-class mail(log):    
+    def close(self):
+        self.driver.close()
+
+class mail(log):
     def compose(self, subject, content, reciver_mail):
         """
         In this function the email will be composed by adding 
@@ -304,12 +318,12 @@ class mail(log):
     	self.driver.find_element_by_css_selector(
     	    "tr.btC td:nth-of-type(1) div div:nth-of-type(2) div").click()
         #identifing the send button using css_selector of element and clicking on it with the help of click() function
-    	sleep(5)
+    	sleep(2)
     	self.driver.close()  # closing the driver
 
-
 class meet(log):
-    def new_meet(self):
+    def creat_meet(self):
+        self.driver.maximize_window()
         self.driver.get("https://meet.google.com/")  # link to open google meet
         link = self.driver.find_element_by_xpath("//span[@jsname='V67aGc']")
         link.click()
@@ -317,42 +331,47 @@ class meet(log):
             "//li[@aria-label='Start an instant meeting']")
         link.click()
 
-    def get_class(self):
+    def check_class(self):
         self.curr_meet_link, self.lecture = access.meet_link()
+        # self.driver.get(self.curr_meet_link)
+        if self.lecture == None:
+            speak(
+                "Sorry sir, but according to my data you dont have any current lecture at this time")
+            sleep(4)
+            return 0
+        # elif access.get_day() == 'Sunday' or access.get_day() == 'Saturday':
+        #     return 0
+
+        else:
+            if self.lecture == "break" or self.lecture == "Holiday" or self.lecture == "No lecture":
+                speak(f"Sir currently you have {self.lecture}")
+                return 0
+
+            else:
+                speak(f"Sir currently you have {self.lecture} class")
+                if self.curr_meet_link == None:
+                    speak("Sir my data dose not contain this class link")
+                    return 0
+
+                elif self.curr_meet_link == "http://www.gmail.com":
+                    speak("Sir I don't have the meet link so please check in your mail")
+                    sleep(4)
+
+                else:
+                    return 1
+
+    def join_link(self):
         self.driver.get(self.curr_meet_link)
 
-    def check_class(self):
-        if self.lecture == "None":
-            speak("Sorry sir, but according to my data you dont have any current lecture at this time")
-            return 0
-            
-        else:    
-            speak(f"Sir curently you have {self.lecture} class")
-            if self.curr_meet_link == "None":
-                speak("Sir my data dosen't contain this class link")
-                return 0
-
-            elif self.curr_meet_link == "http://www.gmail.com":
-                speak("Sir I don't have the meet link so please check in your mail")
-                return 0
-            
-            else:
-                return 1
-
     def join(self):
-        sleep(4)
-        self.driver.find_element_by_css_selector(
-            ".U26fgb.JRY2Pb.mUbCce.kpROve.yBiuPb.y1zVCf.HNeRed.M9Bg4d").click()
+        speak("joining the class")
+        self.driver.maximize_window()
         sleep(2)
         self.driver.find_element_by_css_selector(
             ".U26fgb.JRY2Pb.mUbCce.kpROve.yBiuPb.y1zVCf.HNeRed.M9Bg4d").click()
         sleep(2)
+        self.driver.find_element_by_css_selector(
+            ".U26fgb.JRY2Pb.mUbCce.kpROve.yBiuPb.y1zVCf.HNeRed.M9Bg4d").click()
+        sleep(1)
         self.driver.find_element_by_css_selector(
             ".NPEfkd.RveJvd.snByac").click()
-
-# obj = meet()
-# obj.login()
-# obj.new_meet()
-# obj.get_class()
-# if obj.check_class() != 0:
-#     obj.join()

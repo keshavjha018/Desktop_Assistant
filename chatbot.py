@@ -6,7 +6,7 @@ command_greet = ['hello walter','are you there walter','are you there','hello']
 greet = ['Hello sir, how may i help you?','Hello sir, I am here for your help','Yes sir, how may i help you']
 
 command_quit = ['close the program', 'quit the program', 'terminate the program', 'exit the program'
-                'close program', 'quit program', 'terminate program', 'exit program','close','quit','exit']
+                'close program', 'quit program', 'terminate program', 'exit program','close','quit','exit','terminate yourself']
 command_quit_replay = ['Closing the program.', 'Quiting the program.',
                        'Terminating the program.', 'Exiting the program.']
 
@@ -27,3 +27,7 @@ chat_5_replay = ['I am fine sir,what about you']
 
 chat_6 = ['i am fine','thanks for asikng']
 chat_6_replay = ['Oh! nice to hear from you sir']
+
+chat_7 = ['good afternoon walter', 'good afternoon']
+chat_7_replay = ['Sir,I hope your day will be good',
+                 'Sir, how may i help you?', 'Sir, happy to see you again']
