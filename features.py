@@ -59,7 +59,7 @@ def speak(audio):
     engine = pyttsx3.init('sapi5')  # defining the engine to speak given string
     voice = engine.getProperty('voices')
     # seting voice of any inbuilt system voice like David/Zeera
-    engine.setProperty('voice', voice[4].id)
+    engine.setProperty('voice', voice[0].id)
     # print(voice[0])     # to know the no of voices in system
     engine.setProperty('rate', 188)  # set the speed of voice
     global state
@@ -225,6 +225,26 @@ def my_location():
     webbrowser.open("http://www.google.com/maps/place/" + city + "")
 
     return city, state, country
+
+#if user has not already logged in
+def twitterlogin():
+    speak("Opening Twitter..")
+    from selenium.webdriver.common.keys import Keys
+    chromedriver_path = access.path("chromedriver_path")
+    driver = webdriver.Chrome(chromedriver_path)
+    driver.get("https://www.twitter.com/login")
+    
+
+    username, password = access.personal_details("twitter")
+
+    sleep(4)
+    userNameBox = driver.find_element_by_name('username')
+    userNameBox.send_keys(username)
+    userNameBox.send_keys(Keys.RETURN)
+    sleep(4)
+    passwordBox = driver.find_element_by_name('password')
+    passwordBox.send_keys(password)
+    passwordBox.send_keys(Keys.RETURN)
 
 class log():
     def __init__(self):
