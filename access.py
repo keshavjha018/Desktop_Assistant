@@ -74,10 +74,10 @@ def get_day():
     return datetime.datetime.now().strftime("%A")
 
 def lecture():
-    time_slot = get_time_slot()
-    day = get_day()
-    # day = "Sunday"
-    # time_slot = 0
+    # time_slot = get_time_slot()
+    # day = get_day()
+    day = "Monday"
+    time_slot = 2
     if time_slot == 0:
         return "No lecture"
     else:
