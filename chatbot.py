@@ -21,3 +21,9 @@ chat_3_replay = ['Sorry sir, I apologize','Sorry sir, I am still learning.','Sor
 
 chat_4 = ['nice work','nice work walter','good work',"it's awesome"]
 chat_4_replay = ['Thank you sir.', 'Nice to hear from you sir.', 'My pleasure to help you.']
+
+chat_5= ['how are you']
+chat_5_replay = ['I am fine sir,what about you']
+
+chat_6 = ['i am fine','thanks for asikng']
+chat_6_replay = ['Oh! nice to hear from you sir']
