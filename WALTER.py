@@ -40,25 +40,15 @@ class MainThread(QThread):
         # running the while loop infinite times
         while True:
             self.query = self.takecomand()
-            #if user asks intro/greet
-            chat_bot(self.query)
+            #if user chats (conversation)
+            chatresponse = chat_bot(self.query)
 
-            #greet and perform task simultaneously
+            #if not in chatbot
+            #greet and perform task simultaneously - (can run multiple command at once)
             #eg- hello walter, what is the temperature?
-            #eg- good morning walter, how is the weather?
-            if 'hello' in self.query or 'hi' in self.query or 'good morning' in self.query:
-                # wishMe()
-                #replacing unnecessary key words from query
-                self.query = self.query.replace("hello", "")
-                self.query = self.query.replace("hi", "")
-                self.query = self.query.replace("good morning", "")
-                self.query = self.query.replace("walter", "")
-                #correcting mispronounciations
-                #sometimes it misunderstands 'Walter' as these: (due to indian accent)
-                self.query = self.query.replace("water", "")
-                self.query = self.query.replace("walton", "")
-                self.query = self.query.replace("wallpaper", "")
-            
+            if chatresponse == 0:
+                self.query = greetAndWork(self.query)
+
             if 'open youtube' in self.query or 'launch youtube' in self.query:
                 speak(listToString(random.choices(['Opening Youtube', 'Launching Youtube'])))
                 # taking the link of youtube from the folder url.txt using access.py file
@@ -234,9 +224,7 @@ class MainThread(QThread):
 
             elif self.query in command_quit:
                 speak(listToString(random.choices(command_quit_replay)) + " in 3 seconds")
-                speak("3")
-                speak("2")
-                speak("1")
+                speak("3, 2, 1")
                 sys.exit()
     
 startexecution = MainThread()

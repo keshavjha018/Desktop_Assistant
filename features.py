@@ -376,7 +376,7 @@ class meet(log):
         self.driver.find_element_by_css_selector(
             ".NPEfkd.RveJvd.snByac").click()
 
-def chatbot(query):
+def chat_bot(query):
     if query in command_info:
         speak(listToString(random.choices(info)))
 
@@ -415,3 +415,26 @@ def chatbot(query):
 
     elif query in chat_11:
         speak(listToString(random.choices(chat_11_replay)))
+
+    else:
+        return 0
+
+
+#greet and perform task simultaneously
+#eg- hello walter, what is the temperature?
+#eg- good morning walter, how is the weather?
+def greetAndWork(query):
+    if 'hello' in query or 'hi' in query or 'good morning' in query:
+        wishMe()  #greets user
+        #replacing unnecessary key words from query
+        query = query.replace("hello", "")
+        query = query.replace("hi", "")
+        query = query.replace("good morning", "")
+        query = query.replace("walter", "")
+        #correcting mispronounciations
+        #sometimes it misunderstands 'Walter' as these: (due to indian accent)
+        query = query.replace("water", "")
+        query = query.replace("walton", "")
+        query = query.replace("wallpaper", "")
+
+    return query
