@@ -29,5 +29,21 @@ chat_6 = ['i am fine','thanks for asikng']
 chat_6_replay = ['Oh! nice to hear from you sir']
 
 chat_7 = ['good afternoon walter', 'good afternoon']
-chat_7_replay = ['Sir,I hope your day will be good',
-                 'Sir, how may i help you?', 'Sir, happy to see you again']
+chat_7_replay = ['Sir,I hope your day will be good','Sir, how may i help you?', 'Sir, happy to see you again']
+
+chat_8 = ['how can you help me','why i should take your help']
+chat_8_replay = ['Sir, i am a your assistant having various features','Sir, i can automate your variously done daily tasks']
+
+chat_9 = ['who created you','who is your creator']
+chat_9_replay = [
+    'Sir, i am created by students of Indian Institute of Information and Technology Dharwad',
+    'Sir, i am a Python project created by students of Indian Institute of Information and Technology Dharwad']
+
+chat_10 = ['what can you do', 'what are your features',
+           'what can you do for me', 'what are your functionality']
+chat_10_replay = ['Sir, i can do many task like showing weather,playing music,sending mails,opening social media websites and many more',
+                  'Sir, my fetures are finding current temperature of any location,find any place,searching in google,show nearby places like hotels,restaurants etc.'
+                  'Sir, i can do functionality like showing weather,find any place,launching any local applications like notepad,chrome,firefox etc.']
+
+chat_11 = ['why are you created']
+chat_11_replay = ['Sir, i am created to make your daily tasks easy']

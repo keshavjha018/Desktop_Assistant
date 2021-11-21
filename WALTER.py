@@ -41,29 +41,13 @@ class MainThread(QThread):
         while True:
             self.query = self.takecomand()
             #if user asks intro/greet
-            if self.query in command_info:
-                speak(listToString(random.choices(info)))
-            
-            elif self.query in command_greet:
-                speak(listToString(random.choices(greet)))
-            
-            elif self.query in chat_1:
-                speak(listToString(random.choices(chat_1_replay)))                                
-            
-            elif self.query in chat_2:
-                speak(listToString(random.choices(chat_2_replay)))                            
-            
-            elif self.query in chat_3:
-                speak(listToString(random.choices(chat_3_replay)))                                
-            
-            elif self.query in chat_4:
-                speak(listToString(random.choices(chat_4_replay)))
+            chat_bot(self.query)
 
             #greet and perform task simultaneously
             #eg- hello walter, what is the temperature?
             #eg- good morning walter, how is the weather?
-            elif 'hello' in self.query or 'hi' in self.query or 'good morning' in self.query:
-                wishMe()
+            if 'hello' in self.query or 'hi' in self.query or 'good morning' in self.query:
+                # wishMe()
                 #replacing unnecessary key words from query
                 self.query = self.query.replace("hello", "")
                 self.query = self.query.replace("hi", "")
@@ -150,6 +134,7 @@ class MainThread(QThread):
             elif 'screenshot' in self.query or 'take a screenshot' in self.query:
                 cwd = os.getcwd()
                 pyautogui.screenshot(cwd + r'\image\Screenshot' + str(self.x)+'.png')
+                speak("Screenshot is saved as image" + str(self.x))
                 self.x += 1
 
             elif 'temperature' in self.query:
@@ -248,7 +233,7 @@ class MainThread(QThread):
                     speak(res)
 
             elif self.query in command_quit:
-                speak(listToString(random.choices(command_quit_replay)))
+                speak(listToString(random.choices(command_quit_replay)) + " in 3 seconds")
                 speak("3")
                 speak("2")
                 speak("1")
