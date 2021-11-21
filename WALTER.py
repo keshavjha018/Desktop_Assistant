@@ -40,7 +40,6 @@ class MainThread(QThread):
         # running the while loop infinite times
         while True:
             self.query = self.takecomand()
-
             #if user asks intro/greet
             if self.query in command_info:
                 speak(listToString(random.choices(info)))
@@ -146,6 +145,7 @@ class MainThread(QThread):
                 self.query = self.query.replace("google", "")
                 speak("Showing the search results for" + self.query)
                 googlesearch(self.query)
+            
             elif "near" in self.query or 'nearby' in self.query:
                 speak(nearby(self.query))
                 # chat.append("Walter: "+ nearby(self.query))   #adding msg to chatbox
@@ -176,6 +176,23 @@ class MainThread(QThread):
                 except Exception as e:
                     speak("Sorry sir. I am not able to send right now")
             
+            elif 'join meet' in self.query or 'create a meet' in self.query or 'create a new meet' in self.query or 'join my class' in self.query:
+                obj = meet()
+                if 'new meet' in self.query or 'create a meet' in self.query:
+                    speak("Sir please wait a while i am login your mail")
+                    obj.login()
+                    speak("Creating a new meet")
+                    obj.creat_meet()
+                else:
+                    a = obj.check_class()
+                    if a == 0:
+                        obj.close()
+                    else:
+                        obj.login()
+                        obj.join_link()
+                        if a == 1:
+                            obj.join()
+
             elif "my location" in self.query or "where am i" in self.query or "current location" in self.query:
                 try:
                     ci, st, co = my_location()
