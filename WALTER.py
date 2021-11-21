@@ -1,49 +1,5 @@
 from features import *
 
-state = ""
-chat = []
-chat_prev = []
-
-def chatWalter(query):
-    global chat_prev
-    chat_prev = chat.copy()
-    chat.append("Walter: " + query)
-
-def chatUser(query):
-    global chat_prev
-    chat_prev = chat.copy()
-    chat.append("User: " + query)
-    sleep(1)
-
-def speak(audio):
-    # defining the speak function so that our assistant can speak any string given as input
-    engine = pyttsx3.init('sapi5')  # defining the engine to speak given string
-    voice = engine.getProperty('voices')
-    # seting voice of any inbuilt system voice like David/Zeera
-    engine.setProperty('voice', voice[0].id)
-    # print(voice[0])     # to know the no of voices in system
-    engine.setProperty('rate', 188)  # set the speed of voice
-    global state
-    state = "Speaking..."
-    engine.say(audio)
-    print(audio)
-    chatWalter(audio)
-    # Runs an event loop until all commands queued up until this method call complete
-    engine.runAndWait()
-
-def wishMe():
-    #function wishme will wish the user according to the time and weather
-    # declaring the hour variable to  get the current hour
-    hour = int(datetime.datetime.now().hour)
-    # declaring the strTime variable to  get the current time according to mearidain
-    strTime = datetime.datetime.now().strftime("%I:%M %p")
-    if hour >= 0 and hour < 12:
-        speak("Hello sir, Good Morning." )
-    elif hour >= 12 and hour < 18:
-        speak("Hello sir, Good Afternoon.")
-    else:
-        speak("Hello sir, Good Evening.")
-
 class MainThread(QThread):
     def __init__(self) -> None:
         self.x = 1
@@ -52,7 +8,7 @@ class MainThread(QThread):
     def run(self):
         wishMe()
         self.task()
-    
+
     def takecomand(self):
         #Defining function to take the voice as input and converting it to text
         take = sr.Recognizer()
@@ -82,7 +38,6 @@ class MainThread(QThread):
 
     def task(self):
         # running the while loop infinite times
-        global chat
         while True:
             self.query = self.takecomand()
 
@@ -155,8 +110,9 @@ class MainThread(QThread):
                 speak("Today is " + self.day + '. ' + self.d2)
 
             elif 'the time' in self.query:
+                # declaring the strTime variable to  get the current time according to mearidain
                 self.strTime = datetime.datetime.now().strftime("%I %M %p")
-                speak("Sir, The time is " + self.strTime)
+                speak("Sir, The current time is " + self.strTime)
 
             elif 'open notepad' in self.query or 'launch notepad' in self.query:
                 speak(listToString(random.choices(['Opening Notpad', 'Launching Notpad'])))
@@ -169,7 +125,7 @@ class MainThread(QThread):
                 
             elif 'screenshot' in self.query or 'take a screenshot' in self.query:
                 cwd = os.getcwd()
-                pyautogui.screenshot(cwd + r'\Screenshots\image' + str(self.x)+'.png')
+                pyautogui.screenshot(cwd + r'\image\Screenshot' + str(self.x)+'.png')
                 self.x += 1
 
             elif 'temperature' in self.query:
@@ -251,9 +207,9 @@ class MainThread(QThread):
 
             elif self.query in command_quit:
                 speak(listToString(random.choices(command_quit_replay)))
-                speakonly("3")
-                speakonly("2")
-                speakonly("1")
+                speak("3")
+                speak("2")
+                speak("1")
                 sys.exit()
     
 startexecution = MainThread()

@@ -26,7 +26,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUiType
 from Walter_UI import Ui_Walter
-import subprocess
+# import subprocess
 import pyautogui
 from selenium.webdriver.common.keys import Keys
 #for web scrapping
@@ -35,47 +35,78 @@ from bs4 import BeautifulSoup
 from geopy.geocoders import Nominatim
 from geopy.distance import great_circle
 import geocoder
-import pyttsx3
 
 #for jokes
 import pyjokes
+state = ""
+chat = []
+chat_prev = []
 
-def speakonly(audio):
-    #only speaks, without printing
+
+def chatWalter(query):
+    global chat_prev
+    chat_prev = chat.copy()
+    chat.append("Walter: " + query)
+
+def chatUser(query):
+    global chat_prev
+    chat_prev = chat.copy()
+    chat.append("User: " + query)
+    sleep(1)
+
+def speak(audio):
+    # defining the speak function so that our assistant can speak any string given as input
     engine = pyttsx3.init('sapi5')  # defining the engine to speak given string
     voice = engine.getProperty('voices')
-    engine.setProperty('voice', voice[0].id)
+    # seting voice of any inbuilt system voice like David/Zeera
+    engine.setProperty('voice', voice[4].id)
+    # print(voice[0])     # to know the no of voices in system
     engine.setProperty('rate', 188)  # set the speed of voice
+    global state
+    state = "Speaking..."
     engine.say(audio)
     print(audio)
+    chatWalter(audio)
+    # Runs an event loop until all commands queued up until this method call complete
     engine.runAndWait()
 
+def wishMe():
+    #function wishme will wish the user according to the time and weather
+    # declaring the hour variable to  get the current hour
+    hour = int(datetime.datetime.now().hour)
+    if hour >= 0 and hour < 12:
+        speak("Hello sir, Good Morning.")
+    elif hour >= 12 and hour < 18:
+        speak("Hello sir, Good Afternoon.")
+    else:
+        speak("Hello sir, Good Evening.")
+
 def takecomand(self):
-        #Defining function to take the voice as input and converting it to text
-        take = sr.Recognizer()
-        # It takes Speech as input from microphone
-        with sr.Microphone() as source:
-            take.adjust_for_ambient_noise(source)  # ignoring the background noise
-            # seconds of non-speaking audio before a phrase is considered complete
-            take.pause_threshold = 0.7
-            take.energy_threshold = 300  # minimum audio energy to consider for recording
-            global state        
-            state = "Listening...."
-            print(state)
-            audio = take.listen(source)
-        try:
-            state = "Recognizing...."
-            print(state)
-            query = take.recognize_google(audio, language='en-in')
-            #Performs speech recognition on "audio_data", using the Google Speech Recognition API.
-            print("User said :", query)
-            # global chat
-            # chat.append("User said: " + query)
-        except Exception as e:
-            state = "Speak again..."
-            print(state)
-            return "None"
-        return query.lower()  # returning the query in lower alphabets
+      #Defining function to take the voice as input and converting it to text
+    take = sr.Recognizer()
+       # It takes Speech as input from microphone
+    with sr.Microphone() as source:
+        # ignoring the background noise
+        take.adjust_for_ambient_noise(source)
+        # seconds of non-speaking audio before a phrase is considered complete
+        take.pause_threshold = 0.7
+        take.energy_threshold = 500  # minimum audio energy to consider for recording
+        global state
+        state = "Listening...."
+        print(state)
+        audio = take.listen(source)
+    try:
+        state = "Working...."
+        print(state)
+        query = take.recognize_google(audio, language='en-in')
+        #Performs speech recognition on "audio_data", using the Google Speech Recognition API.
+        print("User said :", query)
+    except Exception as e:
+        state = "Speak again..."
+        print(state)
+        return "None"
+    chatUser(query)
+    return query.lower()  # returning the query in lower alphabets
 
 # tells the temp
 def GetTemperature(query):
@@ -124,7 +155,6 @@ def GetWeather(query):
     
     driver.close()
 
-
 def howto(query):
     from pywikihow import search_wikihow
     try:
@@ -151,7 +181,7 @@ def nearby(query):
     if "me" in query:
         temp = query.replace("me", " you")
 
-    speakonly("Showing " + temp)
+    speak("Showing " + temp)
     googlesearch(query)     #search google for nearby
     return "Showing " + temp    #return string to print in chatbox
 
@@ -256,3 +286,53 @@ class mail(log):
         #identifing the send button using css_selector of element and clicking on it with the help of click() function
     	sleep(5)
     	self.driver.close()  # closing the driver
+
+
+class meet(log):
+    def new_meet(self):
+        self.driver.get("https://meet.google.com/")  # link to open google meet
+        link = self.driver.find_element_by_xpath("//span[@jsname='V67aGc']")
+        link.click()
+        link = self.driver.find_element_by_xpath(
+            "//li[@aria-label='Start an instant meeting']")
+        link.click()
+
+    def get_class(self):
+        self.curr_meet_link, self.lecture = access.meet_link()
+        self.driver.get(self.curr_meet_link)
+
+    def check_class(self):
+        if self.lecture == "None":
+            speak("Sorry sir, but according to my data you dont have any current lecture at this time")
+            return 0
+            
+        else:    
+            speak(f"Sir curently you have {self.lecture} class")
+            if self.curr_meet_link == "None":
+                speak("Sir my data dosen't contain this class link")
+                return 0
+
+            elif self.curr_meet_link == "http://www.gmail.com":
+                speak("Sir I don't have the meet link so please check in your mail")
+                return 0
+            
+            else:
+                return 1
+
+    def join(self):
+        sleep(4)
+        self.driver.find_element_by_css_selector(
+            ".U26fgb.JRY2Pb.mUbCce.kpROve.yBiuPb.y1zVCf.HNeRed.M9Bg4d").click()
+        sleep(2)
+        self.driver.find_element_by_css_selector(
+            ".U26fgb.JRY2Pb.mUbCce.kpROve.yBiuPb.y1zVCf.HNeRed.M9Bg4d").click()
+        sleep(2)
+        self.driver.find_element_by_css_selector(
+            ".NPEfkd.RveJvd.snByac").click()
+
+# obj = meet()
+# obj.login()
+# obj.new_meet()
+# obj.get_class()
+# if obj.check_class() != 0:
+#     obj.join()
