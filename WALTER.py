@@ -239,17 +239,17 @@ class MainThread(QThread):
                 self.query = self.query.replace("whatsapp", "")
                 self.query = self.query.replace("to", "")
                 self.Name = str(self.query)
+                WhatsappVideo(self.Name)
                 speak(f"Making Video call to {self.Name}")
                 from Whatsapp import WhatsappVideo
-                WhatsappVideo(self.Name)
                 speak("Video Call ended")
 
             elif "call" in self.query:
                 self.query = self.query.replace("call", "")
                 self.query = self.query.replace("whatsapp", "")
                 self.query = self.query.replace("to", "")
-                speak(f"Making call to {self.Name}")
                 self.Name = str(self.query)
+                speak(f"Making call to {self.Name}")
                 from Whatsapp import WhatsappCall
                 WhatsappCall(self.Name)
                 speak("Call Ended")
