@@ -42,7 +42,6 @@ state = "Speaking..."
 chat = []
 chat_prev = []
 
-
 def chatWalter(query):
     global chat_prev
     chat_prev = chat.copy()
@@ -78,6 +77,15 @@ def speak(audio):
     chatWalter(audio)
     # Runs an event loop until all commands queued up until this method call complete
     engine.runAndWait()
+
+def mute():
+    pyautogui.press("volumemute")
+    chatWalter("System Muted")
+
+def unmute():
+    pyautogui.press("volumeup")
+    chatWalter("System Unmuted")
+
 
 def wishMe():
     #function wishme will wish the user according to the time and weather
@@ -324,12 +332,7 @@ class mail(log):
 class meet(log):
     def creat_meet(self):
         self.driver.maximize_window()
-        self.driver.get("https://meet.google.com/")  # link to open google meet
-        link = self.driver.find_element_by_xpath("//span[@jsname='V67aGc']")
-        link.click()
-        link = self.driver.find_element_by_xpath(
-            "//li[@aria-label='Start an instant meeting']")
-        link.click()
+        self.driver.get("https://meet.new/")  # link to open google meet
 
     def check_class(self):
         self.curr_meet_link, self.lecture = access.meet_link()

@@ -192,7 +192,13 @@ class MainThread(QThread):
                         obj.join_link()
                         if a == 1:
                             obj.join()
+            
+            elif 'mute' in self.query:
+                mute()
 
+            elif 'unmute' in self.query:
+                unmute()
+            
             elif "my location" in self.query or "where am i" in self.query or "current location" in self.query:
                 try:
                     ci, st, co = my_location()
