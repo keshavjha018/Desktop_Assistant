@@ -222,10 +222,60 @@ class MainThread(QThread):
                     res = "Sorry sir, I couldn't get the location. Please try again"
                     speak(res)
 
+            elif "whatsapp message" in self.query:
+                self.query = self.query.replace("whatsapp", "")
+                self.query = self.query.replace("message", "")
+                self.query = self.query.replace("to", "")
+                self.Name = str(self.query)
+                speak(f"Whats the message for {self.Name}")
+                self.message = self.takecomand()
+                speak(f"Sending text to {self.Name}")
+                from Whatsapp import WhatsappMessage
+                WhatsappMessage(self.Name, self.message)
+            
+            elif "video call" in self.query:
+                self.query = self.query.replace("video", "")
+                self.query = self.query.replace("call", "")
+                self.query = self.query.replace("whatsapp", "")
+                self.query = self.query.replace("to", "")
+                self.Name = str(self.query)
+                speak(f"Making Video call to {self.Name}")
+                from Whatsapp import WhatsappVideo
+                WhatsappVideo(self.Name)
+                speak("Video Call ended")
+
+            elif "call" in self.query:
+                self.query = self.query.replace("call", "")
+                self.query = self.query.replace("whatsapp", "")
+                self.query = self.query.replace("to", "")
+                speak(f"Making call to {self.Name}")
+                self.Name = str(self.query)
+                from Whatsapp import WhatsappCall
+                WhatsappCall(self.Name)
+                speak("Call Ended")
+            
+
+            elif "open chat" in self.query:
+                self.query = self.query.replace("open", "")
+                self.query = self.query.replace("whatsapp", "")
+                self.query = self.query.replace("chat", "")
+                self.query = self.query.replace("of", "")
+                self.Name = str(self.query)
+                speak(f"Opening Chat of {self.Name}")
+                from Whatsapp import WhatsappOpenChat
+                WhatsappOpenChat(self.Name)
+
+            elif "create group" in self.query:
+                self.query = self.query.replace("and", " ")
+                self.Name = list(self.query.split(" "))
+                from Whatsapp import WhatsappGroup
+                WhatsappGroup(self.Name)
+
             elif self.query in command_quit:
                 speak(listToString(random.choices(command_quit_replay)) + " in 3 seconds")
                 speak("3, 2, 1")
                 sys.exit()
+            
     
 startexecution = MainThread()
 
