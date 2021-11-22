@@ -66,7 +66,10 @@ class MainThread(QThread):
                     speak("Sir, what should i search for?")
                     search=self.takecomand()
                     webbrowser.open_new_tab(search)
-
+            
+            elif 'system status' in self.query or 'batery remaining' in self.query:
+                speak(system_stats())
+            
             elif 'open classroom' in self.query:
                 webbrowser.open_new_tab(access.url("classroom_url"))
 
