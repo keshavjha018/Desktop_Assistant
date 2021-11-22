@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="newPrefix">
-    <file>unmute_img.jpg</file>
-    <file>mute_img.jpg</file>
-  </qresource>
-</RCC>
