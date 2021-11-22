@@ -52,20 +52,20 @@ def get_time_slot():
     minute = int(datetime.datetime.now().minute)
     if hour < 9:
         return 0
-    elif 9 < hour < 10:
+    elif 9 <= hour < 10:
         return 1
-    elif 10 < hour < 11:
+    elif 10 <= hour < 11:
         return 2
-    elif 11 < hour < 12:
+    elif 11 <= hour < 12:
         return 3
-    elif 12 < hour < 13:
+    elif 12 <= hour < 13:
         return 4
-    elif 13 < hour < 14:
+    elif 13 <= hour < 14:
         if minute < 15:
             return 5
         else:
             return 6
-    elif 14 < hour < 15:
+    elif 14 <= hour < 15:
         return 7
     else:
         return 0
