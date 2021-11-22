@@ -121,7 +121,7 @@ As of now we are still working on maximizing the tasks it can do and adding more
 
 - [x] Add readme documentation
 - [x] Add basic functionalities
-- [ ] Add Additional features
+- [x] Add Additional features
 - Supports
     - [x] Windows
     - [ ] Mac
