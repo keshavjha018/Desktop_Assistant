@@ -17,6 +17,9 @@ from selenium import webdriver
 import access
 import sys
 from chatbot import *
+
+import wikipedia
+
 #for GUI
 import PyQt5
 from PyQt5 import QtWidgets, QtCore, QtGui
@@ -41,6 +44,7 @@ import geocoder
 from selenium.webdriver.chrome.options import Options
 #for jokes
 import pyjokes
+
 state = "Speaking..."
 chat = []
 chat_prev = []
@@ -464,3 +468,10 @@ def greetAndWork(query):
         query = query.replace("wallpaper", "")
 
     return query
+
+def wikisearch(query):
+    speak("searching wikipedia....")
+    query=query.replace("about","")
+    results=wikipedia.summary(query,sentences=2)
+    speak("Acording to wikipedia...")
+    speak(results)
