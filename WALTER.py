@@ -160,6 +160,9 @@ class MainThread(QThread):
                     speak(pyjokes.get_joke())
                     self.query = self.takecomand()
 
+            elif 'about' in self.query:
+                wikisearch(self.query)
+
             elif 'send mail' in self.query:
                 try:
                     self.query=self.query.replace("send", "")
