@@ -17,7 +17,7 @@ class MainThread(QThread):
             take.adjust_for_ambient_noise(source)  # ignoring the background noise
             # seconds of non-speaking audio before a phrase is considered complete
             take.pause_threshold = 0.7
-            take.energy_threshold = 500  # minimum audio energy to consider for recording
+            take.energy_threshold = 600  # minimum audio energy to consider for recording
             global state        
             state = "Listening...."
             print(state)
@@ -79,7 +79,7 @@ class MainThread(QThread):
                 os.startfile(os.path.join(
                 self.music_dir, random.choice(self.songs)))
 
-            elif 'date' in self.query:
+            elif ' date' in self.query:
                 self.today= datetime.date.today()
                 self.d2 = self.today.strftime("%B %d, %Y")
                 self.day=datetime.datetime.now().strftime("%A")
@@ -140,7 +140,7 @@ class MainThread(QThread):
             elif "how to" in self.query:
                 speak(howto(self.query))
 
-            elif "search" in self.query:
+            elif "search " in self.query:
                 self.query = self.query.replace("search", "")
                 self.query = self.query.replace(" for ", "")
                 self.query = self.query.replace(" about ", "")
@@ -235,9 +235,12 @@ class MainThread(QThread):
                     speak(res)
 
             elif self.query in command_quit:
-                speak(listToString(random.choices(command_quit_replay)) + " in 3 seconds")
-                speak("3, 2, 1")
+                speak(listToString(random.choices(command_quit_replay)))
                 sys.exit()
+
+            elif 'who' in self.query or 'what' in self.query or 'when' in self.query or 'where' in self.query or 'how' in self.query or 'why' in self.query or 'which' in self.query:
+                #finding answers from API/web/wikipedia
+                findAns(self.query)
     
 startexecution = MainThread()
 
