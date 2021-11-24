@@ -33,7 +33,8 @@ import pyautogui
 from selenium.webdriver.common.keys import Keys
 #for web scrapping
 import requests
-import psutil
+
+# import psutil
 import math
 
 from bs4 import BeautifulSoup
@@ -58,28 +59,30 @@ def chatUser(query):
     chat_prev = chat.copy()
     chat.append("User: " + query + "\n")
     sleep(1)
+
+ #----------------------------------------------------------------------   
 #  converting the size into bytes
+# def convert_size(size_bytes):
+#    if size_bytes == 0:
+#        return "0B"
+#    size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
+#    i = int(math.floor(math.log(size_bytes, 1024)))
+#    p = math.pow(1024, i)
+#    s = round(size_bytes / p, 2)
+#    print("%s %s" % (s, size_name[i]))
+#    return "%s %s" % (s, size_name[i])
 
-def convert_size(size_bytes):
-   if size_bytes == 0:
-       return "0B"
-   size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
-   i = int(math.floor(math.log(size_bytes, 1024)))
-   p = math.pow(1024, i)
-   s = round(size_bytes / p, 2)
-   print("%s %s" % (s, size_name[i]))
-   return "%s %s" % (s, size_name[i])
-
-def system_stats():
-    # battery power left as a percentage
-    battery_percent = psutil.sensors_battery().percent
-    memory_in_use = convert_size(psutil.virtual_memory().used)  # memory used
-    # total physical memory excluding swap
-    total_memory = convert_size(psutil.virtual_memory().total)
-    # memory not used at and is readily available
-    free_memory = convert_size(psutil.virtual_memory().free)
-    final_res = f"{memory_in_use} of RAM out of total {total_memory}  is being used and memory not used is {free_memory}.Battery level is at {battery_percent} percent."
-    return final_res
+# def system_stats():
+#     # battery power left as a percentage
+#     battery_percent = psutil.sensors_battery().percent
+#     memory_in_use = convert_size(psutil.virtual_memory().used)  # memory used
+#     # total physical memory excluding swap
+#     total_memory = convert_size(psutil.virtual_memory().total)
+#     # memory not used at and is readily available
+#     free_memory = convert_size(psutil.virtual_memory().free)
+#     final_res = f"{memory_in_use} of RAM out of total {total_memory}  is being used and memory not used is {free_memory}.Battery level is at {battery_percent} percent."
+#     return final_res
+#----------------------------------------------------------------------------------------
 
 def listToString(s):
     # initialize an empty string
@@ -553,8 +556,9 @@ def greetAndWork(query):
     return query
 
 def wikisearch(query):
-    speak("searching wikipedia....")
     query=query.replace("about","")
+    query=query.replace("wikipedia","")
     results=wikipedia.summary(query,sentences=2)
     speak("Acording to wikipedia...")
     speak(results)
+

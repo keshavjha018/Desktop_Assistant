@@ -67,17 +67,12 @@ class MainThread(QThread):
                     search=self.takecomand()
                     webbrowser.open_new_tab(search)
             
-            elif 'system status' in self.query or 'batery remaining' in self.query:
-                speak(system_stats())
+            # elif 'system status' in self.query or 'batery remaining' in self.query:
+            #     speak(system_stats())
             
             elif 'open classroom' in self.query:
                 webbrowser.open_new_tab(access.url("classroom_url"))
 
-            elif 'play music' in self.query or 'hit some music' in self.query:
-                self.music_dir=access.path("music_dir_path")
-                self.songs=os.listdir(self.music_dir)
-                os.startfile(os.path.join(
-                self.music_dir, random.choice(self.songs)))
 
             elif ' date' in self.query:
                 self.today= datetime.date.today()
@@ -160,7 +155,7 @@ class MainThread(QThread):
                     speak(pyjokes.get_joke())
                     self.query = self.takecomand()
 
-            elif 'about' in self.query:
+            elif 'about' in self.query or 'wikipedia' in self.query:
                 wikisearch(self.query)
 
             elif 'send mail' in self.query:
@@ -233,7 +228,8 @@ class MainThread(QThread):
                 except:
                     res = "Sorry sir, I couldn't get the location. Please try again"
                     speak(res)
-
+            
+            # to quit the program
             elif self.query in command_quit:
                 speak(listToString(random.choices(command_quit_replay)))
                 sys.exit()
