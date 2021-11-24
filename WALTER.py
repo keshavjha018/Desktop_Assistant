@@ -68,6 +68,12 @@ class MainThread(QThread):
                     search=self.takecomand()
                     webbrowser.open_new_tab(search)
             
+            elif 'play music' in self.query:
+                speak("Tell me the name of song.")
+                self.songname = self.takecomand()
+                pywhatkit.playonyt(self.songname)
+                speak("Playing the song: "+ self.songname)
+
             # elif 'system status' in self.query or 'batery remaining' in self.query:
             #     speak(system_stats())
             
