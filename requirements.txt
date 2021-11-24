@@ -14,4 +14,5 @@ geopy
 geocoder
 pyjokes
 wikipedia
+keyboard
 PyAudio

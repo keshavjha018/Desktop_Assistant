@@ -19,8 +19,6 @@ import access
 import sys
 from chatbot import *
 
-import wikipedia
-
 #for GUI
 import PyQt5
 from PyQt5 import QtWidgets, QtCore, QtGui
@@ -35,7 +33,11 @@ import pyautogui
 from selenium.webdriver.common.keys import Keys
 #for web scrapping
 import requests
-import psutil
+
+#for automation
+import keyboard
+
+# import psutil
 import math
 
 from bs4 import BeautifulSoup
@@ -60,28 +62,30 @@ def chatUser(query):
     chat_prev = chat.copy()
     chat.append("User: " + query + "\n")
     sleep(1)
+
+ #----------------------------------------------------------------------   
 #  converting the size into bytes
+# def convert_size(size_bytes):
+#    if size_bytes == 0:
+#        return "0B"
+#    size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
+#    i = int(math.floor(math.log(size_bytes, 1024)))
+#    p = math.pow(1024, i)
+#    s = round(size_bytes / p, 2)
+#    print("%s %s" % (s, size_name[i]))
+#    return "%s %s" % (s, size_name[i])
 
-def convert_size(size_bytes):
-   if size_bytes == 0:
-       return "0B"
-   size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
-   i = int(math.floor(math.log(size_bytes, 1024)))
-   p = math.pow(1024, i)
-   s = round(size_bytes / p, 2)
-   print("%s %s" % (s, size_name[i]))
-   return "%s %s" % (s, size_name[i])
-
-def system_stats():
-    # battery power left as a percentage
-    battery_percent = psutil.sensors_battery().percent
-    memory_in_use = convert_size(psutil.virtual_memory().used)  # memory used
-    # total physical memory excluding swap
-    total_memory = convert_size(psutil.virtual_memory().total)
-    # memory not used at and is readily available
-    free_memory = convert_size(psutil.virtual_memory().free)
-    final_res = f"{memory_in_use} of RAM out of total {total_memory}  is being used and memory not used is {free_memory}.Battery level is at {battery_percent} percent."
-    return final_res
+# def system_stats():
+#     # battery power left as a percentage
+#     battery_percent = psutil.sensors_battery().percent
+#     memory_in_use = convert_size(psutil.virtual_memory().used)  # memory used
+#     # total physical memory excluding swap
+#     total_memory = convert_size(psutil.virtual_memory().total)
+#     # memory not used at and is readily available
+#     free_memory = convert_size(psutil.virtual_memory().free)
+#     final_res = f"{memory_in_use} of RAM out of total {total_memory}  is being used and memory not used is {free_memory}.Battery level is at {battery_percent} percent."
+#     return final_res
+#----------------------------------------------------------------------------------------
 
 def listToString(s):
     # initialize an empty string
@@ -99,7 +103,7 @@ def speak(audio):
     # seting voice of any inbuilt system voice like David/Zeera
     engine.setProperty('voice', voice[0].id)
     # print(voice[0])     # to know the no of voices in system
-    engine.setProperty('rate', 188)  # set the speed of voice
+    engine.setProperty('rate', 210)  # set the speed of voice
     global state
     state = "Speaking..."
     engine.say(audio)
@@ -555,8 +559,71 @@ def greetAndWork(query):
     return query
 
 def wikisearch(query):
-    speak("searching wikipedia....")
     query=query.replace("about","")
+    query=query.replace("wikipedia","")
     results=wikipedia.summary(query,sentences=2)
     speak("Acording to wikipedia...")
     speak(results)
+
+#browser automation
+def WindowAutomate(query):
+    #for closing the tab
+    if 'close this tab' in query:
+        keyboard.press_and_release('ctrl + w')
+        speak('Closed.')
+        
+    #to open new tab
+    elif 'open new tab' in query:
+        keyboard.press_and_release('ctrl + t')
+        speak('Opened a new tab.')
+        
+    #to open new window
+    elif 'open new window' in query:
+        keyboard.press_and_release('ctrl + n')
+        speak('Opened a new window.')
+        
+    #to open history
+    elif 'browsing history' in query:
+        keyboard.press_and_release('ctrl + h')
+        speak('Opened browsing history.')
+        
+    #to open downloads
+    elif 'open download' in query:
+        keyboard.press_and_release('ctrl + j')
+        speak('Opened')
+        
+    #to open next page
+    elif 'next page' in query or 'go next' in query:
+        keyboard.press_and_release('Alt + Right arrow')
+        speak('Moved to next page.')
+        
+    #to open prev page
+    elif 'previous page' in query or 'go back' in query:
+        keyboard.press_and_release('Alt + Left arrow')
+        speak('Moved back to previous page.')
+        
+    elif 'show desktop' in query or 'maximize all' in query or 'minimise all' in query:
+        keyboard.press_and_release('Windows + d')
+        speak("Done sir!")
+
+    #minimize window
+    elif 'minimise' in query:
+        keyboard.press('Alt')
+        keyboard.press('Space')
+        keyboard.press_and_release('n')
+        keyboard.release('Space')
+        keyboard.release('Alt')
+        speak('Minimized window')
+
+    elif "open file" in query:
+        keyboard.press_and_release("Windows + e")
+        speak("Opened Files Explorer.")
+
+    elif 'close window' in query:
+        keyboard.press_and_release('Alt + f4')
+        speak("Closed.")
+
+    elif 'show notification' in query or 'open notification' in query or 'close notification' in query:
+        keyboard.press_and_release('Windows + a')
+        speak('Done Sir!')
+
