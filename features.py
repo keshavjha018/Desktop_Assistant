@@ -36,6 +36,7 @@ import requests
 
 #for automation
 import keyboard
+import pywhatkit
 
 # import psutil
 import math
@@ -304,8 +305,7 @@ def howto(query):
     return res
 #google search
 def googlesearch(query):    
-    import pywhatkit as kt
-    kt.search(query) #perform search
+    pywhatkit.search(query) #perform search
 
 def nearby(query):
     #remove unimportant words from query
@@ -561,9 +561,12 @@ def greetAndWork(query):
 def wikisearch(query):
     query=query.replace("about","")
     query=query.replace("wikipedia","")
-    results=wikipedia.summary(query,sentences=2)
-    speak("Acording to wikipedia...")
-    speak(results)
+    try:
+        results=wikipedia.summary(query,sentences=2)
+        speak("Acording to wikipedia...")
+        speak(results)
+    except Exception as e:
+        speak("Sorry sir, I can't find that.")
 
 #browser automation
 def WindowAutomate(query):
@@ -608,11 +611,7 @@ def WindowAutomate(query):
 
     #minimize window
     elif 'minimise' in query:
-        keyboard.press('Alt')
-        keyboard.press('Space')
-        keyboard.press_and_release('n')
-        keyboard.release('Space')
-        keyboard.release('Alt')
+        keyboard.press_and_release('Alt + space + n')
         speak('Minimized window')
 
     elif "open file" in query:
@@ -626,4 +625,7 @@ def WindowAutomate(query):
     elif 'show notification' in query or 'open notification' in query or 'close notification' in query:
         keyboard.press_and_release('Windows + a')
         speak('Done Sir!')
+
+    elif 'stop the video' in query:
+        keyboard.press_and_release("Space")
 
