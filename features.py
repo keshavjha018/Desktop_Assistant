@@ -19,8 +19,6 @@ import access
 import sys
 from chatbot import *
 
-import wikipedia
-
 #for GUI
 import PyQt5
 from PyQt5 import QtWidgets, QtCore, QtGui
