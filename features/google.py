@@ -17,8 +17,14 @@ def how_to(query):
 
 
 def googlesearch(query):
+    query = query.replace("search", "")
+    query = query.replace(" for ", "")
+    query = query.replace(" about ", "")
+    query = query.replace(" on ", "")
+    query = query.replace("google", "")
     # import pywhatkit as kt
     kt.search(query)  # perform search
+    return query
 
 
 def nearby(query):

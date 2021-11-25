@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-from features.get import access
-from features.login import webdriver
+# from get import access
+from features.login import webdriver,access
 
 def GetWeather(query):
 

@@ -1,9 +1,8 @@
-from selenium.webdriver.chrome.options import Options
+from features.sence import speak,sleep, takecomand
+from features.get import access
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from time import sleep
-from speakthis import speak
-from get import access
+from selenium.webdriver.chrome.options import Options
 class log():
     def __init__(self):
         opt = Options()
@@ -16,13 +15,14 @@ class log():
             "profile.default_content_setting_values.notifications": 2
         })
         # accessing the chromedriver path from path.txt
-        self.chromedriver_path = access.path("chromedriver_path")
+        self.chromedriver_path = access().path("chromedriver_path")
         # accessing the sign in url from url.txt
-        self.sign_in = access.url("sign_in_url")
+        self.sign_in = access().url("sign_in_url")
         # Defining a driver to open chrome driver
         self.driver = webdriver.Chrome(chrome_options=opt, executable_path=self.chromedriver_path)
         self.driver.get(self.sign_in)  # feeding the sign in link to the driver
-        sleep(1)
+        speak("Sir please wait a while i am login your mail")
+        sleep(2)
 
     def login(self):
         """
@@ -30,8 +30,7 @@ class log():
         by accessing data directli from the files
         """
         try:
-            self.user_mail, self.user_password = access.personal_details(
-                "your_name")
+            self.user_mail, self.user_password = access().personal_details("your_name")
             #accessing the password and email details of owner
             self.enter_mail = self.driver.find_element_by_id("identifierId")
             self.enter_mail.send_keys(self.user_mail)
@@ -39,12 +38,12 @@ class log():
             self.enter_mail.send_keys(Keys.RETURN)
             #pressing Enter key using Keys function
             # sleep time is given so that the time is given to code whlie next page is loded
-            sleep(3)
+            sleep(5)
             self.enter_pass = self.driver.find_element_by_name("password")
             self.enter_pass.send_keys(self.user_password)
             #identifing the textbox using name of element and typing user password with the help of send_keys() function
             self.enter_pass.send_keys(Keys.RETURN)
-            sleep(3)
+            # sleep(3)
         except Exception as e:
             print(e)
 
@@ -52,15 +51,18 @@ class log():
         self.driver.close()
 
 class mail(log):
-    def compose(self, subject, content, reciver_mail):
+    def compose(self, reciver_mail):
         """
         In this function the email will be composed by adding 
         subject, sender mail and content to the email
         """
         try:
-            self.driver.get(access.url("gmail_url"))
-            self.subject = subject
-            self.content = content
+            sleep(1)
+            self.driver.get(access().url("gmail_url"))
+            speak("What subject should i add?")
+            self.subject = takecomand()
+            speak("Sir what should i say?")
+            self.content = takecomand()
             self.reciver_mail = reciver_mail
             self.driver.find_element_by_css_selector(".aic .z0 div").click()
             #identifing the compose button using css_selector of element and clicking on it with the help of click() function
@@ -83,6 +85,7 @@ class mail(log):
             self.driver.find_element_by_css_selector(
                 "tr.btC td:nth-of-type(1) div div:nth-of-type(2) div").click()
             #identifing the send button using css_selector of element and clicking on it with the help of click() function
+            speak("Sir, the mail is sent")
             sleep(2)
         except Exception as e:
             print(e)    
@@ -91,13 +94,11 @@ class mail(log):
 class meet(log):
     def creat_meet(self):
         try:
+            sleep(1)
             self.driver.maximize_window()
-            self.driver.get("https://meet.google.com/")  # link to open google meet
-            link = self.driver.find_element_by_xpath("//span[@jsname='V67aGc']")
-            link.click()
-            link = self.driver.find_element_by_xpath(
-                "//li[@aria-label='Start an instant meeting']")
-            link.click()
+            speak("Creating a new meet")
+            self.driver.get("https://meet.new/")  # link to open google meet
+            
         except Exception as e:
             print(e)
 
@@ -152,21 +153,3 @@ class meet(log):
                 ".NPEfkd.RveJvd.snByac").click()
         except Exception as e:
             print(e)
-
-#if user has not already logged in
-def twitterlogin():
-    speak("Opening Twitter..")
-    chromedriver_path = access().path("chromedriver_path")
-    driver = webdriver.Chrome(chromedriver_path)
-    driver.get("https://www.twitter.com/login")
-
-    username, password = access().personal_details("twitter")
-
-    sleep(4)
-    userNameBox = driver.find_element_by_name('username')
-    userNameBox.send_keys(username)
-    userNameBox.send_keys(Keys.RETURN)
-    sleep(4)
-    passwordBox = driver.find_element_by_name('password')
-    passwordBox.send_keys(password)
-    passwordBox.send_keys(Keys.RETURN)

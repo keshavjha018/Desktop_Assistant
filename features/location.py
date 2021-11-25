@@ -2,6 +2,14 @@ from geopy.geocoders import Nominatim
 from geopy.distance import great_circle
 import geocoder,requests
 def loc(place):
+    place = place.replace("where", "")
+    place = place.replace("is", "")
+    place = place.replace("location", "")
+    place = place.replace("from", "")
+    place = place.replace("my", "")
+    place = place.replace("of", "")
+    place = place.replace("distance", "")
+    place = place.replace(" ", "")
     # webbrowser.open("http://www.google.com/maps/place/" + place + "")
     geolocator = Nominatim(user_agent="Walter")
     location = geolocator.geocode(place, addressdetails=True)

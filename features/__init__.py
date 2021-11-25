@@ -1,30 +1,27 @@
-# Module webbrowser is used to browse any website/query or open a new tab
-import webbrowser
-# This os module is used to find/open any folder/application in your system
-import os
-# ramdom module used to give any random num
 import random
+import os
+from PyQt5.uic import loadUiType
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import QTime, QTimer, QDate, Qt
+from PyQt5 import QtWidgets, QtCore, QtGui
+import PyQt5
 import pyautogui
 #for jokes
 import pyjokes
-import PyQt5
-from PyQt5 import QtWidgets, QtCore, QtGui
-from PyQt5.QtCore import QTime, QTimer, QDate, Qt
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
-from PyQt5.QtWidgets import *
-from PyQt5.uic import loadUiType
 #-----------------------------------------------------------------------------------
 from features import weather
 from features import chatbot
 from features import location
 from features import get
 from features import google
-from features import website
+from features import open_close
 from features import login
 from features import date_time
 from features import basic
-from features import speakthis
+from features import sence
+from features import open_close
 #-----------------------------------------------------------------------------------
 
 class walter:
@@ -32,10 +29,24 @@ class walter:
         pass
     
     def open(self,query):
-        try:
-            website.open_app(query)
-        except Exception as e:
-            website.open_website(query)
+        query = query.replace("open", "")
+        query = query.replace("launch", "")
+        query = query.replace("my", "")
+        query = query.replace("account", "")
+        query = query.replace("application", "")
+        if app in query:
+            open_close.open_app(query)
+        else:
+            open_close.open_website(query)
+    
+    def close(self,query):
+        query = query.replace("close", "")
+        query = query.replace("exit", "")
+        query = query.replace("terminate", "")
+        if query in list(open_close.dict_app.keys()):
+            open_close.close_app(query)
+        else:
+            open_close.close_website()
     
     def weather(self,query):
         try:
@@ -52,16 +63,7 @@ class walter:
             val = "Sorry sir i m not able to get it right now"
 
         return val
-    
-    def chatresponse(self,query):
-        try:
-            val1, val2 = chatbot.chat_bot(query)
-            if val2 == 0:
-                return val1
-        except Exception as e:
-            val1 = "Sorry sir, but its not in my data"
-        return val1,val2
-    
+
     def howto(self,query):
         try:
             val = google.how_to(query)
@@ -75,7 +77,6 @@ class walter:
             val = google.googlesearch(query)
         except Exception as e:
             val = "Sorry sir i m not able to get it right now"
-
         return val
 
     def near(self, query):
@@ -87,17 +88,41 @@ class walter:
         return val
     
     def location(self, query):
-        try:
-            current_loc, target_loc, distance = location.loc(query)
-        except Exception as e:
-            print(e)
+        current_loc, target_loc, distance = location.loc(query)
         return current_loc, target_loc, distance
 
     def my_location(self):
-        try:
-            city, state, country = location.my_location()
-        except Exception as e:
-            print(e)
-            
+        city, state, country = location.my_location()
         return city, state, country
     
+    def time(self):
+        return date_time.time()
+    
+    def date(self):
+        return date_time.day(),date_time.date()
+
+    def send_mail(self,query):
+        query = query.replace("send", "")
+        query = query.replace("mail", "")
+        query = query.replace("to", "")
+        query = query.replace(" ", "")
+        obj = login.mail()
+        obj.login()
+        obj.compose(get.access().mail_details(query))
+        obj.send()
+
+    def join_meet(self,query):
+        obj = login.meet()
+        if 'new meet' in query or 'create a meet' in query:
+            obj.login()
+            obj.creat_meet()
+        else:
+            a = obj.check_class()
+            if a == 0:
+                obj.close()
+            else:
+                obj.login()
+                obj.join_link()
+                if a == 1:
+                    obj.join()
+        

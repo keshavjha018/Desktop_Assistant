@@ -1,22 +1,24 @@
-import pyttsx3
+import pyttsx3,sys,random
 #The pyttsx3 module is used here to set the output voice for your desktop assistant
 #The speech recognition module is used to get any voice input from the user
 import speech_recognition as sr
 from time import sleep
-state = "Speaking..."
+from features.basic import listToString
+state = ["Speaking..."]
 chat = []
 chat_prev = []
 engine = pyttsx3.init('sapi5')  # defining the engine to speak given string
 voice = engine.getProperty('voices')
 # seting voice of any inbuilt system voice like David/Zeera
-engine.setProperty('voice', voice[0].id)
-
+engine.setProperty('voice', voice[4].id)
 
 def speak(audio):
     try:
         # print(voice[0])     # to know the no of voices in system
         global state
-        state = "Speaking..."
+        state.pop()
+        state.append("Speaking...")
+        print(listToString(state))
         engine.say(audio)
         engine.setProperty('rate', 188)  # set the speed of voice
         print(audio)
@@ -35,23 +37,26 @@ def takecomand():
         # ignoring the background noise
         take.adjust_for_ambient_noise(source)
         # seconds of non-speaking audio before a phrase is considered complete
-        take.pause_threshold = 0.7
+        take.pause_threshold = 0.6
         take.energy_threshold = 500  # minimum audio energy to consider for recording
         take.dynamic_energy_threshold = True  # adjusts background noise
         global state
-        state = "Listening...."
-        print(state)
+        state.pop()
+        state.append("Listning...")
+        print(listToString(state))
         audio = take.listen(source)
     try:
-        state = "Working...."
-        print(state)
+        state.pop()
+        state.append("Working...") 
+        print(listToString(state))
         query = take.recognize_google(audio, language='en-in')
         #Performs speech recognition on "audio_data", using the Google Speech Recognition API.
         print("User said :", query)
 
     except Exception as e:
-        state = "Speak again..."
-        print(state)
+        state.pop()
+        state.append("Speak again...")
+        print(listToString(state))
         return "None"
     chatUser(query)
     return query.lower()  # returning the query in lower alphabets

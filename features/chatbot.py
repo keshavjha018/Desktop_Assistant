@@ -1,7 +1,6 @@
-import sys,random
-from features.speakthis import speak
-from features.basic import *
-
+from features.sence import *
+from features.basic import listToString
+from features.date_time import datetime
 command_info = ['who are you', 'what is your name',
                 'what are you', 'tell me about yourself']
 info = ['Sir, i am your desktop assistant, My name is walter. What can i do for you',
@@ -103,8 +102,9 @@ def chat_bot(query):
         speak(listToString(random.choices(chat_11_replay)))
         
     elif query in command_quit:
-        speak(listToString(random.choices(command_quit_replay)) + "in 3 seconds")
-        speak("3,2,1")
+        speak(listToString(random.choices(command_quit_replay)) + " in 3 seconds")
+        speak("3" + " 2" + " 1")
+        sys.exit()
     else:
         return 0
 
@@ -127,3 +127,19 @@ def greetAndWork(query):
         query = query.replace("wallpaper", "")
 
     return query
+
+
+def wishMe():
+    #function wishme will wish the user according to the time and weather
+   # declaring the hour variable to  get the current hour
+    try:
+        hour = int(datetime.datetime.now().hour)
+        if hour >= 0 and hour < 12:
+            speak("Hello sir, Good Morning.")
+        elif hour >= 12 and hour < 18:
+            speak("Hello sir, Good Afternoon.")
+        else:
+            speak("Hello sir, Good Evening.")
+                
+    except Exception as e:
+        print(e)

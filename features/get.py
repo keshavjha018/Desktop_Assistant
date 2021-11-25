@@ -41,8 +41,8 @@ class access:
                     
     def personal_details(self, argument):
         try:
-            if os.stat("my_mail_details.txt").st_size != 0:
-                with open("my_mail_details.txt", 'r') as file:
+            if os.stat("personal_data.txt").st_size != 0:
+                with open("personal_data.txt", 'r') as file:
                     check = csv.reader(file)
                     for row in check:
                         if argument in row[0]:
@@ -52,8 +52,8 @@ class access:
                     
     def mail_details(self, argument):
         try:
-            if os.stat("mail_details.txt").st_size != 0:
-                with open("mail_details.txt", 'r') as file:
+            if os.stat("mail_database.txt").st_size != 0:
+                with open("mail_database.txt", 'r') as file:
                     check = csv.reader(file)
                     for row in check:
                         if argument in row[0]:
