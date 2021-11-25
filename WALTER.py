@@ -1,9 +1,22 @@
-from features import *
+#---------------------------------For Features----------------------------------------
+from features import chatbot,date_time,sense,get
 from features import walter
 from features.basic import listToString
-from features.get import access
-from Walter_UI import Ui_Walter
 from features.sense import *
+from features.get import os
+from features.chatbot import sys
+#---------------------------------For GUI -------------------------------------------
+import PyQt5
+from PyQt5.QtCore import QTime, QTimer, QDate, Qt
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.uic import loadUiType
+from Walter_UI import Ui_Walter
+#-----------------------------------------------------------------------------------
+#for jokes
+import pyjokes
 
 class MainThread(QThread):
     def __init__(self) -> None:

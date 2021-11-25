@@ -1,10 +1,9 @@
+from features.get import access
+from features.sense import *
 dict_app = {'notepad': 'notepad', 'calculator': 'calc',
             'file': 'explorer', 'paint': 'mspaint', 'commandpromopt': 'cmd', 'vscode': 'Code',
             'chrome': 'chrome'}
 
-from features.get import access
-from features.basic import listToString
-from features.sense import speak
 # from get import access
 # from basic import listToString
 # from sence import speak

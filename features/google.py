@@ -15,7 +15,6 @@ def how_to(query):
     return val
 #google search
 
-
 def googlesearch(query):
     query = query.replace("search", "")
     query = query.replace(" for ", "")
@@ -25,7 +24,6 @@ def googlesearch(query):
     # import pywhatkit as kt
     kt.search(query)  # perform search
     return query
-
 
 def nearby(query):
     #remove unimportant words from query
