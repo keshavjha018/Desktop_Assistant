@@ -1,4 +1,8 @@
 from features import *
+from features import walter
+from features.speakthis import speak
+from features.get import access
+from gui import Ui_Walter
 
 class MainThread(QThread):
     def __init__(self) -> None:
@@ -6,48 +10,21 @@ class MainThread(QThread):
         super(MainThread, self).__init__()
 
     def run(self):
-        wishMe()
+        basic.wishMe()
         self.task()
-
-    def takecomand(self):
-        #Defining function to take the voice as input and converting it to text
-        take = sr.Recognizer()
-        # It takes Speech as input from microphone
-        with sr.Microphone() as source:
-            take.adjust_for_ambient_noise(source)  # ignoring the background noise
-            # seconds of non-speaking audio before a phrase is considered complete
-            take.pause_threshold = 0.7
-            take.energy_threshold = 500  # minimum audio energy to consider for recording
-            global state        
-            state = "Listening...."
-            print(state)
-            audio = take.listen(source)
-        try:
-            state = "Working...."
-            print(state)
-            query = take.recognize_google(audio, language='en-in')
-            #Performs speech recognition on "audio_data", using the Google Speech Recognition API.
-            print("User said :", query)
-            
-        except Exception as e:
-            state = "Speak again..."
-            print(state)
-            return "None"
-        chatUser(query)
-        return query.lower()  # returning the query in lower alphabets
 
     def task(self):
         # running the while loop infinite times
         while True:
-            self.query = self.takecomand()
+            self.query = speakthis.takecomand()
             #if user chats (conversation)
-            chatresponse = chat_bot(self.query)
+            chatresponse = chatbot.chat_bot(self.query)
 
             #if not in chatbot
             #greet and perform task simultaneously - (can run multiple command at once)
             #eg- hello walter, what is the temperature?
             if chatresponse == 0:
-                self.query = greetAndWork(self.query)
+                self.query = basic.greetAndWork(self.query)
 
             if 'open youtube' in self.query or 'launch youtube' in self.query:
                 speak(listToString(random.choices(['Opening Youtube', 'Launching Youtube'])))
@@ -57,35 +34,28 @@ class MainThread(QThread):
 
             elif 'open google' in self.query:
                 speak("Sir, are you looking for any website?")
-                ans=self.takecomand()
+                ans = speakthis.takecomand()
                 if 'yes' in ans:
                     speak("Sir, which website are you looking for?")
-                    search=self.takecomand()
+                    search = speakthis.takecomand()
                     webbrowser.open_new_tab(search + ".com")
                 else:
                     speak("Sir, what should i search for?")
-                    search=self.takecomand()
+                    search = speakthis.takecomand()
                     webbrowser.open_new_tab(search)
 
             elif 'open classroom' in self.query:
                 webbrowser.open_new_tab(access.url("classroom_url"))
 
-            elif 'play music' in self.query or 'hit some music' in self.query:
-                self.music_dir=access.path("music_dir_path")
-                self.songs=os.listdir(self.music_dir)
-                os.startfile(os.path.join(
-                self.music_dir, random.choice(self.songs)))
-
             elif 'date' in self.query:
-                self.today= datetime.date.today()
-                self.d2 = self.today.strftime("%B %d, %Y")
-                self.day=datetime.datetime.now().strftime("%A")
-                speak("Today is " + self.day + '. ' + self.d2)
+                date = date_time.date()
+                day = date_time.day()
+                speak("Today is " + day + '. ' + date)
 
             elif 'the time' in self.query:
                 # declaring the strTime variable to  get the current time according to mearidain
-                self.strTime = datetime.datetime.now().strftime("%I %M %p")
-                speak("Sir, The current time is " + self.strTime)
+                strTime = date_time.time()
+                speak("Sir, The current time is " + strTime)
 
             elif 'open notepad' in self.query or 'launch notepad' in self.query:
                 speak(listToString(random.choices(['Opening Notepad', 'Launching Notepad'])))
@@ -103,7 +73,7 @@ class MainThread(QThread):
                 
             elif 'instagram' in self.query and 'open' in self.query:
                 speak("Opening Instagram..")
-                webbrowser.open_new_tab(access.url("insta_url"))
+                webbrowser.open_new_tab(access.url("instagram_url"))
                 
             elif 'github' in self.query and 'open' in self.query:
                 speak("Opening Github..")
@@ -119,7 +89,7 @@ class MainThread(QThread):
 
             #if not logged in
             elif 'twitter' in self.query and 'login' in self.query:
-                twitterlogin()
+                walter.()
                 
             elif 'screenshot' in self.query or 'take a screenshot' in self.query:
                 cwd = os.getcwd()
@@ -128,14 +98,14 @@ class MainThread(QThread):
                 self.x += 1
 
             elif 'temperature' in self.query:
-                speak(GetTemperature(self.query))
+                speak(walter.temperature(self.query))
 
             elif "weather" in self.query:
-                speak(GetWeather(self.query))
+                speak(walter.weather(self.query))
                 # chat.append("Walter: " + chatmsg2) #prints weather in chatbox
 
             elif "how to" in self.query:
-                speak(howto(self.query))
+                speak(walter.howto(self.query))
 
             elif "search" in self.query:
                 self.query = self.query.replace("search", "")
@@ -144,10 +114,10 @@ class MainThread(QThread):
                 self.query = self.query.replace(" on ", "")
                 self.query = self.query.replace("google", "")
                 speak("Showing the search results for" + self.query)
-                googlesearch(self.query)
+                walter.google(self.query)
             
             elif "near" in self.query or 'nearby' in self.query:
-                speak(nearby(self.query))
+                speak(walter.near(self.query))
                 # chat.append("Walter: "+ nearby(self.query))   #adding msg to chatbox
 
             elif "joke" in self.query or 'jokes' in self.query:
@@ -163,7 +133,7 @@ class MainThread(QThread):
                     self.query=self.query.replace("mail", "")
                     self.query=self.query.replace("to", "")
                     self.query=self.query.replace(" ", "")
-                    obj = mail()
+                    obj = walter.mail()
                     obj.login()
                     speak("What subject should i add?")
                     self.subject = self.takecomand()
@@ -195,7 +165,7 @@ class MainThread(QThread):
 
             elif "my location" in self.query or "where am i" in self.query or "current location" in self.query:
                 try:
-                    ci, st, co = my_location()
+                    ci, st, co = walter.my_location()
                     speak(
                         f"Sir, your current location is {ci} city which is in {st} state and country {co}")
 
@@ -203,18 +173,23 @@ class MainThread(QThread):
                     speak(
                         "Sorry sir, I coundn't fetch your current location. Please try again")
 
-            elif "where is" in self.query:
+            elif "where is" in self.query or 'location of' in self.query or 'distance of' in self.query:
                 self.query = self.query.replace("where","")
                 self.query = self.query.replace("is","")
                 self.query = self.query.replace("location", "")
                 self.query = self.query.replace("from", "")
                 self.query = self.query.replace("my", "")
+                self.query = self.query.replace("of", "")
+                self.query = self.query.replace("distance", "")
+                self.query = self.query.replace(" ", "")
+
+
                 place = self.query
-                current_loc, target_loc, distance = loc(place)
+                current_loc, target_loc, distance = walter.location(place)
                 city = target_loc["city"]
                 state = target_loc["state"]
                 country = target_loc["country"]
-                sleep(1)
+                # walter.sleep(1)
                 try:
                     res = f"{place} is in {state} state of country {country}. It is {distance} km away from your current location"
                     speak(res)
@@ -222,11 +197,6 @@ class MainThread(QThread):
                     res = "Sorry sir, I couldn't get the location. Please try again"
                     speak(res)
 
-            elif self.query in command_quit:
-                speak(listToString(random.choices(command_quit_replay)) + " in 3 seconds")
-                speak("3, 2, 1")
-                sys.exit()
-    
 startexecution = MainThread()
 
 class Main(QMainWindow):
