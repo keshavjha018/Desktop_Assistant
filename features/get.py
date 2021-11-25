@@ -1,9 +1,11 @@
 import os
 import csv
 import datetime
-
 from requests.api import patch
 
+#-----------------------------------------------------------
+
+#contains meet links
 dict_link = {
     "Probability": "http://www.gmail.com",
     "Discrete Mathematics": "https://meet.google.com/qfw-wbgu-iyn",
@@ -16,7 +18,9 @@ dict_link = {
     "Object Oriented programing Lab": "http://www.gmail.com",
     "Probability Tutorial": "http://www.gmail.com",
     "break": None, "Holiday": None, "No lecture": None}
+
 class access:
+    #gets path of application from path.text
     def path(self,argument):
         try:
             if os.stat("path.txt").st_size != 0:
@@ -27,7 +31,8 @@ class access:
                             return row[1]
         except Exception as e:
             print(e)
-                    
+
+    #fetches url from url.txt                
     def url(self, argument):
         try:
             if os.stat("url.txt").st_size != 0:
@@ -38,7 +43,8 @@ class access:
                             return row[1]
         except Exception as e:
             print(e)
-                    
+
+    # fetches personal details from personal_data.txt               
     def personal_details(self, argument):
         try:
             if os.stat("my_mail_details.txt").st_size != 0:
@@ -49,7 +55,8 @@ class access:
                             return row[1],row[2]
         except Exception as e:
             print(e)
-                    
+
+    # fetches mail details from mail_database.txt                
     def mail_details(self, argument):
         try:
             if os.stat("mail_details.txt").st_size != 0:
@@ -61,6 +68,8 @@ class access:
         except Exception as e:
             print(e)
 
+    # finds the current slot number (to join the class) 
+    # using current date,time and day
     def get_time_slot(self):
         hour = int(datetime.datetime.now().hour)
         minute = int(datetime.datetime.now().minute)
@@ -87,6 +96,7 @@ class access:
     def get_day(self):
         return datetime.datetime.now().strftime("%A")
 
+    #finds lecture from timetable.txt
     def lecture(self):
         try:
             time_slot = self.get_time_slot()
@@ -105,6 +115,7 @@ class access:
         except Exception as e:
             print(e)
 
+    # fetches meet link from dictionary : dict_link
     def meet_link(self):
         try:
             curr_lecture = self.lecture()

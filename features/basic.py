@@ -23,4 +23,4 @@ def listToString(query):
             str += ele
         # return string
         return str
-    
+ 

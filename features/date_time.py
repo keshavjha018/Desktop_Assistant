@@ -1,7 +1,7 @@
 import datetime
 
 def time():
-    # declaring the strTime variable to  get the current time according to mearidain
+    # declaring the strTime variable to  get the current time
     return datetime.datetime.now().strftime("%I %M %p")
      
 def date():

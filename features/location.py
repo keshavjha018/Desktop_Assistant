@@ -1,6 +1,9 @@
 from geopy.geocoders import Nominatim
 from geopy.distance import great_circle
 import geocoder,requests
+#-------------------------------------------------------------------------------
+
+#finds location
 def loc(place):
     # webbrowser.open("http://www.google.com/maps/place/" + place + "")
     geolocator = Nominatim(user_agent="Walter")
@@ -20,7 +23,7 @@ def loc(place):
 
     return current_loc, target_loc, distance
 
-
+# finds my current location using IP
 def my_location():
     ip_add = requests.get('https://api.ipify.org').text
     url = 'https://get.geojs.io/v1/ip/geo/' + ip_add + '.json'

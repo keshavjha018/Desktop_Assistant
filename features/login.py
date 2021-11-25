@@ -4,6 +4,8 @@ from selenium.webdriver.common.keys import Keys
 from time import sleep
 from speakthis import speak
 from get import access
+#------------------------------------ For Login -------------------------------------------
+
 class log():
     def __init__(self):
         opt = Options()
@@ -51,6 +53,8 @@ class log():
     def close(self):
         self.driver.close()
 
+#------------------------------------ For Sending emails ------------------------------------
+
 class mail(log):
     def compose(self, subject, content, reciver_mail):
         """
@@ -87,6 +91,8 @@ class mail(log):
         except Exception as e:
             print(e)    
         self.driver.close()  # closing the driver
+
+#-------------------------------------For google meet ----------------------------------------
 
 class meet(log):
     def creat_meet(self):
@@ -152,6 +158,8 @@ class meet(log):
                 ".NPEfkd.RveJvd.snByac").click()
         except Exception as e:
             print(e)
+
+#--------------------------------------------------------------------------------
 
 #if user has not already logged in
 def twitterlogin():

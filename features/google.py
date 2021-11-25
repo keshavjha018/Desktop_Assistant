@@ -1,10 +1,10 @@
 # from pywikihow import search_wikihow
-import pywhatkit as kt
+import pywhatkit
 
 def how_to(query):
     try:
         max_results = 1  # one result from web
-        x = kt.search_wikihow(query, max_results)
+        x = pywhatkit.search_wikihow(query, max_results)
         assert len(how_to) == 1
         how_to[0].print()           # first result
         val = x[0].summary  # summary of 1st result
@@ -13,14 +13,12 @@ def how_to(query):
         val = "Sorry sir, I am not able to find this"
 
     return val
+
 #google search
-
-
 def googlesearch(query):
-    # import pywhatkit as kt
-    kt.search(query)  # perform search
+    pywhatkit.search(query)  # perform search
 
-
+# searches nearby
 def nearby(query):
     #remove unimportant words from query
     if "show me" in query:
