@@ -1,16 +1,3 @@
-import random
-import os
-from PyQt5.uic import loadUiType
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtCore import QTime, QTimer, QDate, Qt
-from PyQt5 import QtWidgets, QtCore, QtGui
-import PyQt5
-import pyautogui
-#for jokes
-import pyjokes
-#-----------------------------------------------------------------------------------
 from features import weather
 from features import chatbot
 from features import location
@@ -22,7 +9,6 @@ from features import date_time
 from features import basic
 from features import sense
 from features import open_close
-#-----------------------------------------------------------------------------------
 
 class walter:
     def __init__(self):
