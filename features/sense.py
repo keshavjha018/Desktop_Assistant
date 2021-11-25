@@ -42,7 +42,7 @@ def takecomand():
         take.dynamic_energy_threshold = True  # adjusts background noise
         global state
         state.pop()
-        state.append("Listning...")
+        state.append("Listening...")
         print(listToString(state))
         audio = take.listen(source)
     try:

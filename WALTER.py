@@ -1,11 +1,9 @@
 from features import *
 from features import walter
-# from features.sence import *
 from features.basic import listToString
 from features.get import access
 from Walter_UI import Ui_Walter
-from features.sence import *
-from features import date_time
+from features.sense import *
 
 class MainThread(QThread):
     def __init__(self) -> None:
@@ -37,7 +35,7 @@ class MainThread(QThread):
                 self.obj.close(self.query)
             
             elif 'date' in self.query:
-                speak("Today is " + self.obj.date() )
+                speak("Today is " + date_time.day() + ' ,' + date_time.date())
 
             elif 'the time' in self.query:
                 # declaring the strTime variable to  get the current time according to mearidain
@@ -68,10 +66,10 @@ class MainThread(QThread):
 
             elif "joke" in self.query or 'jokes' in self.query:
                 speak(pyjokes.get_joke())
-                self.query =sence.takecomand()
+                self.query =sense.takecomand()
                 while 'one more' in self.query or 'another one' in self.query or 'once more' in self.query:
                     speak(pyjokes.get_joke())
-                    self.query = sence.takecomand()
+                    self.query = sense.takecomand()
 
             elif 'send mail' in self.query:
                 try:

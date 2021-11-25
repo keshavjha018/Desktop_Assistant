@@ -20,7 +20,7 @@ from features import open_close
 from features import login
 from features import date_time
 from features import basic
-from features import sence
+from features import sense
 from features import open_close
 #-----------------------------------------------------------------------------------
 
@@ -34,7 +34,8 @@ class walter:
         query = query.replace("my", "")
         query = query.replace("account", "")
         query = query.replace("application", "")
-        if app in query:
+        query = query.replace(" ", "")
+        if query in list(open_close.dict_app.keys()):
             open_close.open_app(query)
         else:
             open_close.open_website(query)
@@ -43,6 +44,7 @@ class walter:
         query = query.replace("close", "")
         query = query.replace("exit", "")
         query = query.replace("terminate", "")
+        query = query.replace(" ", "")
         if query in list(open_close.dict_app.keys()):
             open_close.close_app(query)
         else:
@@ -53,7 +55,6 @@ class walter:
             val = weather.GetWeather(query)
         except Exception as e:
             val = "Sorry sir i m not able to get it right now"
-
         return val
     
     def temperature(self, query):
@@ -98,9 +99,6 @@ class walter:
     def time(self):
         return date_time.time()
     
-    def date(self):
-        return date_time.day(),date_time.date()
-
     def send_mail(self,query):
         query = query.replace("send", "")
         query = query.replace("mail", "")

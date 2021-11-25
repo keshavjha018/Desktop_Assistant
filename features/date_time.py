@@ -5,7 +5,8 @@ def time():
     return datetime.datetime.now().strftime("%I %M %p")
      
 def date():
-    return datetime.date.strftime("%B %d, %Y")
+    today =  datetime.date.today()
+    return today.strftime("%B %d, %Y")
     
 def day():
     return datetime.datetime.now().strftime("%A")

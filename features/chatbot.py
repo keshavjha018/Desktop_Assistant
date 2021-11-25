@@ -1,4 +1,4 @@
-from features.sence import *
+from features.sense import *
 from features.basic import listToString
 from features.date_time import datetime
 command_info = ['who are you', 'what is your name',

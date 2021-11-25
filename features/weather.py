@@ -5,7 +5,7 @@ from features.login import webdriver,access
 
 def GetWeather(query):
 
-    chromedriver_path = access.path("chromedriver_path")
+    chromedriver_path = access().path("chromedriver_path")
     driver = webdriver.Chrome(chromedriver_path)
     driver.minimize_window()
     driver.get("https://www.google.com/search?q=" + query)
@@ -14,12 +14,9 @@ def GetWeather(query):
     temp = driver.find_element_by_xpath('//*[@id="wob_tm"]')
     sky = driver.find_element_by_xpath('//*[@id="wob_dc"]')
     city = driver.find_element_by_xpath('//*[@id="wob_loc"]')
-    ppt = driver.find_element_by_xpath(
-        '//*[@id="wob_wc"]/div[1]/div[2]/div[1]')
-    humidity = driver.find_element_by_xpath(
-        '//*[@id="wob_wc"]/div[1]/div[2]/div[2]')
-    Wind = driver.find_element_by_xpath(
-        '//*[@id="wob_wc"]/div[1]/div[2]/div[3]')
+    ppt = driver.find_element_by_xpath('//*[@id="wob_wc"]/div[1]/div[2]/div[1]')
+    humidity = driver.find_element_by_xpath('//*[@id="wob_wc"]/div[1]/div[2]/div[2]')
+    Wind = driver.find_element_by_xpath('//*[@id="wob_wc"]/div[1]/div[2]/div[3]')
 
     #tells weathe in details - like ppt, wind etc
     if 'detail' in query or 'details' in query:

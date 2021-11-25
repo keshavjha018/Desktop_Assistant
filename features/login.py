@@ -1,4 +1,4 @@
-from features.sence import speak,sleep, takecomand
+from features.sense import speak,sleep, takecomand
 from features.get import access
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -43,7 +43,7 @@ class log():
             self.enter_pass.send_keys(self.user_password)
             #identifing the textbox using name of element and typing user password with the help of send_keys() function
             self.enter_pass.send_keys(Keys.RETURN)
-            # sleep(3)
+            sleep(3)
         except Exception as e:
             print(e)
 
