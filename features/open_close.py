@@ -1,7 +1,7 @@
 from features.get import access
 from features.sense import *
 dict_app = {'notepad': 'notepad', 'calculator': 'calc',
-            'file': 'explorer', 'paint': 'mspaint', 'commandpromopt': 'cmd', 'vscode': 'Code',
+            'file': 'explorer', 'paint': 'mspaint', 'terminal': 'cmd', 'vscode': 'Code',
             'chrome': 'chrome'}
 
 # from get import access
