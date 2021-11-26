@@ -15,37 +15,33 @@ def listToString(query):
     return str
     
 def mute():
-    pyautogui.press("volumemute")
+    pyautogui.press("volumemute") #mute the system
     chatWalter("Systems Muted")
 
 def unmute():
-    pyautogui.press("volumemute")
+    pyautogui.press("volumemute")  # unmute the system
     chatWalter("Systems Unmuted")
 
-def chatWalter(query):
-    global chat_prev
-    chat_prev = chat.copy()
-    chat.append("Walter: " + query + "\n")
+def chatWalter(query): #function required for displaying the chat of Walter in chatbox
+    global chat_prev    
+    chat_prev = chat.copy() #copying the chat list in chat_perv list
+    chat.append("Walter: " + query + "\n") #appending the latest query in the chat list
 
-def chatUser(query):
+def chatUser(query):  # function required for displaying the chat of User in chatbox
     global chat_prev
-    chat_prev = chat.copy()
-    chat.append("User: " + query + "\n")
+    chat_prev = chat.copy()  # copying the chat list in chat_perv list
+    chat.append("User: " + query + "\n") #appending the latest query in the chat list
     sleep(1)
 
 def battery():
     c = wmi.WMI()
-    t = wmi.WMI(moniker = "//./root/wmi")
-
-    batts1 = c.CIM_Battery(Caption = 'Portable Battery')
+    t = wmi.WMI(moniker="//./root/wmi")
+    batts1 = c.CIM_Battery(Caption='Portable Battery')
     batts = t.ExecQuery('Select * from BatteryFullChargedCapacity')
     for i, b in enumerate(batts):
-        full=(b.FullChargedCapacity)
-
+        full = (b.FullChargedCapacity)
     batts = t.ExecQuery('Select * from BatteryStatus where Voltage > 0')
-    for i, b in enumerate(batts): 
-      rem=(b.RemainingCapacity)
-    
-    per=int((rem/full)*100)
+    for i, b in enumerate(batts):
+      rem = (b.RemainingCapacity)
+    per = int((rem/full)*100)
     return per
-   

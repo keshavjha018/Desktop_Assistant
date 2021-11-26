@@ -42,13 +42,14 @@ class walter:
             open_close.close_website()
             sense.speak("Closed ")
 
-    
+
     def battery_status(self):
         try:    
-            value=basic.battery()
+            val = str(basic.battery())
+            val = str("Battery remaining is: " + val + "%")
         except Exception as e:
-            value = "Sorry sir i m not able to get it right now"         
-        return value
+            val = "Sorry sir i m not able to get it right now"         
+        return val
 
     def weather(self,query):
         try:
