@@ -120,7 +120,7 @@ class MainThread(QThread):
 
             #battery status
             elif "battery status" in self.query or "remaining battery" in self.query:
-                speak("Battery remaining is: " + str(self.obj.battery_status()) + "%")         
+                speak(str(self.obj.battery_status()))     
 
 startexecution = MainThread()
 
