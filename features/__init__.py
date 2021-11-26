@@ -24,9 +24,12 @@ class walter:
         query = query.replace(" ", "")
         if query in list(open_close.dict_app.keys()):
             open_close.open_app(query)
+            sense.speak("Opened " + query)
         else:
             open_close.open_website(query)
-    
+            sense.speak("Opened " + query)
+
+
     def close(self,query):
         query = query.replace("close", "")
         query = query.replace("exit", "")
@@ -34,8 +37,11 @@ class walter:
         query = query.replace(" ", "")
         if query in list(open_close.dict_app.keys()):
             open_close.close_app(query)
+            sense.speak("Closed ")
         else:
             open_close.close_website()
+            sense.speak("Closed ")
+
     
     def battery_status(self):
         try:    
