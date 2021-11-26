@@ -48,7 +48,7 @@ class walter:
             val = str(basic.battery())
             val = str("Battery remaining is: " + val + "%")
         except Exception as e:
-            val = "Sorry sir i m not able to get it right now"         
+            val = "Sorry sir, I can't get it right now."         
         return val
 
     def weather(self,query):
@@ -64,14 +64,14 @@ class walter:
         try:
             val = weather.GetWeather(query)
         except Exception as e:
-            val = "Sorry sir, I can't get it right now"
+            val = "Sorry sir, I can't get it right now."
         return val
     
     def temperature(self, query):
         try:
             val = weather.GetTemperature(query)
         except Exception as e:
-            val = "Sorry sir i m not able to get it right now"
+            val = "Sorry sir, I can't get it right now."
 
         return val
 
@@ -79,7 +79,7 @@ class walter:
         try:
             val = google.how_to(query)
         except Exception as e:
-            val = "Sorry sir i m not able to get it right now"
+            val = "Sorry sir, I can't get it right now."
 
         return val
        
@@ -87,14 +87,14 @@ class walter:
         try:
             val = google.googlesearch(query)
         except Exception as e:
-            val = "Sorry sir i m not able to get it right now"
+            val = "Sorry sir, I can't get it right now."
         return val
 
     def near(self, query):
         try:
             val = google.nearby(query)
         except Exception as e:
-            val = "Sorry sir i m not able to get it right now"
+            val = "Sorry sir, I can't get it right now."
 
         return val
     

@@ -54,7 +54,7 @@ def greetAndWork(query):
     #eg- hello walter, what is the temperature?
     #eg- good morning walter, how is the weather?
     if 'hello' in query or 'good morning' in query:
-        wishMe()  # greets user
+        speak("Hello sir !")  # greets user
         #replacing unnecessary key words from query
         query = query.replace("hello", "")
         query = query.replace("hi", "")
