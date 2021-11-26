@@ -1,40 +1,44 @@
+from features import location
 from features.location import requests
 from bs4 import BeautifulSoup
 from features.login import webdriver
 from features.get import access
 
-
+# Getting weather details via API of openweather.org
 def GetWeather(query):
-
-    chromedriver_path = access().path("chromedriver_path")
-    driver = webdriver.Chrome(chromedriver_path)
-    driver.minimize_window()
-    driver.get("https://www.google.com/search?q=" + query)
-
-    # identify element
-    temp = driver.find_element_by_xpath('//*[@id="wob_tm"]')
-    sky = driver.find_element_by_xpath('//*[@id="wob_dc"]')
-    city = driver.find_element_by_xpath('//*[@id="wob_loc"]')
-    ppt = driver.find_element_by_xpath('//*[@id="wob_wc"]/div[1]/div[2]/div[1]')
-    humidity = driver.find_element_by_xpath('//*[@id="wob_wc"]/div[1]/div[2]/div[2]')
-    Wind = driver.find_element_by_xpath('//*[@id="wob_wc"]/div[1]/div[2]/div[3]')
-
-    #tells weathe in details - like ppt, wind etc
-    if 'detail' in query or 'details' in query:
-        # get text and print
-        val = "The current temperature in " + city.text + " is " + temp.text + "°C," + " and the sky is " + \
-            sky.text + ". " + "Some other details are. " + \
-            ppt.text + ', ' + humidity.text + ', and ' + Wind.text
-        return val
-
-    # tells overall weather only, not in details
+    import urllib.request
+    import json
+    
+    # If weather for current location is asked
+    if "in" not in query:
+        # from features.location import my_location
+        city = location.my_location()[0]            # index=0 of function my_location returns current city
     else:
-        # get text and print
-        val = "The current temperature in " + city.text + " is " + \
-            temp.text + "°C," + " and the sky is " + sky.text + ". "
-        return val
+        city = query.replace("in","")
 
-    driver.close()
+    # Private API key
+    API_key = "011a08b1a827b75f091695b652b119ca"
+    API_data = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&APPID=" + API_key
+
+    # #opening URL with API key
+    json_obj = urllib.request.urlopen(API_data)
+
+    #reading data
+    data = json.load(json_obj)
+
+    # Data is stored in the form of dictionary inside a list which is again inside a dictionary on API, 
+    # so getting them via Key->Index->Key
+    sky = data['weather'][0]['description']
+    humid = data['main']['humidity']
+    wind = data['wind']['speed']
+    temp = data['main']['temp']
+    maxtemp = data['main']['temp_min']
+    mintemp = data['main']['temp_max']
+
+    details = "The weather in " + city + ": \n" + "Sky: " + sky + ",\nTemperature: " + str(temp) + "°C, \nMinimum Temperature: " + str(mintemp) + "°C, \nMaximum Temperature: " + str(maxtemp) + "°C\n"
+    otherdetails = "Some other details are: " + "Humidity: " + str(humid) + "%, and Wind: " + str(wind) + "km/h."
+
+    return details + otherdetails
 
 def GetTemperature(query):
     if "temperature in" in query:
