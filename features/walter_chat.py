@@ -9,7 +9,7 @@ greet = ['Hello sir, how may i help you?',
          'Hello sir, I am here for your help', 'Yes sir, how may i help you']
 
 command_quit = ['close the program', 'quit the program', 'terminate the program', 'exit the program'
-                'close program', 'quit program', 'terminate program', 'exit program', 'close', 'quit', 'exit', 'terminate yourself']
+                'close program', 'quit program', 'terminate program', 'exit program', 'quit', 'exit', 'terminate yourself']
 command_quit_replay = ['Closing the program', 'Quiting the program',
                        'Terminating the program', 'Exiting the program']
 
@@ -51,9 +51,9 @@ chat_9_replay = [
 
 chat_10 = ['what can you do', 'what are your features',
            'what can you do for me', 'what are your functionality']
-chat_10_replay = ['Sir, i can do many task like showing weather,playing music,sending mails,opening social media websites and many more',
-                  'Sir, my fetures are finding current temperature of any location,find any place,searching in google,show nearby places like hotels,restaurants etc.'
-                  'Sir, i can do functionality like showing weather,find any place,launching any local applications like notepad,chrome,firefox etc.']
+chat_10_replay = ['Sir, I can do most of the tasks like showing weather, sending mails, joining meet for you ,taking screenshots,playing music, Opening your social network and many more. You can ask me anything.',
+                  'Sir, I can follow your commands to do stuffs like sending mails, joining meet, Opening apps or websites, finding answers from internet. I can tell you weather, Wiki bio etc. You can ask me anything.',
+                  'Sir, i can do tasks like showing weather, finding any place,launching any applications like notepad,chrome,firefox etc., tell jokes etc. You can ask me anything.']
 
 chat_11 = ['why are you created']
 chat_11_replay = ['Sir, i am created to make your daily tasks easy']
