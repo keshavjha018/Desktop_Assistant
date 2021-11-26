@@ -1,3 +1,4 @@
+# from basic import battery
 from features import weather
 from features import chatbot
 from features import location
@@ -36,6 +37,13 @@ class walter:
         else:
             open_close.close_website()
     
+    def battery_status(self):
+        try:    
+            value=basic.battery()
+        except Exception as e:
+            value = "Sorry sir i m not able to get it right now"         
+        return value
+
     def weather(self,query):
         try:
             val = weather.GetWeather(query)

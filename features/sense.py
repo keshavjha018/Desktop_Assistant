@@ -6,7 +6,7 @@ from features.basic import *
 engine = pyttsx3.init('sapi5')  # defining the engine to speak given string
 voice = engine.getProperty('voices')
 # seting voice of any inbuilt system voice like David/Zeera
-engine.setProperty('voice', voice[2].id)
+engine.setProperty('voice', voice[0].id)
 
 def speak(audio):
     try:

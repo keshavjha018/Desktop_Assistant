@@ -118,6 +118,10 @@ class MainThread(QThread):
                     res = "Sorry sir, I couldn't get the location. Please try again"
                     speak(res)
 
+            #battery status
+            elif "battery status" in self.query or "remaining battery" in self.query:
+                speak("battery remaining " + str(self.obj.battery_status()) + "%")         
+
 startexecution = MainThread()
 
 class Main(QMainWindow):
