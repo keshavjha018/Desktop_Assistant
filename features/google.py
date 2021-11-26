@@ -1,28 +1,27 @@
-# from pywikihow import search_wikihow
-import pywhatkit as kt
+from pywikihow import search_wikihow
+import pywhatkit
 
 def how_to(query):
     try:
-        max_results = 1  # one result from web
-        x = kt.search_wikihow(query, max_results)
+        max_results = 1                                 # one result from web
+        how_to = search_wikihow(query, max_results)
         assert len(how_to) == 1
-        how_to[0].print()           # first result
-        val = x[0].summary  # summary of 1st result
+        val = how_to[0].summary                          # summary of 1st result
 
     except Exception as e:
         val = "Sorry sir, I am not able to find this"
 
     return val
-#google search
 
+#google search
 def googlesearch(query):
     query = query.replace("search", "")
     query = query.replace(" for ", "")
     query = query.replace(" about ", "")
     query = query.replace(" on ", "")
     query = query.replace("google", "")
-    # import pywhatkit as kt
-    kt.search(query)  # perform search
+    # import pywhatkit as pywhatkit
+    pywhatkit.search(query)  # perform search
     return query
 
 def nearby(query):
