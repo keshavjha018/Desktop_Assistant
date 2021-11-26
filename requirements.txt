@@ -3,6 +3,11 @@ PyQt5
 pyttsx3
 speak
 SpeechRecognition
+wmi
+playsound
+pyjokes
+wikipedia
+keyboard
 PyAutoGUI
 Pillow
 requests
@@ -12,7 +17,4 @@ PyWikiHow
 pywhatkit
 geopy
 geocoder
-pyjokes
-wikipedia
-keyboard
 PyAudio

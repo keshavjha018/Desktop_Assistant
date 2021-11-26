@@ -1,6 +1,7 @@
 import pyautogui
 from time import sleep
 import wmi
+
 state = ["Speaking..."]
 chat = []
 chat_prev = []
