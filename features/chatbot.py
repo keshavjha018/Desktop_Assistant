@@ -44,8 +44,7 @@ def chat_bot(query):
         speak(listToString(random.choices(chat_11_replay)))
         
     elif query in command_quit:
-        speak(listToString(random.choices(command_quit_replay)) + " in 3 seconds")
-        speak("3" + " 2" + " 1")
+        speak(listToString(random.choices(command_quit_replay)))
         sys.exit()
     else:
         return 0
