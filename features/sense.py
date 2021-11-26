@@ -16,7 +16,7 @@ def speak(audio):
         state.append("Speaking...")
         print(listToString(state))
         engine.say(audio)
-        engine.setProperty('rate', 188)  # set the speed of voice
+        engine.setProperty('rate', 210)  # set the speed of voice
         print(audio)
         chatWalter(audio)
         # Runs an event loop until all commands queued up until this method call complete
@@ -33,7 +33,7 @@ def takecomand():
         take.adjust_for_ambient_noise(source)
         # seconds of non-speaking audio before a phrase is considered complete
         take.pause_threshold = 0.6
-        take.energy_threshold = 700  # minimum audio energy to consider for recording
+        take.energy_threshold = 800  # minimum audio energy to consider for recording
         take.dynamic_energy_threshold = True  # adjusts background noise
         global state
         state.pop()

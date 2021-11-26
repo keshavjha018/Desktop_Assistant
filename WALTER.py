@@ -48,7 +48,7 @@ class MainThread(QThread):
                 self.obj.close(self.query)
             
             elif 'date' in self.query:
-                speak("Today is " + date_time.day() + ' ,' + date_time.date())
+                speak("Today is " + date_time.day() + ', ' + date_time.date())
 
             elif 'the time' in self.query:
                 # declaring the strTime variable to  get the current time according to mearidain
@@ -120,7 +120,7 @@ class MainThread(QThread):
 
             #battery status
             elif "battery status" in self.query or "remaining battery" in self.query:
-                speak("battery remaining " + str(self.obj.battery_status()) + "%")         
+                speak("Battery remaining is: " + str(self.obj.battery_status()) + "%")         
 
 startexecution = MainThread()
 
