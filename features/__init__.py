@@ -52,10 +52,19 @@ class walter:
         return val
 
     def weather(self,query):
+        query = query.replace('weather','')
+        query = query.replace('how is','')
+        query = query.replace('what is','')
+        query = query.replace('the','')
+        query = query.replace('tell','')
+        query = query.replace('me','')
+        
+        query = query.replace('details','')
+        query = query.replace(' ','')
         try:
             val = weather.GetWeather(query)
         except Exception as e:
-            val = "Sorry sir i m not able to get it right now"
+            val = "Sorry sir, I can't get it right now"
         return val
     
     def temperature(self, query):
