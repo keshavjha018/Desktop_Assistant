@@ -1,6 +1,10 @@
 import pyautogui
 from time import sleep
 import wmi
+import datetime
+from playsound import playsound
+import os
+import threading
 
 state = ["Speaking..."]
 chat = []
@@ -45,3 +49,30 @@ def battery():
       rem = (b.RemainingCapacity)
     per = int((rem/full)*100)
     return per
+
+
+def alarm(timing):
+    x = 0
+    alarmtime = str(datetime.datetime.now().strptime(timing, "%I:%M %p"))
+    alarmtime = alarmtime[11:-3]
+    hour_alaram = alarmtime[:2]
+    hour_alaram = int(hour_alaram)
+    minute_alarm = alarmtime[3:5]
+    minute_alarm = int(minute_alarm)
+    while True:
+        if timing != None:
+            while True:
+                cwd = os.getcwd()
+                currentpath = cwd + r"\features\resources\a1.mp3"
+                if hour_alaram == datetime.datetime.now().hour:
+
+                    if minute_alarm == datetime.datetime.now().minute and x <= 4:
+                        print("alarm running")
+                        playsound(currentpath)
+                        x += 1
+
+                    elif minute_alarm < datetime.datetime.now().minute:
+                        timing = 0
+                        return
+        else:
+            return

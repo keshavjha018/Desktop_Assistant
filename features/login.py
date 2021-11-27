@@ -105,7 +105,7 @@ class meet(log):
     def check_class(self):
         val = 0
         try:
-            self.curr_meet_link, self.lecture = access.meet_link()
+            self.curr_meet_link, self.lecture = access().meet_link()
             # self.driver.get(self.curr_meet_link)
             if self.lecture == None:
                 speak(
