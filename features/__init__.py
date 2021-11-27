@@ -1,4 +1,3 @@
-# from basic import battery
 from features import weather
 from features import chatbot
 from features import location
@@ -29,7 +28,6 @@ class walter:
             open_close.open_website(query)
             sense.speak("Opened " + query)
 
-
     def close(self,query):
         query = query.replace("close", "")
         query = query.replace("exit", "")
@@ -41,7 +39,6 @@ class walter:
         else:
             open_close.close_website()
             sense.speak("Closed ")
-
 
     def battery_status(self):
         try:    
@@ -69,7 +66,7 @@ class walter:
     
     def temperature(self, query):
         try:
-            val = weather.GetTemperature(query)
+            val,sky = weather.GetTemperature(query)
         except Exception as e:
             val = "Sorry sir, I can't get it right now."
 
@@ -105,9 +102,6 @@ class walter:
     def my_location(self):
         city, state, country = location.my_location()
         return city, state, country
-    
-    def time(self):
-        return date_time.time()
     
     def send_mail(self,query):
         query = query.replace("send", "")

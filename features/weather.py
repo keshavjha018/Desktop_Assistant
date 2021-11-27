@@ -1,8 +1,5 @@
 from features import location
-from features.location import requests
 from bs4 import BeautifulSoup
-from features.login import webdriver
-from features.get import access
 
 # Getting weather details via API of openweather.org
 def GetWeather(query):
@@ -32,9 +29,8 @@ def GetWeather(query):
     humid = data['main']['humidity']
     wind = data['wind']['speed']
     temp = data['main']['temp']
-    maxtemp = data['main']['temp_min']
-    mintemp = data['main']['temp_max']
-
+    maxtemp = data['main']['temp_max']
+    mintemp = data['main']['temp_min']
     details = "The weather in " + city + ": \n" + "Sky: " + sky + ",\nTemperature: " + str(temp) + "°C, \nMinimum Temperature: " + str(mintemp) + "°C, \nMaximum Temperature: " + str(maxtemp) + "°C\n"
     otherdetails = "Some other details are: " + "Humidity: " + str(humid) + "%, and Wind: " + str(wind) + "km/h."
 
@@ -43,16 +39,22 @@ def GetWeather(query):
 def GetTemperature(query):
     if "temperature in" in query:
         url = "https://www.google.com/search?q=" + query
-        r = requests.get(url)
+        r = location.requests.get(url)
         data = BeautifulSoup(r.text, "html.parser")
-        temp = data.find("div", class_="BNeawe").text
+        temp = data.find("div", class_="BNeawe iBp4i AP7Wnd").text
         temp = "The current temperature there" + " is " + temp
+        time_sky = data.find(
+            'div', attrs={'class': 'BNeawe tAd8D AP7Wnd'}).text
+        sky = time_sky.split('\n')[1]
 
     else:
         url = "https://www.google.com/search?q=" + "temperature"
-        r = requests.get(url)
+        r = location.requests.get(url)
         data = BeautifulSoup(r.text, "html.parser")
-        temp = data.find("div", class_="BNeawe").text
+        temp = data.find("div", class_="BNeawe iBp4i AP7Wnd").text
         temp = "The current temperature at your location is " + temp
+        time_sky = data.find(
+            'div', attrs={'class': 'BNeawe tAd8D AP7Wnd'}).text
+        sky = time_sky.split('\n')[1]
 
-    return temp
+    return temp,sky
