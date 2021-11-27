@@ -58,14 +58,3 @@ def GetTemperature(query):
         sky = time_sky.split('\n')[1]
 
     return temp,sky
-
-# url = "https://www.google.com/search?q=" + "temperature"
-# r = requests.get(url)
-# data = BeautifulSoup(r.text, "html.parser")
-# temp = data.find("div", class_="BNeawe iBp4i AP7Wnd").text
-# time_sky = data.find('div', attrs={'class': 'BNeawe tAd8D AP7Wnd'}).text
-# # formatting data
-# sky = time_sky.split('\n')[1]
-# # print(temp)
-# print(sky)
-# print(GetWeather("Ahemdabad"))

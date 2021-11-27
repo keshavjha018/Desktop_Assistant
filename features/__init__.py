@@ -29,7 +29,6 @@ class walter:
             open_close.open_website(query)
             sense.speak("Opened " + query)
 
-
     def close(self,query):
         query = query.replace("close", "")
         query = query.replace("exit", "")
@@ -41,7 +40,6 @@ class walter:
         else:
             open_close.close_website()
             sense.speak("Closed ")
-
 
     def battery_status(self):
         try:    
