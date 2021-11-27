@@ -1,3 +1,4 @@
+from pyttsx3 import speak
 from features import weather
 from features import chatbot
 from features import location
@@ -128,3 +129,10 @@ class walter:
                 if a == 1:
                     obj.join()
         
+    def set_alarm(self,timing):
+        timing = timing.replace("set alarm to ", "")
+        timing = timing.replace(".", "")
+        timing = timing.upper()
+        speak("Alarm is set for  "+timing)
+        t1 = basic.threading.Thread(target=basic.alarm, args=(timing,))
+        t1.start()

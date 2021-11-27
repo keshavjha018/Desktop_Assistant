@@ -119,7 +119,13 @@ class MainThread(QThread):
 
             #battery status
             elif "battery status" in self.query or "remaining battery" in self.query:
-                speak(str(self.obj.battery_status()))     
+                speak(str(self.obj.battery_status()))
+                
+            elif "set alarm" in self.query:
+                try:
+                    self.obj.set_alarm(self.query)
+                except Exception as e:
+                    speak("Sorry sir, i am not able to set the alarm.")
 
 startexecution = MainThread()
 
