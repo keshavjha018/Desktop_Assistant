@@ -1,7 +1,6 @@
 #---------------------------------For Features----------------------------------------
-from features import chatbot,date_time,sense,get
+from features import chatbot,date_time
 from features import walter
-from features.basic import listToString
 from features.sense import *
 from features.get import os
 from features.chatbot import sys
@@ -52,7 +51,7 @@ class MainThread(QThread):
 
             elif 'the time' in self.query:
                 # declaring the strTime variable to  get the current time according to mearidain
-                speak("Sir, The current time is " + self.obj.time())
+                speak("Sir, The current time is " + date_time.time())
                 
             elif 'screenshot' in self.query or 'take a screenshot' in self.query:
                 cwd = os.getcwd()
@@ -79,10 +78,10 @@ class MainThread(QThread):
 
             elif "joke" in self.query or 'jokes' in self.query:
                 speak(pyjokes.get_joke())
-                self.query =sense.takecomand()
+                self.query = takecomand()
                 while 'one more' in self.query or 'another one' in self.query or 'once more' in self.query:
                     speak(pyjokes.get_joke())
-                    self.query = sense.takecomand()
+                    self.query = takecomand()
 
             elif 'send mail' in self.query:
                 try:

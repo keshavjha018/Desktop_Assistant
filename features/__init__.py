@@ -1,4 +1,3 @@
-# from basic import battery
 from features import weather
 from features import chatbot
 from features import location
@@ -103,9 +102,6 @@ class walter:
     def my_location(self):
         city, state, country = location.my_location()
         return city, state, country
-    
-    def time(self):
-        return date_time.time()
     
     def send_mail(self,query):
         query = query.replace("send", "")
