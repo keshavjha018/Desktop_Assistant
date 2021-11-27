@@ -59,18 +59,13 @@ Majority of this project is made via Python, Selenium & other python based frame
 
 Libraries used:
 
-* pyttsx3
-* speak
-* speechrecognition
+* pyttsx3 & speechrecognition (for speaking and listning)
 * pyautogui
-* pillow
 * requests
-* html5lib
 * bs4
 * pywikihow
 * pywhatkit
-* geopy
-* geocoder
+* geopy & geocoder
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
