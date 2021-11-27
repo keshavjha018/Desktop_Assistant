@@ -69,7 +69,7 @@ class walter:
     
     def temperature(self, query):
         try:
-            val = weather.GetTemperature(query)
+            val,sky = weather.GetTemperature(query)
         except Exception as e:
             val = "Sorry sir, I can't get it right now."
 
