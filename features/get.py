@@ -16,28 +16,34 @@ dict_link = {
     "Probability Tutorial": "http://www.gmail.com",
     "break": None, "Holiday": None, "No lecture": None}
 class access:
+    
+    # returns path of given arg from path.txt 
     def path(self,argument):
         try:
             if os.stat("path.txt").st_size != 0:
                 with open("path.txt", 'r') as file:
-                    check = csv.reader(file)
+                    check = csv.reader(file)              
                     for row in check:
+                        # if arg is present in path.txt return it's path
                         if argument in row[0]:
                             return row[1]
         except Exception as e:
             print(e)
-                    
+
+    # returns url of given arg from url.txt                # 
     def url(self, argument):
         try:
             if os.stat("url.txt").st_size != 0:
                 with open("url.txt", 'r') as file:
                     check = csv.reader(file)
                     for row in check:
+                        # if arg is present in url.txt return it's url
                         if argument in row[0]:
                             return row[1]
         except Exception as e:
             print(e)
-                    
+
+    # fetches personal login data from personal_data.txt
     def personal_details(self, argument):
         try:
             if os.stat("personal_data.txt").st_size != 0:
@@ -48,7 +54,8 @@ class access:
                             return row[1],row[2]
         except Exception as e:
             print(e)
-                    
+
+    # returns recievers mail id  
     def mail_details(self, argument):
         try:
             if os.stat("mail_database.txt").st_size != 0:
@@ -60,6 +67,7 @@ class access:
         except Exception as e:
             print(e)
 
+   # returns time slot for joining lectures
     def get_time_slot(self):
         hour = int(datetime.datetime.now().hour)
         minute = int(datetime.datetime.now().minute)
@@ -83,9 +91,11 @@ class access:
         else:
             return 0
 
+    # returns current day 
     def get_day(self):
         return datetime.datetime.now().strftime("%A")
-
+    
+    # returns lecture name from timetable.txt
     def lecture(self):
         try:
             time_slot = self.get_time_slot()
@@ -104,6 +114,7 @@ class access:
         except Exception as e:
             print(e)
 
+    # returns meet link of current lecture
     def meet_link(self):
         try:
             curr_lecture = self.lecture()
