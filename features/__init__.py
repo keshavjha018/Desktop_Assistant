@@ -1,12 +1,10 @@
 from pyttsx3 import speak
 from features import weather
-from features import chatbot
 from features import location
 from features import get
 from features import search_web
 from features import open_close
 from features import login
-from features import date_time
 from features import basic
 from features import sense
 

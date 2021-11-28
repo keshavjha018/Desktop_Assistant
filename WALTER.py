@@ -2,8 +2,9 @@
 from features import chatbot,date_time
 from features import walter
 from features.sense import *
-from features.get import os
-from features.chatbot import sys
+import os
+import sys
+from features.search_web import findAns
 #---------------------------------For GUI -------------------------------------------
 import PyQt5
 from PyQt5.QtCore import QTime, QTimer, QDate, Qt
@@ -46,7 +47,7 @@ class MainThread(QThread):
             elif 'close' in self.query or 'terminate' in self.query:
                 self.obj.close(self.query)
             
-            elif 'date' in self.query:
+            elif ' date' in self.query:
                 speak("Today is " + date_time.day() + ', ' + date_time.date())
 
             elif 'the time' in self.query:
@@ -126,6 +127,12 @@ class MainThread(QThread):
                     self.obj.set_alarm(self.query)
                 except Exception as e:
                     speak("Sorry sir, i am not able to set the alarm.")
+
+            elif 'who' in self.query or 'what' in self.query or 'when' in self.query or 'where' in self.query or 'how' in self.query or 'why' in self.query or 'which' in self.query:
+                #finding answers from API/web/wikipedia
+                if chatresponse == 0 :
+                    speak(findAns(self.query))
+            
 
 startexecution = MainThread()
 
