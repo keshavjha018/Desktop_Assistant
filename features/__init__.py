@@ -9,7 +9,6 @@ from features import login
 from features import date_time
 from features import basic
 from features import sense
-from features import open_close
 
 class walter:
     def __init__(self):
