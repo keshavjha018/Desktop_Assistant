@@ -5,6 +5,7 @@ import datetime
 from playsound import playsound
 import os
 import threading
+import operator
 
 state = ["Speaking..."]
 chat = []
@@ -50,7 +51,6 @@ def battery():
     per = int((rem/full)*100)
     return per
 
-
 def alarm(timing):
     x = 0
     alarmtime = str(datetime.datetime.now().strptime(timing, "%I:%M %p"))
@@ -76,3 +76,18 @@ def alarm(timing):
                         return
         else:
             return
+
+
+def get_operator_fn(oper):
+    return{
+        '+': operator.add,
+        '-': operator.sub,
+        'x': operator.mul,
+        '/': operator.truediv}[oper]
+
+
+def eval_expr(op1, oper, op2):
+    print(op1+oper+op2)
+    op1, op2 = float(op1), float(op2)
+    print(op1,oper,op2)
+    return get_operator_fn(oper)(op1, op2)

@@ -32,7 +32,7 @@ def takecomand():
         # ignoring the background noise
         take.adjust_for_ambient_noise(source)
         # seconds of non-speaking audio before a phrase is considered complete
-        take.pause_threshold = 0.6
+        take.pause_threshold = 0.8
         take.energy_threshold = 800  # minimum audio energy to consider for recording
         take.dynamic_energy_threshold = True  # adjusts background noise
         global state
@@ -55,4 +55,3 @@ def takecomand():
         return "None"
     chatUser(query)
     return query.lower()  # returning the query in lower alphabets
-    
