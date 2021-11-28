@@ -1,27 +1,27 @@
 from features import sense
 import sys, random
 from features import weather
-from features.date_time import datetime
+import datetime
 from features.walter_chat import *
 
 def chat_bot(query):
     if query in command_info:
-        sense.sense.speak(sense.sense.listToString(random.choices(info)))
+        sense.speak(sense.listToString(random.choices(info)))
 
     elif query in command_greet:
-        sense.sense.speak(sense.sense.listToString(random.choices(greet)))
+        sense.speak(sense.listToString(random.choices(greet)))
 
     elif query in chat_1:
-        sense.sense.speak(sense.sense.listToString(random.choices(chat_1_replay)))
+        sense.speak(sense.listToString(random.choices(chat_1_replay)))
 
     elif query in chat_2:
-        sense.sense.speak(sense.sense.listToString(random.choices(chat_2_replay)))
+        sense.speak(sense.listToString(random.choices(chat_2_replay)))
 
     elif query in chat_3:
-        sense.sense.speak(sense.sense.listToString(random.choices(chat_3_replay)))
+        sense.speak(sense.listToString(random.choices(chat_3_replay)))
 
     elif query in chat_4:
-        sense.sense.speak(sense.sense.listToString(random.choices(chat_4_replay)))
+        sense.speak(sense.listToString(random.choices(chat_4_replay)))
 
     elif query in chat_5:
         sense.speak(sense.listToString(random.choices(chat_5_replay)))
