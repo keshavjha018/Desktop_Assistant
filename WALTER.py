@@ -43,7 +43,7 @@ class MainThread(QThread):
             if 'open' in self.query or 'launch' in self.query:
                 self.obj.open(self.query)
                 
-            elif 'close' in self.query or 'exit' in self.query or 'terminate' in self.query:
+            elif 'close' in self.query or 'terminate' in self.query:
                 self.obj.close(self.query)
             
             elif 'date' in self.query:
