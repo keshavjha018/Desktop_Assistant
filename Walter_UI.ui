@@ -130,8 +130,6 @@
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(255, 78, 81);
-border-color: rgb(255, 255, 255);
-border-radius:5px
 </string>
     </property>
     <property name="text">
@@ -284,7 +282,7 @@ p, li { white-space: pre-wrap; }
     <property name="styleSheet">
      <string notr="true">background-color: rgb(75, 255, 228);
 color: rgb(0, 0, 0);
-border-radius:15px</string>
+</string>
     </property>
     <property name="text">
      <string>Terminate</string>
