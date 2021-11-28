@@ -14,8 +14,8 @@ from PyQt5.QtGui import *
 from PyQt5.uic import loadUiType
 from Walter_UI import Ui_Walter
 #-----------------------------------------------------------------------------------
-#for jokes
-import pyjokes
+import pyjokes #for jokes
+#-----------------------------------------------------------------------------------
 
 class MainThread(QThread):
     def __init__(self) -> None:
@@ -70,7 +70,7 @@ class MainThread(QThread):
                 speak(self.obj.howto(self.query))
 
             elif "search" in self.query:
-                speak(self.obj.google(self.query))
+                speak(self.obj.web_search(self.query))
             
             elif "near" in self.query or 'nearby' in self.query:
                 speak(self.obj.near(self.query))

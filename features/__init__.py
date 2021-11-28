@@ -3,7 +3,7 @@ from features import weather
 from features import chatbot
 from features import location
 from features import get
-from features import google
+from features import search_web
 from features import open_close
 from features import login
 from features import date_time
@@ -74,22 +74,22 @@ class walter:
 
     def howto(self,query):
         try:
-            val = google.how_to(query)
+            val = search_web.how_to(query)
         except Exception as e:
             val = "Sorry sir, I can't get it right now."
 
         return val
        
-    def google(self,query):
+    def web_search(self,query):
         try:
-            val = google.googlesearch(query)
+            val = search_web.googlesearch(query)
         except Exception as e:
             val = "Sorry sir, I can't get it right now."
         return val
 
     def near(self, query):
         try:
-            val = google.nearby(query)
+            val = search_web.nearby(query)
         except Exception as e:
             val = "Sorry sir, I can't get it right now."
 

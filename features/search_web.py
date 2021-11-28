@@ -22,16 +22,13 @@ def googlesearch(query):
     query = query.replace("google", "")
     # import pywhatkit as pywhatkit
     pywhatkit.search(query)  # perform search
-    return query
+    return "Showing search results for " + query
 
 def nearby(query):
     #remove unimportant words from query
-    if "show me" in query:
-        query = query.replace("show me", "")
-    temp = query
-    if "me" in query:
-        temp = query.replace("me", " you")
+    query = query.replace("show", "")
 
-    # speak("Showing " + temp)
     googlesearch(query)  # search google for nearby
-    return "Showing " + temp  # return string to print in chatbox
+
+    query = query.replace(" me", " you")
+    return "Showing " + query  # return string to print in chatbox
