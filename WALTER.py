@@ -7,7 +7,6 @@ import os
 import sys
 from features.search_web import findAns
 from features.win_automate import WindowAutomate
-from features.chatbot import chat_bot,greetAndWork
 #---------------------------------For GUI -------------------------------------------
 import PyQt5
 from PyQt5.QtCore import QTime, QTimer, QDate, Qt
@@ -36,13 +35,13 @@ class MainThread(QThread):
         while True:
             self.query = takecomand()
             # if user chats (conversation)
-            chatresponse = chat_bot(self.query)
+            chatresponse = self.obj.chatwalter(self.query)
 
             # if not in chatbot
             # greet and perform task simultaneously - (can run multiple command at once)
             # eg- hello walter, what is the temperature?
             if chatresponse == 0:
-                self.query = greetAndWork(self.query)
+                self.query = self.obj.efficient(self.query)
 
             if (WindowAutomate(self.query)!= 0):
                 print("Done !")

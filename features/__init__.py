@@ -135,14 +135,12 @@ class walter:
         t1 = basic.threading.Thread(target=basic.alarm, args=(timing,))
         t1.start()
 
-    # not working with this fun, (return issue)
-    #  def chatwalter(self,query):
-    #     try:
-    #         chatbot.chat_bot(query)
-    #         return 1
-    #     except Exception as e:
-    #         sense.speak("Sorry sir, its not in my command database")
-    #         return 0
+    def chatwalter(self,query):
+        try:
+            val = chatbot.chat_bot(query)
+        except Exception as e:
+            pass
+        return val
             
     def wishuser(self):
         try:
@@ -150,12 +148,12 @@ class walter:
         except Exception as e:
             pass
     
-    # not working with this fun, (return issue)
-    # def efficient(self, query):
-    #     try:
-    #         chatbot.greetAndWork(query)
-    #     except Exception as e:
-    #         pass
+    def efficient(self, query):
+        try:
+            val = chatbot.greetAndWork(query)
+        except Exception as e:
+            pass
+        return val
     
     def date(self):
         try:
