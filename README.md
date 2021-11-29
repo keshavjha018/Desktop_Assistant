@@ -56,6 +56,7 @@ Majority of this project is made via Python, Selenium & other python based frame
 * Chrome webdriver
 * [PyQt5](https://www.riverbankcomputing.com/software/pyqt/) - For frontend GUI
 * Qt Designer Software
+* API
 
 Libraries used:
 
