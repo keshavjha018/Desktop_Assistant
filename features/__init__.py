@@ -1,14 +1,13 @@
-from pyttsx3 import speak
 from features import weather
-from features import chatbot
 from features import location
 from features import get
 from features import search_web
 from features import open_close
 from features import login
-from features import date_time
 from features import basic
 from features import sense
+from features import chatbot
+from features import date_time
 
 class walter:
     def __init__(self):
@@ -132,6 +131,46 @@ class walter:
         timing = timing.replace("set alarm to ", "")
         timing = timing.replace(".", "")
         timing = timing.upper()
-        speak("Alarm is set for  "+timing)
+        sense.speak("Alarm is set for  "+timing)
         t1 = basic.threading.Thread(target=basic.alarm, args=(timing,))
         t1.start()
+
+    # not working with this fun, (return issue)
+    #  def chatwalter(self,query):
+    #     try:
+    #         chatbot.chat_bot(query)
+    #         return 1
+    #     except Exception as e:
+    #         sense.speak("Sorry sir, its not in my command database")
+    #         return 0
+            
+    def wishuser(self):
+        try:
+            chatbot.wishMe()
+        except Exception as e:
+            pass
+    
+    # not working with this fun, (return issue)
+    # def efficient(self, query):
+    #     try:
+    #         chatbot.greetAndWork(query)
+    #     except Exception as e:
+    #         pass
+    
+    def date(self):
+        try:
+            return date_time.date()
+        except Exception as e:
+            pass
+
+    def day(self):
+        try:
+            return date_time.day()
+        except Exception as e:
+            pass
+
+    def time(self):
+        try:
+            return date_time.time()
+        except Exception as e:
+            pass
