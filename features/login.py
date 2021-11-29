@@ -1,4 +1,5 @@
-from features.sense import speak,sleep, takecomand
+from features.sense import speak, takecomand
+from time import sleep
 from features.get import access
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys

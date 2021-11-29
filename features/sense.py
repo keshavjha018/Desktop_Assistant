@@ -2,7 +2,7 @@ import pyttsx3
 #The pyttsx3 module is used here to set the output voice for your desktop assistant
 #The speech recognition module is used to get any voice input from the user
 import speech_recognition as sr
-from features.basic import *
+from features.basic import state,chatWalter,chatUser,listToString
 engine = pyttsx3.init('sapi5')  # defining the engine to speak given string
 voice = engine.getProperty('voices')
 # seting voice of any inbuilt system voice like David/Zeera

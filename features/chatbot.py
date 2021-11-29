@@ -1,4 +1,4 @@
-from features import sense
+from features import sense, basic
 import sys, random
 from features import weather
 import datetime
@@ -6,46 +6,46 @@ from features.walter_chat import *
 
 def chat_bot(query):
     if query in command_info:
-        sense.speak(sense.listToString(random.choices(info)))
+        sense.speak(basic.listToString(random.choices(info)))
 
     elif query in command_greet:
-        sense.speak(sense.listToString(random.choices(greet)))
+        sense.speak(basic.listToString(random.choices(greet)))
 
     elif query in chat_1:
-        sense.speak(sense.listToString(random.choices(chat_1_replay)))
+        sense.speak(basic.listToString(random.choices(chat_1_replay)))
 
     elif query in chat_2:
-        sense.speak(sense.listToString(random.choices(chat_2_replay)))
+        sense.speak(basic.listToString(random.choices(chat_2_replay)))
 
     elif query in chat_3:
-        sense.speak(sense.listToString(random.choices(chat_3_replay)))
+        sense.speak(basic.listToString(random.choices(chat_3_replay)))
 
     elif query in chat_4:
-        sense.speak(sense.listToString(random.choices(chat_4_replay)))
+        sense.speak(basic.listToString(random.choices(chat_4_replay)))
 
     elif query in chat_5:
-        sense.speak(sense.listToString(random.choices(chat_5_replay)))
+        sense.speak(basic.listToString(random.choices(chat_5_replay)))
 
     elif query in chat_6:
-        sense.speak(sense.listToString(random.choices(chat_6_replay)))
+        sense.speak(basic.listToString(random.choices(chat_6_replay)))
 
     elif query in chat_7:
-        sense.speak(sense.listToString(random.choices(chat_7_replay)))
+        sense.speak(basic.listToString(random.choices(chat_7_replay)))
 
     elif query in chat_8:
-        sense.speak(sense.listToString(random.choices(chat_8_replay)))
+        sense.speak(basic.listToString(random.choices(chat_8_replay)))
 
     elif query in chat_9:
-        sense.speak(sense.listToString(random.choices(chat_9_replay)))
+        sense.speak(basic.listToString(random.choices(chat_9_replay)))
 
     elif query in chat_10:
-        sense.speak(sense.listToString(random.choices(chat_10_replay)))
+        sense.speak(basic.listToString(random.choices(chat_10_replay)))
 
     elif query in chat_11:
-        sense.speak(sense.listToString(random.choices(chat_11_replay)))
+        sense.speak(basic.listToString(random.choices(chat_11_replay)))
         
     elif query in command_quit:
-        sense.speak(sense.listToString(random.choices(command_quit_replay)))
+        sense.speak(basic.listToString(random.choices(command_quit_replay)))
         sys.exit()
     else:
         return 0

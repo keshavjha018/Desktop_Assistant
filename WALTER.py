@@ -1,11 +1,13 @@
 #---------------------------------For Features----------------------------------------
-from features import chatbot,date_time
+import pyautogui
+from features.basic import *
 from features import walter
 from features.sense import *
 import os
 import sys
 from features.search_web import findAns
 from features.win_automate import WindowAutomate
+from features.chatbot import chat_bot,greetAndWork
 #---------------------------------For GUI -------------------------------------------
 import PyQt5
 from PyQt5.QtCore import QTime, QTimer, QDate, Qt
@@ -26,7 +28,7 @@ class MainThread(QThread):
 
     def run(self):
         self.obj = walter()
-        chatbot.wishMe()
+        self.obj.wishuser()
         self.task()
 
     def task(self):
@@ -34,13 +36,13 @@ class MainThread(QThread):
         while True:
             self.query = takecomand()
             # if user chats (conversation)
-            chatresponse = chatbot.chat_bot(self.query)
+            chatresponse = chat_bot(self.query)
 
             # if not in chatbot
             # greet and perform task simultaneously - (can run multiple command at once)
             # eg- hello walter, what is the temperature?
             if chatresponse == 0:
-                self.query = chatbot.greetAndWork(self.query)
+                self.query = greetAndWork(self.query)
 
             if (WindowAutomate(self.query)!= 0):
                 print("Done !")
@@ -51,12 +53,12 @@ class MainThread(QThread):
             elif 'close' in self.query or 'terminate' in self.query:
                 self.obj.close(self.query)
             
-            elif ' date' in self.query:
-                speak("Today is " + date_time.day() + ', ' + date_time.date())
+            elif 'the date' in self.query:
+                speak("Today is " + self.obj.day() + ', ' + self.obj.date())
 
             elif 'the time' in self.query:
                 # declaring the strTime variable to  get the current time according to mearidain
-                speak("Sir, The current time is " + date_time.time())
+                speak("Sir, The current time is " + self.obj.time())
                 
             elif 'screenshot' in self.query or 'take a screenshot' in self.query:
                 cwd = os.getcwd()

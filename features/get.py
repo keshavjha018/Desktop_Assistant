@@ -1,6 +1,6 @@
 import os
 import csv
-from features.date_time import datetime
+import datetime
 from requests.api import patch
 
 dict_link = {
@@ -15,11 +15,14 @@ dict_link = {
     "Object Oriented programing Lab": "http://www.gmail.com",
     "Probability Tutorial": "http://www.gmail.com",
     "break": None, "Holiday": None, "No lecture": None}
+
 class access:
     def path(self,argument):
+        
+        PATH = os.getcwd() + r"\text_files\path.txt"
         try:
-            if os.stat("path.txt").st_size != 0:
-                with open("path.txt", 'r') as file:
+            if os.stat(PATH).st_size != 0:
+                with open(PATH, 'r') as file:
                     check = csv.reader(file)
                     for row in check:
                         if argument in row[0]:
@@ -28,9 +31,10 @@ class access:
             print(e)
                     
     def url(self, argument):
+        PATH = os.getcwd() + r"\text_files\url.txt"
         try:
-            if os.stat("url.txt").st_size != 0:
-                with open("url.txt", 'r') as file:
+            if os.stat(PATH).st_size != 0:
+                with open(PATH, 'r') as file:
                     check = csv.reader(file)
                     for row in check:
                         if argument in row[0]:
@@ -39,9 +43,10 @@ class access:
             print(e)
                     
     def personal_details(self, argument):
+        PATH = os.getcwd() + r"\text_files\personal_data.txt"
         try:
-            if os.stat("personal_data.txt").st_size != 0:
-                with open("personal_data.txt", 'r') as file:
+            if os.stat(PATH).st_size != 0:
+                with open(PATH, 'r') as file:
                     check = csv.reader(file)
                     for row in check:
                         if argument in row[0]:
@@ -50,9 +55,10 @@ class access:
             print(e)
                     
     def mail_details(self, argument):
+        PATH = os.getcwd() + r"\text_files\mail_database.txt"
         try:
-            if os.stat("mail_database.txt").st_size != 0:
-                with open("mail_database.txt", 'r') as file:
+            if os.stat(PATH).st_size != 0:
+                with open(PATH, 'r') as file:
                     check = csv.reader(file)
                     for row in check:
                         if argument in row[0]:
@@ -95,8 +101,9 @@ class access:
             if time_slot == 0:
                 return "No lecture"
             else:
-                if os.stat("timetable.txt").st_size != 0:
-                    with open("timetable.txt", 'r') as file:
+                PATH = os.getcwd() + r"\text_files\timetable.txt"
+                if os.stat(PATH).st_size != 0:
+                    with open(PATH, 'r') as file:
                         check = csv.reader(file)
                         for row in check:
                             if day in row[0]:
@@ -110,3 +117,6 @@ class access:
             return dict_link[curr_lecture], curr_lecture
         except Exception as e:
             print(e)
+
+# obj = access()
+# print(obj.path("chromedriver_path"))

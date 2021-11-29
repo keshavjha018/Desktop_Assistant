@@ -1,7 +1,7 @@
 from pywikihow import search_wikihow
 import pywhatkit
 import wikipedia
-from features import get
+from features.get import access
 #---------------------For Selenium-----------------------------------
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -94,7 +94,7 @@ def findAns(query):
     if ans == None or len(ans) == 0:
         
         #tools for web scrapping
-        chromedriver_path = get.access().path("chromedriver_path")
+        chromedriver_path = access().path("chromedriver_path")
 
         chrome_options = Options()
         chrome_options.add_argument("--window-size=1024x768")
