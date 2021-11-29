@@ -5,6 +5,7 @@ from features.sense import *
 import os
 import sys
 from features.search_web import findAns
+from features.win_automate import WindowAutomate
 #---------------------------------For GUI -------------------------------------------
 import PyQt5
 from PyQt5.QtCore import QTime, QTimer, QDate, Qt
@@ -41,7 +42,10 @@ class MainThread(QThread):
             if chatresponse == 0:
                 self.query = chatbot.greetAndWork(self.query)
 
-            if 'open' in self.query or 'launch' in self.query:
+            if (WindowAutomate(self.query)!= 0):
+                print("Done !")
+
+            elif 'open' in self.query or 'launch' in self.query:
                 self.obj.open(self.query)
                 
             elif 'close' in self.query or 'terminate' in self.query:
