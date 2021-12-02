@@ -4,7 +4,7 @@
   <h3 align="center">Desktop Assistant Project</h3>
 
   <p align="center">
-    Automates the boring tasks for you & Saves your time
+    Virtual Assistant which can control & automate your PC on voice commands.
     <br />
     <a href="https://github.com/keshavjha018/Desktop_Assistant_Project/issues"><strong>Suggest a feature »</strong></a>
     <br />
@@ -40,10 +40,11 @@
 
 ## About The Project
 
-- This is a group project called Desktop Assistant, developed for OOP Course, 3rd Semester, IIIT Dharwad.
-- Made via Python based libraries & frameworks like Selenium, PyQt5 etc, the project automates the repetative and boring tasks in our daily life.
-- It takes voice command and follows to automate them, just like your personal assistant for Desktop.
-- Currently available only for Windows.
+- This is a group project called Desktop Assistant, developed by a small group of students of IIIT Dharwad under OOP course.
+- Made via Python based libraries & frameworks like Selenium, PyQt5 etc, this virtual assistant can engage in two-way conversations.
+- Offers voice commands, voice searching and controlling desktop.
+- It takes voice command and follows to automate them, just like your personal virtual assistant for Desktop.
+- Currently developed only for Windows.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -73,7 +74,9 @@ Libraries used:
 
 ## Getting Started
 
-There are some Prerequisites for running these programs in any system.
+There are some Prerequisites to run these programs in any windows machine.
+- Python 3 or above
+- Any IDE to run python programs.
 
 ### Please follow the given steps for installation
 
@@ -107,6 +110,11 @@ It will perform most of the tasks on voice command like :
 - Opening Desktop Apps
 - & many others.
 
+Detailed description:
+It can not only perform simple tasks like opening apps, websites, google search, showing weather, temperature, telling jokes, playing literally any song available on internet, taking screenshots and many more.
+But is also capable of doing extensive and complex tasks like Voice typing, fetching weather data via API, answering any question via search engine API and web scrapping, sending mails to anyone* , joining class meet automatically based on your schedule & time zone, creating a new meet, telling exact location based on user’s IP, automating web browsers and many more. And that’s all without even touching the computer, just by Voice commands.
+
+
 As of now we are still working on maximizing the tasks it can do and adding more and more functionality to it.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -116,11 +124,10 @@ As of now we are still working on maximizing the tasks it can do and adding more
 
 - [x] Add readme documentation
 - [x] Add basic functionalities
-- [ ] Add Additional features
+- [x] Add Additional features
+- [ ] Improve efficiency and speed.
 - Supports
     - [x] Windows
-    - [ ] Mac
-    - [ ] Linux
 
 
 ## License
