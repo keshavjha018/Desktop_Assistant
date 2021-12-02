@@ -57,6 +57,7 @@ Majority of this project is made via Python, Selenium & other python based frame
 * Chrome webdriver
 * [PyQt5](https://www.riverbankcomputing.com/software/pyqt/) - For frontend GUI
 * Qt Designer Software
+* APIs
 
 Libraries used:
 
@@ -75,7 +76,7 @@ Libraries used:
 ## Getting Started
 
 There are some Prerequisites to run these programs in any windows machine.
-- Python 3 or above
+- Python 3 or above.
 - Any IDE to run python programs.
 
 ### Please follow the given steps for installation
@@ -111,7 +112,11 @@ It will perform most of the tasks on voice command like :
 - & many others.
 
 Detailed description:
+
+
 It can not only perform simple tasks like opening apps, websites, google search, showing weather, temperature, telling jokes, playing literally any song available on internet, taking screenshots and many more.
+
+
 But is also capable of doing extensive and complex tasks like Voice typing, fetching weather data via API, answering any question via search engine API and web scrapping, sending mails to anyone* , joining class meet automatically based on your schedule & time zone, creating a new meet, telling exact location based on user’s IP, automating web browsers and many more. And that’s all without even touching the computer, just by Voice commands.
 
 
