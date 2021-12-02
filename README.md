@@ -127,10 +127,10 @@ As of now we are still working on maximizing the tasks it can do and adding more
 
 ## Roadmap
 
-- [x] Add readme documentation
-- [x] Add basic functionalities
-- [x] Add Additional features
-- [ ] Improve efficiency and speed.
+- [x] Add readme documentation (Done)
+- [x] Add basic functionalities (Done)
+- [x] Add Additional features (Working)
+- [ ] Improve efficiency and speed. (Working)
 - Supports
     - [x] Windows
 
