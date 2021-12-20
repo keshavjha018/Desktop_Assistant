@@ -127,8 +127,8 @@ As of now we are still working on maximizing the tasks it can do and adding more
 
 - [x] Add readme documentation (Done)
 - [x] Add basic functionalities (Done)
-- [x] Add Additional features (Working)
-- [ ] Improve efficiency and speed. (Working)
+- [x] Add Additional features (Done)
+- [x] Improve efficiency and speed. (Done)
 - Supports
     - [x] Windows
 
