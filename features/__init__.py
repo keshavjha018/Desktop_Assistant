@@ -174,3 +174,16 @@ class walter:
             return date_time.time()
         except Exception as e:
             pass
+    
+    def playsong(self):
+        from features.sense import speak
+        import pywhatkit
+        sense.speak("Tell me the name of the song,")
+        self.songname = sense.takecomand()
+
+        if self.songname != None :
+            #playing the given song on yt
+            pywhatkit.playonyt(self.songname)
+            sense.speak('Playing the song: ' + self.songname)
+        else:
+            return

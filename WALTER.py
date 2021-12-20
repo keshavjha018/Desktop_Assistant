@@ -133,6 +133,12 @@ class MainThread(QThread):
                 #finding answers from API/web/wikipedia
                 if chatresponse == 0 :
                     speak(findAns(self.query))
+
+            elif 'play music' in self.query:
+                try:
+                    self.obj.playsong()
+                except Exception as e:
+                    pass
             
 
 startexecution = MainThread()
