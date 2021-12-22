@@ -73,8 +73,9 @@ Libraries used:
 
 ## Getting Started
 
-There are some Prerequisites to run these programs in any windows machine.
-- Python 3 or above.
+Prerequisites:
+- Python 3.10 or above.
+- Chrome Webdriver  ([Download](https://chromedriver.chromium.org/downloads))
 - Any IDE to run python programs.
 
 ### Please follow the given steps for installation
@@ -95,6 +96,10 @@ There are some Prerequisites to run these programs in any windows machine.
   ```sh
   Run WALTER.py
   ```  
+  <br />
+  Note:
+ - Installation of PyAudio may give error in some PC. Refer to this [Youtube Video](https://www.youtube.com/watch?v=-3am_5jMzJ4) for solution.
+ - In case of other issues in installation, feel free to contact us.
  
 ## Usage
 
