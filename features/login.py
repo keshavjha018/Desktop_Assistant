@@ -99,7 +99,7 @@ class meet(log):
             self.driver.maximize_window()
             speak("Creating a new meet")
             self.driver.get("https://meet.new/")  # link to creat new google meet
-            
+            sleep(6)
         except Exception as e:
             print(e)
 

@@ -31,7 +31,7 @@ def GetWeather(query):
     temp = data['main']['temp']
     maxtemp = data['main']['temp_max']
     mintemp = data['main']['temp_min']
-    details = "The weather in " + city + ": \n" + "Sky: " + sky + ",\nTemperature: " + str(temp) + "°C, \nMinimum Temperature: " + str(mintemp) + "°C, \nMaximum Temperature: " + str(maxtemp) + "°C\n"
+    details = "The weather in " + city + ": \n" + "Sky: " + sky + ",\nTemperature: " + str(temp) + "°C, \nMinimum Temperature: " + str(mintemp) + "°C\n"
     otherdetails = "Some other details are: " + "Humidity: " + str(humid) + "%, and Wind: " + str(wind) + "km/h."
 
     return details + otherdetails
