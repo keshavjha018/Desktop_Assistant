@@ -1,17 +1,16 @@
 <br />
 <div align="center">
 
-  <h3 align="center">Desktop Assistant Project</h3>
+  <h3 align="center">Desktop Assistant</h3>
 
-  <p align="center">
-    Virtual Assistant which can control & automate your PC on voice commands.
+  <p align="center"><i>
+    Virtual Assistant which can control & automate your PC via voice commands.</i>
     <br />
-    <br />
-    
   </p>
+  
 </div>
 
-[Project Report](https://docs.google.com/document/d/1qvrIWh1b0dRF_al1kI0ByCmzfFQCa_haM2fAzWonNd0/)
+<!-- [Project Report](https://docs.google.com/document/d/1qvrIWh1b0dRF_al1kI0ByCmzfFQCa_haM2fAzWonNd0/) -->
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -31,20 +30,19 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#Team">Team Members</a></li>
   </ol>
 </details>
 
 
 ## About The Project
 
-- This is a group project called Desktop Assistant, developed by a small group of students of IIIT Dharwad under OOP course.
+- This is a project called Desktop Assistant, developed by a small group of students of IIIT Dharwad.
 - Made via Python based libraries & frameworks like Selenium, PyQt5 etc, this virtual assistant can engage in two-way conversations.
 - Offers voice commands, voice searching and controlling desktop.
-- It takes voice command and follows to automate them, just like your personal virtual assistant for Desktop.
+- It takes voice command and follows to automate them, just like a personal virtual assistant for Desktop.
 - Currently developed only for Windows.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Back to top</a>)</p>
 
 
 ### Built With
@@ -54,12 +52,12 @@ Majority of this project is made via Python, Selenium & other python based frame
 * [Selenium](https://www.selenium.dev/)
 * Chrome webdriver
 * [PyQt5](https://www.riverbankcomputing.com/software/pyqt/) - For frontend GUI
-* Qt Designer Software
+* Qt Designer
 * APIs
 
 Libraries used:
 
-* pyttsx3 & speechrecognition (for speaking and listning)
+* pyttsx3 & speechrecognition (for speech output & input)
 * pyautogui
 * requests
 * bs4
@@ -67,13 +65,13 @@ Libraries used:
 * pywhatkit
 * geopy & geocoder
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Back to top</a>)</p>
 
 
 
 ## Getting Started
 
-Prerequisites:
+### Prerequisites:
 - Python 3.10 or above.
 - Chrome Webdriver  ([Download](https://chromedriver.chromium.org/downloads))
 - Any IDE to run python programs.
@@ -98,42 +96,39 @@ Prerequisites:
   ```  
   <br />
   Note:
+ - Some libraries may not be installed automatically via requirements.txt . So, install them manually.
  - Installation of PyAudio may give error in some PC. Refer to this [Youtube Video](https://www.youtube.com/watch?v=-3am_5jMzJ4) for solution.
- - In case of other issues in installation, feel free to contact us.
+ - In case of other issues in installation, feel free to contact me or raise an issue.
  
 ## Usage
 
-It will perform most of the tasks on voice command like :
-- Greet/welcome messages & commands
+It can perform most of the basic & heavy tasks on voice command like :
+- Greet/welcome chatting
 - Sending E-Mails
-- Weather report
-- Telling Latest News
-- Crawling to any website  (Based on Voice command)
-- Taking screenshot
+- Playing any music
+- Opening websites on browser (As requested via Voice command)
 - Performing google search
 - Opening Desktop Apps
-- & many others.
+- voice typing
+- Random QnA (fetches info from web)
+- Weather report, Taking screenshots & many others regular tasks.
 
-Detailed description:
+### Detailed description:
 
 
 It can not only perform simple tasks like opening apps, websites, google search, showing weather, temperature, telling jokes, playing literally any song available on internet, taking screenshots and many more.
-
-
 But is also capable of doing extensive and complex tasks like Voice typing, fetching weather data via API, answering any question via search engine API and web scrapping, sending mails to anyone* , joining class meet automatically based on your schedule & time zone, creating a new meet, telling exact location based on user’s IP, automating web browsers and many more. And that’s all without even touching the computer, just by Voice commands.
 
 
-As of now we are still working on maximizing the tasks it can do and adding more and more functionality to it.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Back to top</a>)</p>
 
 
 ## Roadmap
 
-- [x] Add readme documentation (Done)
-- [x] Add basic functionalities (Done)
-- [x] Add Additional features (Done)
-- [x] Improve efficiency and speed. (Done)
+- [x] Add Documentation (Done)
+- [x] Add basic features (Done)
+- [x] Add advanced features (Done)
+- [x] Improve efficiency and speed (Done)
 - Supports
     - [x] Windows
 
@@ -142,14 +137,13 @@ As of now we are still working on maximizing the tasks it can do and adding more
 
 MIT License.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Back to top</a>)</p>
 
 
 
 <!-- Team -->
 ## Team
 
-Names
 - Keshav Kumar Jha (20bcs070)
 - Brij Vaghani (20bcs033)
 - Lucky Yadav (20bcs077)
@@ -159,4 +153,4 @@ Names
 - Sparsh Jain (20bcs127)
 - Tejas Kedare (20bcs134)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Back to top</a>)</p>
