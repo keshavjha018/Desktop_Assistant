@@ -7,7 +7,7 @@
     Virtual Assistant which can control & automate your PC via voice commands.</i>
     <br />
   </p>
-  
+
 </div>
 
 <!-- [Project Report](https://docs.google.com/document/d/1qvrIWh1b0dRF_al1kI0ByCmzfFQCa_haM2fAzWonNd0/) -->
@@ -90,9 +90,9 @@ Libraries used:
   ```sh
   pip install -r requirements.txt
   ```   
-* Step:4 - Done
+* Step:4 - Now run "WALTER.py"
   ```sh
-  Run WALTER.py
+  python WALTER.py
   ```  
   <br />
   Note:
