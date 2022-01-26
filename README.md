@@ -1,12 +1,12 @@
 <br />
 <div align="center">
-
+  <img src="image/logo.png" width="120" height="120">
   <h3 align="center">Desktop Assistant</h3>
 
   <p align="center"><i>
     Virtual Assistant which can control & automate your PC via voice commands.</i>
-    <br />
-  </p>
+   </p>
+   <br/>
 
 </div>
 
@@ -41,9 +41,14 @@
 - Offers voice commands, voice searching and controlling desktop.
 - It takes voice command and follows to automate them, just like a personal virtual assistant for Desktop.
 - Currently developed only for Windows.
+<br/>
 
-<p align="right">(<a href="#top">Back to top</a>)</p>
+## GUI
 
+<p align="center">
+  <img src="image/homescreen-gui.gif">
+</p>
+<br/>
 
 ### Built With
 Majority of this project is made via Python, Selenium & other python based frameworks
@@ -74,7 +79,6 @@ Libraries used:
 ### Prerequisites:
 - Python 3.10 or above.
 - Chrome Webdriver  ([Download](https://chromedriver.chromium.org/downloads))
-- Any IDE to run python programs.
 
 ### Please follow the given steps for installation
 
